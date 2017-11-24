@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Productivity app</title>
+</head>
+<body>
+
+<header class="main-header">
+  <img src="/Logo.svg" alt="Logo" class="main-header__logo">
+  <h1 class="main-header__title">Daily Task List +</h1>
+  <nav class="main-header__navigation">
+    <ul class="main-header__list">
+      <li class="main-header__list-item main-header__list-item_add"><a href="#"
+                                                                       class="main-header__link main-header__link icon-add"
+                                                                       title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
+                                            title="Go to Removed Tasks"></a></li>
+      <li class="main-header__list-item"><a href="task-list.html"
+                                            class="main-header__link main-header__link_active icon-list"
+                                            title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics"
+                                            title="Go to Reports"></a></li>
+      <li class="main-header__list-item"><a href="settings.html" class="main-header__link icon-settings"
+                                            title="Go to Settings"></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main-content">
+  <article class="main-content__article timer">
+    <h2 class="timer__title">Lorem ipsum dolor sit amet consectetur adipiscing</h2>
+
+    <ul class="timer__pomodoros">
+      <li class="timer__pomodoros-item"><button class="timer__pomodoros-button"></button></li>
+      <li class="timer__pomodoros-item"><button class="timer__pomodoros-button"></button></li>
+      <li class="timer__pomodoros-item"><button class="timer__pomodoros-button"></button></li>
+    </ul>
+
+    <section class="timer__buttons timer__body">
+            <h3 class="timer__body-title-start">Let's do it!</h3>
+    </section>
+
+    <div class="timer__buttons button-container button-container_timer">
+      <button class="button-container__item button-container__item_green timer__buttons_start">Start</button>
+    </div>
+  </article>
+
+</main>
+
+<div class="main-content__container">
+  <a href="task-list.html" class="main-content__back-button icon-arrow-left" title="Go to Global List"></a>
+</div>
+
+
+<script src="/bundle.js"></script>
+</body>
+</html>

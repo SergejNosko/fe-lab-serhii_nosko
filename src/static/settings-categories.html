@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Settings</title>
+</head>
+<body>
+<header class="main-header">
+  <img src="/Logo.svg" alt="Logo" class="main-header__logo">
+  <h1 class="main-header__title">Daily Task List +</h1>
+  <nav class="main-header__navigation">
+    <ul class="main-header__list">
+      <li class="main-header__list-item main-header__list-item_add"><a href="#"
+                                                                       class="main-header__link main-header__link icon-add"
+                                                                       title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
+                                            title="Go to Removed Tasks"></a></li>
+      <li class="main-header__list-item"><a href="task-list.html"
+                                            class="main-header__link main-header__link_active icon-list"
+                                            title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics"
+                                            title="Go to Reports"></a></li>
+      <li class="main-header__list-item"><a href="settings.html" class="main-header__link icon-settings"
+                                            title="Go to Settings"></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main-content">
+  <article class="main-content__article categories">
+    <header class="categories__header settings-header">
+      <h2 class="settings-header__title">Categories list overview</h2>
+      <nav class="settings-header__navigation tabs">
+        <a href="settings.html" class="tabs__tab-link">Pomodoros</a>
+        <a href="settings-categories.html" class="tabs__tab-link tabs__tab-link_active">Categories</a>
+      </nav>
+    </header>
+
+    <ul class="categories__list">
+      <li class="categories__list-item"><div class="categories__item-point"></div>Work</li>
+      <li class="categories__list-item"><div class="categories__item-point"></div>Education</li>
+      <li class="categories__list-item"><div class="categories__item-point"></div>Hobby</li>
+      <li class="categories__list-item"><div class="categories__item-point"></div>Sport</li>
+      <li class="categories__list-item"><div class="categories__item-point"></div>Other</li>
+    </ul>
+
+    <div class="full-chart__buttons-container button-container">
+      <button class="button-container__item button-container__item_blue">Go to Tasks</button>
+    </div>
+  </article>
+</main>
+
+
+<script src="/bundle.js"></script>
+</body>
+</html>
