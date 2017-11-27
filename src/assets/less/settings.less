@@ -136,30 +136,30 @@
 
 }
 
-.cycle{
+.cycle {
   width: 100%;
 
-  &__title{
+  &__title {
     .font(700, 20px, PTSans);
     color: @white;
     text-align: center;
     margin-bottom: 25px;
   }
 
-  &__chart{
+  &__chart {
     width: 100%;
   }
 }
 
-.full-chart{
+.full-chart {
   margin: 0 0 43px 0;
   .flex-column;
 
-  &__img{
+  &__img {
     width: 100%;
   }
 
-  &__description{
+  &__description {
     padding: 0 0;
   }
 
@@ -167,6 +167,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    height: 32px;
     &-point {
       margin: 10px 0 5px;
       width: 3px;
@@ -176,37 +177,46 @@
     }
   }
 
-  &__list{
+  &__list {
+    box-sizing: border-box;
     .font(400, 12px, PTSans);
     color: @nepal;
     list-style-type: none;
     display: flex;
 
-    &_top{
-      .full-chart__list-item-point{
+    &_top {
+      .full-chart__list-item-point {
         margin: 5px auto 10px;
       }
 
-      .full-chart__list-item:first-of-type .full-chart__list-item-point{
-        margin-left: 0;
+      .full-chart__list-item:first-of-type {
+        align-items: flex-start;
+
+        & .full-chart__list-item-point {
+          margin-left: 0;
+        }
       }
 
-      .full-chart__list-item:nth-of-type(2){
-        margin-left: 120px;
+      .full-chart__list-item:nth-of-type(2) {
+        align-items: center;
       }
 
-      .full-chart__list-item:last-of-type .full-chart__list-item-point{
-        margin-right: 0;
+      .full-chart__list-item:last-of-type {
+        align-items: flex-end;
+
+        & .full-chart__list-item-point {
+          margin-right: 0;
+        }
       }
     }
   }
 
-  &__buttons-container{
+  &__buttons-container {
     display: flex;
     justify-content: center;
   }
 
-  &__button{
+  &__button {
     .font(700, 18px, PTSans);
     background: none;
     border: none;
@@ -216,36 +226,36 @@
     transition: all ease .3s;
     cursor: pointer;
 
-    &_first{
+    &_first {
       background: @malibu;
 
-      &:hover{
+      &:hover {
         background: @curious-blue;
       }
     }
 
-    &_second{
+    &_second {
       background: @meadow;
 
-      &:hover{
+      &:hover {
         background: @low-active;
       }
     }
   }
 }
 
-.categories{
+.categories {
   width: 100%;
   .flex-column;
 
-  &__list{
+  &__list {
     list-style-type: none;
     .flex-column;
     width: 290px;
     margin: 0 auto 63px;
   }
 
-  &__list-item{
+  &__list-item {
     .font(400, 16px, Roboto);
     color: @nepal;
     border-bottom: 1px solid @nepal;
@@ -254,7 +264,7 @@
     margin: 0 0 34px 0;
   }
 
-  &__item-point{
+  &__item-point {
     position: absolute;
     height: 17px;
     width: 17px;
@@ -263,7 +273,7 @@
     left: -41px;
   }
 
-  &__button{
+  &__button {
     align-self: center;
     .font(700, 18px, PTSans);
     background: none;
@@ -275,31 +285,32 @@
     background: @malibu;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       background: @curious-blue;
     }
   }
 }
+
 .generate-color();
 
-.chart-container{
+.chart-container {
   box-sizing: border-box;
   display: flex;
   height: 10px;
   width: 100%;
 
-  &__item{
+  &__item {
     width: 30px;
 
-    &_work{
+    &_work {
       background: @work;
     }
 
-    &_short-break{
+    &_short-break {
       background: @education;
     }
 
-    &_long-break{
+    &_long-break {
       background: @hobby;
     }
   }
