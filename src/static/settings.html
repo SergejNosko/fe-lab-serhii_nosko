@@ -10,7 +10,7 @@
 <body>
 <header class="main-header">
   <img src="/Logo.svg" alt="Logo" class="main-header__logo">
-  <h1 class="main-header__title">Daily Task List +</h1>
+  <h1 class="main-header__title">Settings</h1>
   <nav class="main-header__navigation">
     <ul class="main-header__list">
       <li class="main-header__list-item main-header__list-item_add"><a href="#"
@@ -19,11 +19,11 @@
       <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
                                             title="Go to Removed Tasks"></a></li>
       <li class="main-header__list-item"><a href="task-list.html"
-                                            class="main-header__link main-header__link_active icon-list"
+                                            class="main-header__link icon-list"
                                             title="Tooltip"></a></li>
       <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics"
                                             title="Go to Reports"></a></li>
-      <li class="main-header__list-item"><a href="settings.html" class="main-header__link icon-settings"
+      <li class="main-header__list-item"><a href="settings.html" class="main-header__link main-header__link_active icon-settings"
                                             title="Go to Settings"></a></li>
     </ul>
   </nav>
@@ -100,16 +100,11 @@
         <li class="full-chart__list-item">First cycle: 2h 55m<div class="full-chart__list-item-point"></div></li>
         <li class="full-chart__list-item">5h 30m<div class="full-chart__list-item-point"></div></li>
       </ul>
-      <img class="full-chart__img" src="/cycle.jpg" alt="Your cycle">
 
-      <section class="full-chart__container chart-container" id="chart">
-        <!--<div class="chart-container__item chart-container__item_work"></div>
-        <div class="chart-container__item chart-container__item_short-break"></div>
-        <div class="chart-container__item chart-container__item_long-break"></div>-->
-      </section>
+      <section class="full-chart__container chart-container" id="chart"></section>
 
       <figcaption class="full-chart__description">
-        <ul class="full-chart__list">
+        <ul class="full-chart__list" id="duration-list">
           <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>30m</li>
           <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>1h</li>
           <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>1h 30m</li>

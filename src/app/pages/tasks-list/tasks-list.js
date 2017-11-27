@@ -37,30 +37,78 @@
   const render = (taskListArray) => {
     let renderValues = taskListArray.map((task) => {
       return task.value;
-    });
-    let chart = document.getElementById('chart');
+    }),
+    chart = document.getElementById('chart');
 
-    return (index, value) => {
-      chart.innerHTML = '';
-      renderValues[index] = value;
+    function calculateWidth(value, duration) {
+      return (value / duration) * 100 + '%';
+    }
 
+    function renderLoop(duration) {
       for(let i = 0; i < renderValues[1] * 2; i++){
         let workElem = document.createElement('div');
 
         workElem.classList.add('chart-container__item');
         workElem.classList.add('chart-container__item_work');
+        workElem.style.width = calculateWidth(renderValues[0], duration);
         chart.appendChild(workElem);
 
         if(i < renderValues[1] * 2 - 1){
           let breakElem = document.createElement('div');
           breakElem.classList.add('chart-container__item');
 
-          if(i === renderValues[1] - 1) breakElem.classList.add('chart-container__item_long-break');
-          else breakElem.classList.add('chart-container__item_short-break');
+          if(i === renderValues[1] - 1){
+            breakElem.style.width = calculateWidth(renderValues[3], duration);
+            breakElem.classList.add('chart-container__item_long-break');
+          }
+          else {
+            breakElem.style.width = calculateWidth(renderValues[2], duration);
+            breakElem.classList.add('chart-container__item_short-break');
+          }
 
           chart.appendChild(breakElem);
         }
       }
+    }
+
+    function renderDurationList(duration) {
+      let hours = Math.round(duration / 60),
+          minutes = duration % 60;
+      const list = document.getElementById('duration-list');
+      list.innerHTML = '';
+
+      for(let i = 1; i <= hours * 2; i++){
+        let listItem = document.createElement('li');
+
+        listItem.classList.add('full-chart__list-item');
+
+        if(i % 2 === 0) listItem.innerHTML = `<div class="full-chart__list-item-point"></div> ${i / 2}h`;
+        else listItem.innerHTML = `<div class="full-chart__list-item-point"></div> ${(i - 1) / 2}h 30m`;
+
+        if(i === 1) listItem.innerHTML = `<div class="full-chart__list-item-point"></div> 30m`;
+
+        listItem.style.width = calculateWidth(30, duration);
+
+        list.appendChild(listItem);
+      }
+
+      if(minutes !== 0){
+        let listItem = document.createElement('li');
+        listItem.classList.add('full-chart__list-item');
+        listItem.innerHTML = `<div class="full-chart__list-item-point"></div> ${hours}h ${minutes}m`;
+        listItem.style.width = calculateWidth(minutes, duration);
+        list.appendChild(listItem);
+      }
+    }
+
+    return (index, value) => {
+      chart.innerHTML = '';
+      renderValues[index] = value;
+
+      let duration = (renderValues[0] + renderValues[2]) * renderValues[1] * 2 - renderValues[2] * 2 + renderValues[3];
+
+      renderLoop(duration);
+      renderDurationList(duration);
     };
   };
 

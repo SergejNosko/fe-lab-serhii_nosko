@@ -3,7 +3,6 @@
 window.addEventListener('scroll', function() {
   let header = document.querySelector('.main-header'),
       headerHeight = header.clientHeight;
-  console.log(headerHeight);
   if(window.pageYOffset >= headerHeight){
     header.classList.add('main-header_fixed');
   }
