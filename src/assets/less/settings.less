@@ -1,0 +1,282 @@
+.main-content {
+  max-width: 1185px;
+  margin: auto;
+}
+
+.settings-article {
+  width: 100%;
+  .flex-column;
+
+  &__section {
+    width: 100%;
+  }
+}
+
+.settings-header {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 83px;
+
+  &__title {
+    .font(300, 22px, Roboto);
+    color: @nepal;
+    flex: 3 0 auto;
+    text-align: right;
+  }
+
+  &__navigation {
+    flex: 2 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.pomodoro-settings {
+  padding-bottom: 21px;
+
+  &__list {
+    max-width: 780px;
+    margin: auto;
+    list-style-type: none;
+    .flex-between;
+  }
+
+  &__item {
+    flex: 1 0 50%;
+  }
+}
+
+.single-setting {
+  .flex-column;
+  margin-bottom: 60px;
+
+  &__first-line {
+    max-width: 280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    &:before {
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      content: '';
+      background: extract(@categories-colors, 1);
+      border-radius: 50%;
+    }
+  }
+
+  &:nth-last-of-type(3) .single-setting__first-line:before {
+    background: @other;
+  }
+  &:nth-last-of-type(2) .single-setting__first-line:before {
+    background: extract(@categories-colors, 2);
+  }
+  &:nth-last-of-type(1) .single-setting__first-line:before {
+    background: extract(@categories-colors, 3);
+  }
+
+  &__name {
+    .font(400, 14px, PTSans);
+    color: @white;
+    text-transform: uppercase;
+    margin-left: 40px;
+  }
+
+  &__input-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__text-field {
+    color: @nepal;
+    width: 100px;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 1px solid @nepal;
+    padding: 0 0 5px 0;
+    transition: all ease .3s;
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    color: @nepal;
+    position: absolute;
+    font-size: 12px;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover {
+      color: @spray;
+
+      & ~ .single-setting__text-field {
+        border-bottom-color: @spray;
+        color: @white;
+      }
+    }
+
+    &_add {
+      right: 0;
+    }
+  }
+
+  &__description {
+    margin: 0 0 0 40px;
+    .font(400, 14px, PTSans);
+    color: @nepal;
+  }
+
+  &__description-strong {
+    color: @white;
+  }
+
+}
+
+.cycle{
+  width: 100%;
+
+  &__title{
+    .font(700, 20px, PTSans);
+    color: @white;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  &__chart{
+    width: 100%;
+  }
+}
+
+.full-chart{
+  margin: 0 0 43px 0;
+  .flex-column;
+
+  &__img{
+    width: 100%;
+  }
+
+  &__description{
+    padding: 0 100px;
+  }
+
+  &__list-item-point{
+    margin: 10px auto 5px;
+    width: 3px;
+    height: 3px;
+    background: @other;
+    border-radius: 50%;
+  }
+
+  &__list{
+    .font(400, 12px, PTSans);
+    color: @nepal;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+
+    &_top{
+      .full-chart__list-item-point{
+        margin: 5px auto 10px;
+      }
+
+      .full-chart__list-item:first-of-type .full-chart__list-item-point{
+        margin-left: 0;
+      }
+
+      .full-chart__list-item:nth-of-type(2){
+        margin-left: 120px;
+      }
+
+      .full-chart__list-item:last-of-type .full-chart__list-item-point{
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__buttons-container{
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button{
+    .font(700, 18px, PTSans);
+    background: none;
+    border: none;
+    margin: 0 10px;
+    color: @white;
+    padding: 15px 25px;
+    transition: all ease .3s;
+    cursor: pointer;
+
+    &_first{
+      background: @malibu;
+
+      &:hover{
+        background: @curious-blue;
+      }
+    }
+
+    &_second{
+      background: @meadow;
+
+      &:hover{
+        background: @low-active;
+      }
+    }
+  }
+}
+
+.categories{
+  width: 100%;
+  .flex-column;
+
+  &__list{
+    list-style-type: none;
+    .flex-column;
+    width: 290px;
+    margin: 0 auto 63px;
+  }
+
+  &__list-item{
+    .font(400, 16px, Roboto);
+    color: @nepal;
+    border-bottom: 1px solid @nepal;
+    position: relative;
+    padding: 0 0 10px 0;
+    margin: 0 0 34px 0;
+  }
+
+  &__item-point{
+    position: absolute;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: extract(@categories-colors, 1);
+    left: -41px;
+  }
+
+
+
+  &__button{
+    align-self: center;
+    .font(700, 18px, PTSans);
+    background: none;
+    border: none;
+    margin: 0 10px;
+    color: @white;
+    padding: 15px 25px;
+    transition: all ease .3s;
+    background: @malibu;
+    cursor: pointer;
+
+    &:hover{
+      background: @curious-blue;
+    }
+  }
+}
+.generate-color();
+

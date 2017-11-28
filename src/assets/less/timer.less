@@ -1,0 +1,134 @@
+.main-content{
+  position: relative;
+
+  &__container{
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    .flex-between;
+    padding: 0 35px;
+  }
+
+  &__back-button{
+    color: @nepal;
+    font-size: 42px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all ease .3s;
+
+    &:hover{
+      color: @spray;
+    }
+
+    &_right{
+      right: 0;
+      //transform: translateX(100%);
+    }
+  }
+}
+
+.timer{
+  .flex-column;
+  align-items: center;
+
+  &__title{
+    .font(400, 17px, Roboto);
+    color: @white;
+    margin-bottom: 35px;
+  }
+
+  &__pomodoros{
+    list-style-type: none;
+    display: flex;
+    margin-bottom: 60px;
+
+    &-button{
+      background: url("/empty-tomato.svg") no-repeat 50% 50%;
+      width: 25px;
+      height: 23px;
+      margin: 0 5px;
+      border: none;
+      cursor: pointer;
+
+      &_completed{
+        background: url("/fill-tomato.svg") no-repeat 50% 50%;
+      }
+
+      &_failed{
+        background: url("/tomato-failed.svg") no-repeat 50% 50%;
+      }
+
+      &_process{
+        background: none;
+        color: @nepal;
+        transition: all ease .3s;
+
+        &:hover{
+          color: @spray;
+        }
+
+        &:active{
+          color: @spray;
+        }
+      }
+    }
+  }
+
+  &__body{
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid @high;
+    border-radius: 50%;
+    padding: 8px;
+    margin-bottom: 70px;
+    background: @background-color;
+    overflow: hidden;
+    box-shadow: 0 5px 40px 2px rgba(0, 0, 0, 0.4);
+
+    &-progress{
+      width: 100%;
+      height: 100%;
+      background: @nepal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+
+    &-title{
+      width: 165px;
+      height: 165px;
+      box-sizing: border-box;
+      .flex-column;
+      justify-content: center;
+      .font(400, 26px, PTSans);
+      color: @white;
+      background: @background-color;
+      z-index: 10;
+      text-align: center;
+      //padding: 10px 55px;
+      border-radius: 50%;
+
+
+      &-number{
+        font-size: 100px;
+        line-height: 80px;
+      }
+    }
+
+    &-title-start{
+      .font(400, 26px, PTSans);
+      color: @white;
+    }
+  }
+
+
+
+}

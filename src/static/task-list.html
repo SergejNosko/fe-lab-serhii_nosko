@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Productivity app</title>
+</head>
+<body>
+
+<article class="modals-article">
+  <section class="modals-article__item modal-window modal-window_remove">
+    <div class="modal-window__top-buttons">
+      <button class="modal-window__button icon-close"></button>
+
+    </div>
+
+    <h2 class="modal-window__title">Remove Task</h2>
+
+    <p class="modal-window__description">
+      Are you sure you want <br> to remove selected <br> task(s)?
+    </p>
+
+    <div class="button-container">
+      <button class="button-container__item button-container__item_blue">Cancel</button>
+      <button class="button-container__item button-container__item_red">Remove</button>
+    </div>
+  </section>
+
+
+  <section class="modals-article__item modal-window modal-window_edit">
+    <form action="#" class="modals-article__form">
+      <div class="modal-window__top-buttons">
+        <button class="modal-window__button icon-trash"></button>
+        <div class="modal-window__container">
+          <button class="modal-window__button icon-check" type="submit"></button>
+          <button class="modal-window__button icon-close"></button>
+        </div>
+      </div>
+
+      <h2 class="modal-window__title">Edit Task</h2>
+
+      <label class="modal-window__label">
+        Title
+        <input type="text" class="modal-window__text" placeholder="Add title here">
+      </label>
+
+      <div class="modal-window__label radio-block radio-block_categories">
+        Category
+        <ul class="radio-block__list">
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio" name="category">
+            <label for="radio" class="radio__label"><span class="radio__inner-round"></span>Work</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-1" name="category">
+            <label for="radio-1" class="radio__label"><span class="radio__inner-round"></span>Education</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-2" name="category">
+            <label for="radio-2" class="radio__label"><span class="radio__inner-round"></span>Hobby</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-3" name="category">
+            <label for="radio-3" class="radio__label"><span class="radio__inner-round"></span>Sport</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-4" name="category">
+            <label for="radio-4" class="radio__label"><span class="radio__inner-round"></span>Other</label>
+          </li>
+        </ul>
+      </div>
+
+      <label class="modal-window__label">
+        Deadline
+        <input type="text" class="modal-window__text" placeholder="Add description here">
+      </label>
+
+      <label class="modal-window__label">
+        Title
+        <input type="text" class="modal-window__text" placeholder="Add title here">
+      </label>
+
+      <div class="modal-window__label radio-block radio-block_estimation">
+        Estimation
+        <ul class="radio-block__list">
+          <li class="radio-block__radio radio-block__radio_filled"></li>
+          <li class="radio-block__radio radio-block__radio_filled"></li>
+          <li class="radio-block__radio radio-block__radio_filled"></li>
+          <li class="radio-block__radio"></li>
+          <li class="radio-block__radio"></li>
+        </ul>
+      </div>
+
+      <div class="modal-window__label radio-block radio-block_priority">
+        Priority
+        <ul class="radio-block__list">
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-1" name="category">
+            <label for="priority-1" class="radio__label"><span class="radio__inner-round"></span>Urgent</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-2" name="category">
+            <label for="priority-2" class="radio__label"><span class="radio__inner-round"></span>High</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-3" name="category">
+            <label for="priority-3" class="radio__label"><span class="radio__inner-round"></span>Middle</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-4" name="category">
+            <label for="priority-4" class="radio__label"><span class="radio__inner-round"></span>Low</label>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </section>
+
+
+  <section class="modals-article__item modal-window">
+    <form action="#" class="modals-article__form">
+      <div class="modal-window__top-buttons">
+        <button class="modal-window__button icon-check" type="submit"></button>
+        <button class="modal-window__button icon-close"></button>
+      </div>
+
+      <h2 class="modal-window__title">Add Task</h2>
+
+      <label class="modal-window__label">
+        Title
+        <input type="text" class="modal-window__text" placeholder="Add title here">
+      </label>
+
+      <div class="modal-window__label radio-block radio-block_categories">
+        Category
+        <ul class="radio-block__list">
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-5" name="category">
+            <label for="radio-5" class="radio__label"><span class="radio__inner-round"></span>Work</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-6" name="category">
+            <label for="radio-6" class="radio__label"><span class="radio__inner-round"></span>Education</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-7" name="category">
+            <label for="radio-7" class="radio__label"><span class="radio__inner-round"></span>Hobby</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-8" name="category">
+            <label for="radio-8" class="radio__label"><span class="radio__inner-round"></span>Sport</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="radio-9" name="category">
+            <label for="radio-9" class="radio__label"><span class="radio__inner-round"></span>Other</label>
+          </li>
+        </ul>
+      </div>
+
+      <label class="modal-window__label">
+        Deadline
+        <input type="text" class="modal-window__text" placeholder="Add description here">
+      </label>
+
+      <label class="modal-window__label">
+        Title
+        <input type="text" class="modal-window__text" placeholder="Add title here">
+      </label>
+
+      <div class="modal-window__label radio-block radio-block_estimation">
+        Estimation
+        <ul class="radio-block__list">
+          <li class="radio-block__radio radio-block__radio_filled"></li>
+          <li class="radio-block__radio radio-block__radio_filled"></li>
+          <li class="radio-block__radio radio-block__radio_filled"></li>
+          <li class="radio-block__radio"></li>
+          <li class="radio-block__radio"></li>
+        </ul>
+      </div>
+
+      <div class="modal-window__label radio-block radio-block_priority">
+        Priority
+        <ul class="radio-block__list">
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-5" name="category">
+            <label for="priority-5" class="radio__label"><span class="radio__inner-round"></span>Urgent</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-6" name="category">
+            <label for="priority-6" class="radio__label"><span class="radio__inner-round"></span>High</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-7" name="category">
+            <label for="priority-7" class="radio__label"><span class="radio__inner-round"></span>Middle</label>
+          </li>
+          <li class="radio-block__radio">
+            <input type="radio" class="radio" id="priority-8" name="category">
+            <label for="priority-8" class="radio__label"><span class="radio__inner-round"></span>Low</label>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </section>
+</article>
+
+
+<header class="main-header main-header_fixed">
+  <img src="/Logo.svg" alt="Logo" class="main-header__logo">
+  <h1 class="main-header__title">Daily Task List +</h1>
+  <nav class="main-header__navigation">
+    <ul class="main-header__list">
+      <li class="main-header__list-item main-header__list-item_add"><a href="#"
+                                            class="main-header__link main-header__link icon-add"
+                                            title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
+                                            title="Go to Removed Tasks"></a></li>
+      <li class="main-header__list-item"><a href="task-list.html"
+                                            class="main-header__link main-header__link_active icon-list"
+                                            title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics"
+                                            title="Go to Reports"></a></li>
+      <li class="main-header__list-item"><a href="settings.html" class="main-header__link icon-settings"
+                                            title="Go to Settings"></a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<main class="main-content">
+
+  <article class="main-content__article zero-tasks zero-tasks_first-entrance">
+    <img src="/tomato_settings.svg" alt="Add task" class="zero-tasks__image">
+    <h2 class="zero-tasks__title">As you visited our site for a first time you can check<br> and customize your default
+      application settings</h2>
+    <div class="zero-tasks__buttons button-container">
+      <button class="button-container__item button-container__item_blue timer__buttons_start">Skip</button>
+      <button class="button-container__item button-container__item_green timer__buttons_start">Go to Settings</button>
+    </div>
+  </article>
+
+  <article class="main-content__article zero-tasks">
+    <img src="/tomato-add.svg" alt="Add task" class="zero-tasks__image">
+    <h2 class="zero-tasks__title">Add your first task</h2>
+  </article>
+
+  <article class="main-content__article task-article">
+    <nav class="task-article__navigation tabs">
+      <a href="task-list.html" class="tabs__tab-link tabs__tab-link_active">To Do</a>
+      <a href="tasks-done.html" class="tabs__tab-link">Done</a>
+    </nav>
+
+    <section class="task-article__section empty-task-list">
+      <h2 class="empty-task-list__title">Task added,<br>
+        drag it to the top 5 in daily task list</h2>
+      <button class="empty-task-list__button icon-arrow_circle"></button>
+    </section>
+
+    <section class="task-article__section zero-tasks zero-tasks_left">
+      <img src="/tomato-addv02.svg" alt="Add task" class="zero-tasks__image">
+      <h2 class="zero-tasks__title">You don’t have any tasks left.<br>
+        Add new tasks to stay productive.</h2>
+    </section>
+
+    <h2 class="task-article__excellent">Excellent,<br>all daily tasks done! :)</h2>
+
+    <ul class="task-article__list">
+      <li class="task-article__list-item single-task single-task_urgent single-task_hobby">
+        <div class="single-task__time">Today</div>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_high single-task_sport">
+        <div class="single-task__time">Today</div>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_high single-task_work">
+        <div class="single-task__time">Today</div>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_middle single-task_education">
+        <div class="single-task__time">Today</div>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_low  single-task_other">
+        <div class="single-task__time">Today</div>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+    </ul>
+  </article>
+
+  <article class="main-content__article previous-tasks">
+
+    <nav class="previous-tasks__navigation tabs">
+      <div class="tabs__container">
+        <a href="#" class="tabs__tab-link tabs__tab-link_global tabs__tab-link_global-active" title="Go to Global List">Global
+          list</a>
+      </div>
+
+      <div class="tabs__container">
+        <a href="#" class="tabs__tab-link tabs__tab-link_active" title="All tasks">All</a>
+        <a href="#" class="tabs__tab-link" title="Urgent tasks">Urgent</a>
+        <a href="#" class="tabs__tab-link" title="High tasks">High</a>
+        <a href="#" class="tabs__tab-link" title="Middle tasks">Middle</a>
+        <a href="#" class="tabs__tab-link" title="Low tasks">Low</a>
+      </div>
+
+    </nav>
+
+    <section class="previous-tasks__section tasks-section tasks-section_work">
+      <h2 class="tasks-section__title"><span class="tasks-section__radio"></span>Work</h2>
+
+      <ul class="tasks-section__list">
+        <li class="tasks-section__list-item single-task single-task_high single-task_work single-task_overdue">
+          <div class="single-task__time"><span class="single-task__time-number">23</span> may</div>
+          <div class="single-task__description">
+            <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+            <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore</p>
+          </div>
+          <div class="single-task__link-container">
+            <a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>
+            <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+          </div>
+          <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+        </li>
+        <li class="tasks-section__list-item single-task single-task_middle single-task_work">
+          <div class="single-task__time"><span class="single-task__time-number">23</span> may</div>
+          <div class="single-task__description">
+            <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+            <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore</p>
+          </div>
+          <div class="single-task__link-container">
+            <a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>
+            <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+          </div>
+          <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+        </li>
+      </ul>
+    </section>
+    <section class="previous-tasks__section tasks-section tasks-section_education">
+      <h2 class="tasks-section__title"><span class="tasks-section__radio"></span>Education</h2>
+
+      <ul class="tasks-section__list">
+        <li class="tasks-section__list-item single-task single-task_low single-task_education">
+          <div class="single-task__time"><span class="single-task__time-number">23</span> may</div>
+          <div class="single-task__description">
+            <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+            <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore</p>
+          </div>
+          <div class="single-task__link-container">
+            <a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>
+            <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+          </div>
+          <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <div class="main-content__notification notification notification_success">
+    <span class="notification__emotion icon-tomato-success"></span>
+
+    <p class="notification__description">Task was successfully created!</p>
+
+    <button class="notification__button icon-close"></button>
+  </div>
+
+  <div class="main-content__notification notification notification_error">
+    <span class="notification__emotion icon-tomato-error"></span>
+
+    <p class="notification__description">Oops! An an error was occured!</p>
+
+    <button class="notification__button icon-close"></button>
+  </div>
+
+  <div class="main-content__notification notification notification_warning">
+    <span class="notification__emotion icon-tomato-info"></span>
+
+    <p class="notification__description">This is just a warning notification message!</p>
+
+    <button class="notification__button icon-close"></button>
+  </div>
+
+  <div class="main-content__notification notification notification_notification">
+    <span class="notification__emotion icon-tomato-info"></span>
+
+    <p class="notification__description">This is just an info notification message!</p>
+
+    <button class="notification__button icon-close"></button>
+  </div>
+</main>
+
+
+<script src="/bundle.js"></script>
+</body>
+</html>
