@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Productivity app</title>
+</head>
+<body>
+
+<header class="main-header">
+    <img src="/Logo.svg" alt="Logo" class="main-header__logo">
+    <h1 class="main-header__title">Report</h1>
+    <nav class="main-header__navigation">
+        <ul class="main-header__list">
+            <li class="main-header__list-item main-header__list-item_add"><a href="#"
+                                                                             class="main-header__link icon-add"
+                                                                             title="Tooltip"></a></li>
+            <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
+                                                  title="Go to Removed Tasks"></a></li>
+            <li class="main-header__list-item"><a href="task-list.html"
+                                                  class="main-header__link icon-list"
+                                                  title="Tooltip"></a></li>
+            <li class="main-header__list-item"><a href="reports.html" class="main-header__link main-header__link_active icon-statistics"
+
+                                                  title="Go to Reports"></a></li>
+            <li class="main-header__list-item"><a href="settings.html" class="main-header__link icon-settings"
+                                                  title="Go to Settings"></a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main-content">
+    <article class="main-content__article report">
+        <nav class="report__navigation">
+            <ul class="report__list">
+                <li class="report__list-item"><a href="reports.html" class="report__link report__link_active">Day</a></li>
+                <li class="report__list-item"><a href="reports-week.html" class="report__link ">Week</a></li>
+                <li class="report__list-item"><a href="reports-month.html" class="report__link">Month</a></li>
+            </ul>
+        </nav>
+
+        <figure class="report__chart chart">
+            <img src="/daily-chart-task.png" alt="Daily Chart" class="chart__image">
+            <figcaption class="chart__description">
+                <ul class="chart__list">
+                    <li class="chart__list-item">Urgent</li>
+                    <li class="chart__list-item">High</li>
+                    <li class="chart__list-item">Middle</li>
+                    <li class="chart__list-item">Low</li>
+                    <li class="chart__list-item">Failed</li>
+                </ul>
+            </figcaption>
+        </figure>
+
+        <nav class="report__navigation">
+            <ul class="report__list">
+                <li class="report__list-item"><a href="reports-pomodoros.html" class="report__link">Pomodoros</a></li>
+                <li class="report__list-item"><a href="reports.html" class="report__link report__link_active">Task</a></li>
+            </ul>
+        </nav>
+    </article>
+</main>
+
+<div class="main-content__container">
+    <a href="task-list.html" class="main-content__back-button icon-arrow-left" title="Go to Global List"></a>
+</div>
+
+<script src="/bundle.js"></script>
+</body>
+</html>

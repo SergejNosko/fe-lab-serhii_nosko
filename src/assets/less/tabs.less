@@ -1,0 +1,63 @@
+.tabs{
+  display: flex;
+  justify-content: flex-end;
+
+  &__tab-link {
+    .font(400, 16px, PTSans);
+    color: @nepal;
+    transition: all ease .3s;
+    padding: 0 10px 0 10px;
+    border-right: 1px solid @nepal;
+
+    &:hover {
+      color: @spray;
+    }
+
+    &_active {
+      color: @white;
+
+      &:hover {
+        color: @white;
+      }
+    }
+
+    &:first-of-type {
+      padding: 0 10px 0 0;
+    }
+
+    &:last-of-type {
+      padding: 0 0 0 10px;
+      border-right: none;
+    }
+
+    &_global:first-of-type{
+      .font(700, 20px, PTSans);
+      color: @nepal;
+      transition: all ease .3s;
+      padding: 0;
+
+      &:hover{
+        color: @spray;
+      }
+
+      &:after{
+        font-family: 'icomoon' !important;
+        content: "\e909";
+        font-size: 9px;
+        vertical-align: middle;
+        margin-left: 10px;
+      }
+    }
+
+    &_global-active:first-of-type:after{
+      content: "\e908";
+    }
+  }
+
+
+
+  &_extended{
+    width: 100%;
+    justify-content: space-between;
+  }
+}
