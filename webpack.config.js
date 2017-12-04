@@ -40,7 +40,6 @@ module.exports = {
             name: 'images/[name].[ext]'
           }
         }]
-<<<<<<< HEAD
       },
         {
           test: /\.js$/,
@@ -50,9 +49,7 @@ module.exports = {
           test: /\.hbs$/,
             use: 'handlebars-loader'
         }
-=======
-      }
->>>>>>> productivity-app
+
     ]
   },
   plugins: [

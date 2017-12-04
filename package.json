@@ -8,7 +8,6 @@
   "scripts": {
     "start": "webpack-dev-server --open"
   },
-<<<<<<< HEAD
   "dependencies": {
     "firebase": "^4.7.0",
     "firebase-tools": "^3.15.4"
@@ -16,20 +15,13 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-=======
-  "dependencies": {},
-  "devDependencies": {
->>>>>>> productivity-app
     "copy-webpack-plugin": "^4.2.0",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
-<<<<<<< HEAD
     "handlebars": "^4.0.11",
     "handlebars-loader": "^1.6.0",
     "handlebars-template-loader": "^0.8.0",
-=======
->>>>>>> productivity-app
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "style-loader": "^0.19.0",
