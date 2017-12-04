@@ -5,3 +5,6 @@ require('./router'); // include router
 
 /* example of including header component */
 require('./components/header/header');
+
+/* task-list component */
+require('./pages/tasks-list/tasks-list');

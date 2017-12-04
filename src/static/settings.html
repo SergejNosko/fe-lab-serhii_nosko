@@ -9,12 +9,23 @@
 </head>
 <body>
 <header class="main-header">
+  <img src="/Logo.svg" alt="Logo" class="main-header__logo">
   <h1 class="main-header__title">Settings</h1>
   <nav class="main-header__navigation">
     <ul class="main-header__list">
-      <li class="main-header__list-item"><a href="task-list.html" class="main-header__link  icon-list" title="Tooltip"></a></li>
-      <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics" title="Go to Reports"></a></li>
-      <li class="main-header__list-item"><a href="settings.html" class="main-header__link main-header__link_active icon-settings" title="Go to Settings"></a></li>
+      <li class="main-header__list-item main-header__list-item_add"><a href="#"
+                                                                       class="main-header__link main-header__link icon-add"
+                                                                       title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
+                                            title="Go to Removed Tasks"></a></li>
+      <li class="main-header__list-item"><a href="task-list.html"
+                                            class="main-header__link icon-list"
+                                            title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics"
+                                            title="Go to Reports"></a></li>
+      <li class="main-header__list-item"><a href="settings.html" class="main-header__link main-header__link_active icon-settings"
+                                            title="Go to Settings"></a></li>
+
     </ul>
   </nav>
 </header>
@@ -31,7 +42,8 @@
 
     <section class="settings-article__section pomodoro-settings">
       <ul class="pomodoro-settings__list">
-        <li class="pomodoro-settings__item single-setting">
+        <li class="pomodoro-settings__item single-setting" id="voter1" data-index="0">
+
           <div class="single-setting__first-line">
             <span class="single-setting__name">Work time</span>
             <div class="single-setting__input-block">
@@ -43,7 +55,8 @@
           <p class="single-setting__description">Please select a value between 15 and 25 <span class="single-setting__description-strong">minutes</span></p>
         </li>
 
-        <li class="pomodoro-settings__item single-setting">
+        <li class="pomodoro-settings__item single-setting" id="voter2" data-index="1">
+
           <div class="single-setting__first-line">
             <span class="single-setting__name">Work iteration</span>
             <div class="single-setting__input-block">
@@ -55,7 +68,8 @@
           <p class="single-setting__description">Please select a value between 2 and 5 <span class="single-setting__description-strong">iterations</span></p>
         </li>
 
-        <li class="pomodoro-settings__item single-setting">
+        <li class="pomodoro-settings__item single-setting" id="voter3" data-index="2">
+
           <div class="single-setting__first-line">
             <span class="single-setting__name">Short break</span>
             <div class="single-setting__input-block">
@@ -67,7 +81,8 @@
           <p class="single-setting__description">Please select a value between 3 and 5 <span class="single-setting__description-strong">minutes</span></p>
         </li>
 
-        <li class="pomodoro-settings__item single-setting">
+        <li class="pomodoro-settings__item single-setting" id="voter4" data-index="3">
+
           <div class="single-setting__first-line">
             <span class="single-setting__name">Long break</span>
             <div class="single-setting__input-block">
@@ -85,25 +100,16 @@
   <article class="main-content__article cycle">
     <h2 class="cycle__title">Your cycle</h2>
     <figure class="cycle__chart full-chart">
-      <ul class="full-chart__list full-chart__list_top">
+      <ul class="full-chart__list full-chart__list_top" id="cycle-list">
         <li class="full-chart__list-item">0m<div class="full-chart__list-item-point"></div></li>
-        <li class="full-chart__list-item">First cycle: 2h 55m<div class="full-chart__list-item-point"></div></li>
-        <li class="full-chart__list-item">5h 30m<div class="full-chart__list-item-point"></div></li>
+        <li class="full-chart__list-item" id="first-cycle"></li>
+        <li class="full-chart__list-item"></li>
       </ul>
-      <img class="full-chart__img" src="/cycle.jpg" alt="Your cycle">
+
+      <section class="full-chart__container chart-container" id="chart"></section>
+
       <figcaption class="full-chart__description">
-        <ul class="full-chart__list">
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>30m</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>1h</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>1h 30m</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>2h</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>2h 30m</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>3h</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>3h 30m</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>4h</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>4h 30m</li>
-          <li class="full-chart__list-item"><div class="full-chart__list-item-point"></div>5h</li>
-        </ul>
+        <ul class="full-chart__list" id="duration-list"></ul>
       </figcaption>
     </figure>
 
