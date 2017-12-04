@@ -1,4 +1,4 @@
-export let EventBus = {
+export const EventBus = {
     listeners: {},
 
     add: function(type, callback, scope){

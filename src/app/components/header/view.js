@@ -1,4 +1,10 @@
-//require('./header.less'); // example of including component's styles
+import Template from './template.hbs';
+
+export function MainHeader() {
+  const mainHeader = document.getElementById('main-header');
+
+  mainHeader.innerHTML = Template();
+}
 
 window.addEventListener('scroll', function() {
   let header = document.querySelector('.main-header'),

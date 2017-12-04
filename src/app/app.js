@@ -1,4 +1,4 @@
-//require('assets/less/main.less'); // include general styles
+require('assets/less/main.less');
 
 require('./router'); // include router
 
@@ -6,4 +6,4 @@ require('./router'); // include router
 require('./services/firebase');
 
 /* example of including header component */
-require('./components/header/header');
+//require('./components/header/index');

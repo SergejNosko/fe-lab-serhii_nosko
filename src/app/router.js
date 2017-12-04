@@ -1,4 +1,5 @@
 import {EventBus} from './services/eventBus';
+import MainHeader from './components/header/index';
 import Report from './pages/reports-page/index';
 import Timer from './pages/timer-page/index';
 import Settings from './pages/settings-page/index';
@@ -19,31 +20,43 @@ class Router {
 
         this.root = '#task-list';
 
-        window.addEventListener('hashchange', this.init);
+        window.addEventListener('hashchange', this.pageChange);
 
         Router.instance = this;
     }
 
     add(path, component){
         this.routes[path] = component;
+        this.init();
     }
 
     remove(path){
         delete this.routes[path];
+        this.init();
     }
 
     changeRootPath(path){
         this.root = path;
     }
 
+    pageChange(){
+        let hash = window.location.hash;
+
+        //if(!this.routes.hasOwnProperty(hash)) throw new Error();
+
+        if(document.querySelector('.main-header').innerHTML === '') MainHeader();
+
+        if(window.location.pathname == '/' && hash == '') hash = this.root;
+
+        EventBus.dispatch(hash);
+    }
+
     init(){
-        let pathname = window.location.hash;
         for(let key in this.routes){
             EventBus.add(key, this.routes[key]);
         }
 
-        if(window.location.pathname == '/' && pathname == '') pathname = this.root;
-        EventBus.dispatch(pathname);
+        this.pageChange();
     }
 }
 
