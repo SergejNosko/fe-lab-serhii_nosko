@@ -1,3 +1,3 @@
-export default function Timer() {
-    console.log('Timer page');
-}
+import {Timer} from './timer'
+
+export default Timer;

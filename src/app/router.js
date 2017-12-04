@@ -2,7 +2,7 @@ import {EventBus} from './services/eventBus';
 import Report from './pages/reports-page/index';
 import Timer from './pages/timer-page/index';
 import Settings from './pages/settings-page/index';
-import TaskList from './pages/settings-page/index';
+import TaskList from './pages/task-list-page/index';
 
 class Router {
     constructor(){
@@ -11,13 +11,15 @@ class Router {
         }
 
         this.routes = {
-            '/timer': Timer,
-            '/task-list': TaskList,
-            '/settings': Settings,
-            '/report': Report
+            '#timer': Timer,
+            '#task-list': TaskList,
+            '#settings': Settings,
+            '#report': Report
         };
 
-        this.root = '/task-list';
+        this.root = '#task-list';
+
+        window.addEventListener('hashchange', this.init);
 
         Router.instance = this;
     }
@@ -35,13 +37,13 @@ class Router {
     }
 
     init(){
-        let pathname = window.location.pathname;
+        let pathname = window.location.hash;
         for(let key in this.routes){
             EventBus.add(key, this.routes[key]);
         }
 
-        if(pathname === '/') EventBus.dispatch(window.location.host + this.root);
-        else EventBus.dispatch(pathname);
+        if(window.location.pathname == '/' && pathname == '') pathname = this.root;
+        EventBus.dispatch(pathname);
     }
 }
 

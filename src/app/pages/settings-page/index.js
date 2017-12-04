@@ -1,4 +1,4 @@
-//export { TaskList } from '/task-list';
-export default function Timer() {
-    console.log('Settings page');
-}
+import {View} from './view';
+//import {Controller} from './controller';
+
+export default View;

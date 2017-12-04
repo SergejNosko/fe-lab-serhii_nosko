@@ -1,3 +1,3 @@
-export default function Timer() {
-    console.log('Task list page');
-}
+import {TaskList} from './task-list';
+
+export default TaskList;

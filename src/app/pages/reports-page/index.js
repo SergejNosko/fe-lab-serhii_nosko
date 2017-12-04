@@ -1,3 +1,3 @@
-export default function Report() {
-    console.log('Report page');
-}
+import {Report} from './report';
+
+export default Report;

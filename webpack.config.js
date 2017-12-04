@@ -8,6 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  node: {
+    fs: "empty"
+  },
   resolve: {
     modules: [
       path.resolve(__dirname, 'src'),
@@ -43,7 +46,7 @@ module.exports = {
         },
         {
           test: /\.hbs$/,
-            use: 'handlebars-template-loader'
+            use: 'handlebars-loader'
         }
     ]
   },

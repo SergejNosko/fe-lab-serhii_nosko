@@ -27,24 +27,12 @@ export let EventBus = {
     },
 
     dispatch: function(type){
-        let event = {
-            type: type
-        };
-        /*let args = [];
-        let numOfArgs = arguments.length;
-        for(let i = 0; i < numOfArgs; i++){
-            args.push(arguments[i]);
-        }
-        args = args.length > 2 ? args.splice(2, args.length-1) : [];
-        args = [event].concat(args);*/
-
         if(typeof this.listeners[type] !== "undefined") {
             let listeners = this.listeners[type].slice();
             let numOfCallbacks = listeners.length;
             for(let i = 0; i < numOfCallbacks; i++) {
                 let listener = listeners[i];
                 if(listener && listener.callback) {
-                    //let concatArgs = args.concat(listener.args);
                     listener.callback.apply(listener.scope);
                 }
             }
