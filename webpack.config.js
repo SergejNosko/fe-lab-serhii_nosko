@@ -8,6 +8,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  node: {
+    fs: "empty"
+  },
+
   resolve: {
     modules: [
       path.resolve(__dirname, 'src'),
@@ -36,7 +40,16 @@ module.exports = {
             name: 'images/[name].[ext]'
           }
         }]
-      }
+      },
+        {
+          test: /\.js$/,
+            use: 'babel-loader'
+        },
+        {
+          test: /\.hbs$/,
+            use: 'handlebars-loader'
+        }
+
     ]
   },
   plugins: [

@@ -1,3 +1,4 @@
-// example of exporting header component
-// export * from './header';
+import {MainHeader} from './view';
+
+export default MainHeader;
 
