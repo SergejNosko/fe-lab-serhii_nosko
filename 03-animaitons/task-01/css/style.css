@@ -1,0 +1,63 @@
+.card-container {
+  height: 174px;
+  perspective: 600px;
+  position: relative;
+  width: 238px;
+}
+.card {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  transition: all 1s ease;
+}
+.card .side {
+  backface-visibility: visible;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  transition: all 1s ease;
+}
+.card .back {
+  visibility: hidden;
+  background: #393F45;
+  color: #fff;
+  line-height: 150px;
+  text-align: center;
+  font-size:15px;
+  transition: all 1s ease;
+}
+
+.card:hover{
+  transform: rotateY(180deg);
+}
+.card:hover .side{
+  animation: card-show 1s ease .3s forwards;
+}
+
+.card:hover .back{
+  animation: card-hide 1s ease .3s forwards;
+}
+
+@keyframes card-hide {
+  0%{
+    visibility: hidden;
+    transform: rotateY(0deg);
+  }
+
+  100%{
+    visibility: visible;
+    transform: rotateY(60deg);
+  }
+}
+
+@keyframes card-show {
+  0%{
+    backface-visibility: visible;
+    transform: rotateY(0deg);
+  }
+
+  100%{
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+  }
+}

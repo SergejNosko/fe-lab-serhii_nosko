@@ -1,0 +1,130 @@
+.move-boat:after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 120px;
+  background: url('../images/steam.png') no-repeat;
+  background-size: 120px;
+  position: absolute;
+  top: -50%;
+  left: -5%;
+  opacity: 0;
+}
+.move-boat{
+  position: absolute;
+  bottom:10px;
+  -webkit-transition: left 2s linear;
+  transition: left 2s ease-in;
+  left:0;
+}
+.wave{
+  position: absolute;
+  bottom:0;
+  width: 1600px;
+  height:150px;
+  left:-50%;
+}
+.sun {
+  position: absolute;
+  right:0;
+}
+.cloud{
+  position: absolute;
+  right:-150px;
+  z-index:1;
+}
+/* Write your code */
+
+.animation-box:hover{
+  animation: background .1s linear 2s forwards;
+}
+
+.animation-box:hover .wave{
+  animation: wave 2s linear infinite;
+}
+
+.animation-box:hover .sun{
+  animation: sun 3s linear infinite;
+}
+
+.animation-box:hover .cloud{
+  animation: cloud 2s linear forwards;
+}
+
+.animation-box:hover .move-boat{
+  animation: boat 2s linear forwards;
+}
+
+.animation-box:hover .move-boat:after{
+  transform-origin: bottom right;
+  animation: smoke 1s linear infinite;
+}
+
+@keyframes cloud {
+  0%{
+    right: -150px;
+  }
+  100%{
+    right: 0;
+  }
+}
+
+@keyframes background {
+  0%{
+    background: transparent;
+  }
+  100%{
+    background: #262F37;
+  }
+}
+
+@keyframes sun {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wave {
+  0%{
+    left: -50%;
+  }
+  100%{
+    left: 0;
+  }
+}
+
+@keyframes boat {
+  0%{
+    bottom: 10px;
+    left: 0;
+    transform: rotate(0deg);
+  }
+  50%{
+    bottom: -10px;
+    left: 20%;
+    transform: rotate(15deg);
+  }
+  100%{
+    bottom: 10px;
+    left: 40%;
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes smoke {
+  0%{
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  50%{
+    opacity: .5;
+    transform: rotate(10deg);
+  }
+  100%{
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
