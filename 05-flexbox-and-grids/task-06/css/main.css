@@ -1,0 +1,44 @@
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header{
+    width: 100%;
+    background: red;
+    flex: 1 0 10%;
+}
+
+main{
+    display: flex;
+    flex: 8 0 80%;
+}
+
+article{
+    flex: 2 0 50%;
+    background: deepskyblue;
+}
+
+article p{
+    font-size: 30px;
+}
+
+aside{
+    flex: 1 0 25%;
+}
+
+aside:nth-of-type(1){
+    background: yellow;
+}
+
+aside:nth-of-type(2){
+    background: pink;
+}
+
+footer{
+    width: 100%;
+    flex: 1 0 10%;
+    background: greenyellow;
+}
