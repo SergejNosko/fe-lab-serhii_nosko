@@ -1,0 +1,177 @@
+.modals-article{
+  display: none;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(14, 19, 25, .5);
+  z-index: 10;
+
+  &__item{
+    box-sizing: border-box;
+    max-width: 500px;
+    background: #2e3e52;
+    margin: 50px auto 0;
+  }
+}
+
+.modal-window{
+  display: none;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 13px 15px 25px 43px;
+
+  &__top-buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 11px;
+  }
+
+  &__button{
+    width: 21px;
+    height: 21px;
+    background: none;
+    border: none;
+    color: @nepal;
+    cursor: pointer;
+    transition: all ease .3s;
+
+    &:hover{
+      color: @spray;
+    }
+
+    &:first-of-type{
+      padding-left: 0;
+    }
+  }
+
+  &__title{
+    .font(700, 28px, Roboto);
+    color: @white;
+    text-align: center;
+    margin-bottom: 23px;
+  }
+
+  &__label{
+    .flex-column;
+    .font(400, 14px, Roboto);
+    color: @white;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+  }
+
+  &__text{
+    font-size: 16px;
+    color: @white;
+    background: none;
+    border: none;
+    padding-bottom: 10px;
+    margin-top: 17px;
+    border-bottom: 1px solid @nepal;
+
+    &::placeholder{
+      color: @nepal;
+    }
+  }
+
+  &_edit{
+    .modal-window__top-buttons{
+      justify-content: space-between;
+    }
+  }
+
+  &_remove{
+    padding: 13px 15px 25px;
+  }
+
+  &__description{
+    .font(300, 36px, Roboto);
+    color: @nepal;
+    text-align: center;
+    margin: 153px 0 180px 0;
+  }
+
+  &__buttons-container{
+    display: flex;
+    margin: 150px auto 0;
+  }
+
+  &__bottom-button{
+    border: none;
+    color: @white;
+    padding: 15px 30px;
+    margin: 0 10px;
+
+    &_remove{
+      background: @tomato;
+    }
+
+    &_cancel{
+      background: @malibu;
+    }
+  }
+}
+
+.radio-block{
+  .flex-column;
+
+  &__list{
+    list-style-type: none;
+    display: flex;
+    margin-top: 17px;
+  }
+
+  &__radio{
+    display: flex;
+    align-items: center;
+    color: @nepal;
+    margin-right: 13px;
+    vertical-align: middle;
+    text-transform: none;
+    cursor: pointer;
+    transition: all ease .3s;
+
+    &:hover{
+      color: @spray;
+    }
+  }
+
+  &__round{
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: @nepal;
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &_active:before{
+      content: '';
+      width: 5px;
+      height: 5px;
+      border: 2px solid #2e3e52;
+      position: absolute;
+      left: 4px;
+      border-radius: 50%;
+    }
+  }
+
+  &_estimation{
+
+    .radio-block__radio{
+      width: 21px;
+      height: 19px;
+      background: url("/empty-tomato.svg") no-repeat 50% 50%;
+
+      &_filled{
+        background: url("/fill-tomato.svg") no-repeat 50% 50%;
+      }
+    }
+  }
+}
+
+.generate-color(@parent-selector: radio-block_priority, @main-selector: radio-block__radio, @alt-selector: 'radio', @color-schema: @priority-color);
+
+.generate-color(@parent-selector: radio-block_categories, @main-selector: radio-block__radio, @alt-selector: 'radio');

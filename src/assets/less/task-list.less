@@ -1,0 +1,517 @@
+.task-article {
+  margin-top: 10px;
+  .flex-column;
+
+  &__navigation {
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 31px;
+  }
+
+  &__excellent{
+    display: none;
+    .font(300, 36px, Roboto);
+    color: @nepal;
+    text-align: center;
+    align-self: center;
+    margin: 40px 0 120px;
+  }
+}
+
+.single-task {
+  width: 100%;
+  border-left: 9px solid @white;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background: @white;
+  margin-bottom: 9px;
+  box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.4);
+
+  &__time {
+    .font(700, 11px, Roboto);
+    width: 94px;
+    text-align: center;
+    text-transform: uppercase;
+    color: @dark-grey;
+    .flex-column;
+
+    &-number{
+      .font(700, 27px, PTSans);
+    }
+  }
+
+  &__description {
+    flex: 1 0 auto;
+  }
+
+  &__title {
+    .font(500, 19px, Roboto);
+    margin-bottom: 10px;
+  }
+
+  &__link-container{
+    .flex-column;
+  }
+
+  &__edit-link {
+    color: @silver;
+    padding-right: 30px;
+    transition: all ease .3s;
+    margin: 5px 0;
+
+    &:hover {
+      color: @nepal;
+    }
+
+    &:focus {
+      color: @spray;
+    }
+  }
+
+  &__text {
+    .font(400, 16px, Roboto);
+    color: @grey;
+    margin: 0;
+  }
+
+  &__status {
+    position: relative;
+    font-size: 45px;
+    background: @low;
+    color: @white;
+    padding: 21px 22px;
+
+    &:after {
+      content: '3';
+      .font(700, 24px, PTSans);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    &:hover:before{
+      content: '\e90e';
+    }
+
+    &:hover:after{
+      content: '';
+    }
+  }
+
+  &_urgent {
+    .single-task__title {
+      color: @urgent;
+    }
+
+    .single-task__status {
+      background: @urgent;
+
+      &:hover{
+        background: @urgent-active;
+      }
+    }
+  }
+
+  &_high {
+    .single-task__title {
+      color: @high;
+    }
+
+    .single-task__status {
+      background: @high;
+
+      &:hover{
+        background: @high-active;
+      }
+    }
+  }
+
+  &_middle {
+    .single-task__title {
+      color: @middle;
+    }
+
+    .single-task__status {
+      background: @middle;
+
+      &:hover{
+        background: @middle-active;
+      }
+    }
+  }
+
+  &_low {
+    .single-task__title {
+      color: @low;
+    }
+
+    .single-task__status {
+      background: @low;
+
+      &:hover{
+        background: @low-active;
+      }
+    }
+  }
+
+  &_sport{
+    border-left-color: @sport;
+
+    .single-task__remove-button{
+      background: @sport;
+
+      &:hover{
+        background: @sport-active;
+      }
+
+      /*&_selected{
+        background: @sport-active;
+      }*/
+    }
+  }
+
+  &_hobby{
+    border-left-color: @hobby;
+
+    .single-task__remove-button{
+      background: @hobby;
+
+      &:hover{
+        background: @hobby-active;
+      }
+
+      /*&_selected{
+        background: @hobby-active;
+      }*/
+    }
+  }
+
+  &_education{
+    border-left-color: @education;
+
+    .single-task__remove-button{
+      background: @education;
+
+      &:hover{
+        background: @education-active;
+      }
+
+      /*&_selected{
+        background: @education-active;
+      }*/
+    }
+  }
+
+  &_other{
+    border-left-color: @other;
+
+    .single-task__remove-button{
+      background: @other;
+
+      &:hover{
+        background: @other-active;
+      }
+
+      /*&_selected{
+        background: @other-active;
+      }*/
+    }
+  }
+
+  &_overdue{
+
+    .single-task__time{
+      color: @tomato;
+    }
+  }
+
+  &_work{
+    border-left-color: @work;
+
+    .single-task__remove-button{
+      background: @work;
+
+      &:hover{
+        background: @work-active;
+      }
+
+      /*&_selected{
+        background: @work-active;
+      }*/
+    }
+  }
+
+  /* Removed tasks styles */
+  &_removed{
+    border-left: none;
+  }
+
+  &__remove-button{
+    padding: 18px 25px;
+    margin-right: 17px;
+    border: none;
+    cursor: pointer;
+
+    &:before{
+      font-family: 'icomoon' !important;
+      content: '\e914';
+      font-size: 45px;
+      color: @white;
+    }
+
+    &:hover:before{
+      content: '\e906';
+    }
+  }
+
+  &_done{
+    background: #d4d9dc;
+
+    .single-task__title{
+      text-decoration: line-through;
+    }
+  }
+}
+
+/*Styles for global tasks list*/
+.todays-tasks{
+
+  &__navigation{
+    margin-bottom: 20px;
+  }
+
+  &__list{
+    margin-bottom: 40px;
+  }
+}
+
+.previous-tasks{
+
+  &__navigation{
+    padding-bottom: 10px;
+    width: 100%;
+    .flex-between;
+  }
+
+  &__section{
+    margin-top: 20px;
+  }
+
+  .single-task__remove-button{
+    padding: 18px 25px 18px 16px;
+  }
+}
+
+.tasks-section{
+
+  &__title{
+    .font(700, 16px, Roboto);
+    text-transform: uppercase;
+    margin: 0 0 -5px -5px;
+    display: flex;
+    cursor: pointer;
+  }
+
+  &__radio{
+    border: 5px solid;
+    border-radius: 50%;
+    padding: 2px;
+    margin-right: 10px;
+
+    &:after{
+      content: '';
+      width: 5px;
+      height: 5px;
+      margin: auto;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+
+  &__list{
+    padding-top: 20px;
+    border-left: 9px solid;
+  }
+
+  &__list-item{
+    border-left: none !important;
+  }
+
+  &_work{
+    .tasks-section__list{
+      border-left-color: @work;
+    }
+
+    .tasks-section__title{
+      color: @work;
+    }
+
+    .tasks-section__radio{
+      border-right-color: @work;
+
+      &:after{
+        background: @work;
+      }
+    }
+  }
+
+  &_education{
+    .tasks-section__list{
+      border-left-color: @education;
+    }
+
+    .tasks-section__title{
+      color: @education;
+    }
+
+    .tasks-section__radio{
+      border-right-color: @education;
+
+      &:after{
+        background: @education;
+      }
+    }
+  }
+
+  &_hobby{
+    .tasks-section__list{
+      border-left-color: @hobby;
+    }
+
+    .tasks-section__title{
+      color: @hobby;
+    }
+
+    .tasks-section__radio{
+      border-right-color: @hobby;
+
+      &:after{
+        background: @hobby;
+      }
+    }
+  }
+
+  &_sport{
+    .tasks-section__list{
+      border-left-color: @sport;
+    }
+
+    .tasks-section__title{
+      color: @sport;
+    }
+
+    .tasks-section__radio{
+      border-right-color: @sport;
+
+      &:after{
+        background: @sport;
+      }
+    }
+  }
+
+  &_other{
+    .tasks-section__list{
+      border-left-color: @other;
+    }
+
+    .tasks-section__title{
+      color: @other;
+    }
+
+    .tasks-section__radio{
+      border-right-color: @other;
+
+      &:after{
+        background: @other;
+      }
+    }
+  }
+}
+
+/*Empty task list styles*/
+
+.zero-tasks{
+  .flex-column;
+  align-items: center;
+  display: none;
+
+  &_first-entrance{
+    .flex-column;
+    display: none;
+  }
+
+  &_left{
+    .flex-column;
+    display: none;
+  }
+
+  &__image{
+    width: 165px;
+    margin-top: 125px;
+  }
+
+  &__title{
+    .font(300, 36px, Roboto);
+    color: @nepal;
+    margin: 80px 0 80px 0;
+  }
+
+
+  &__button{
+    .font(700, 18px, Roboto);
+    background: none;
+    border: none;
+    color: @white;
+    padding: 15px 25px;
+    margin: 0 10px;
+    transition: all ease .3s;
+    cursor: pointer;
+
+    &:first-of-type{
+      background: @malibu;
+
+      &:hover{
+        background: @curious-blue;
+      }
+    }
+
+    &:last-of-type{
+      background: @meadow;
+
+      &:hover{
+        background: @low-active;
+      }
+    }
+  }
+}
+
+.empty-task-list{
+  .flex-column;
+  align-items: center;
+  color: @nepal;
+  margin: 25px 0;
+  display: none;
+
+  &__title{
+    .font(300, 36px, Roboto);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &__button{
+    background: none;
+    border: none;
+    color: @nepal;
+    font-size: 60px;
+    cursor: pointer;
+  }
+}
+

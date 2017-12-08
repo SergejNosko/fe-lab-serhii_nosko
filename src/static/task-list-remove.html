@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Productivity app</title>
+</head>
+<body>
+<header class="main-header">
+  <img src="/Logo.svg" alt="Logo" class="main-header__logo">
+  <h1 class="main-header__title">Daily Task List +</h1>
+  <nav class="main-header__navigation">
+    <ul class="main-header__list">
+      <li class="main-header__list-item main-header__list-item_add"><a href="#"
+                                                                       class="main-header__link main-header__link icon-add"
+                                                                       title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link main-header__link_active  icon-trash"
+                                            title="Go to Removed Tasks"></a></li>
+      <li class="main-header__list-item"><a href="task-list.html"
+                                            class="main-header__link  icon-list"
+
+                                            title="Tooltip"></a></li>
+      <li class="main-header__list-item"><a href="reports.html" class="main-header__link icon-statistics"
+                                            title="Go to Reports"></a></li>
+      <li class="main-header__list-item"><a href="settings.html" class="main-header__link icon-settings"
+                                            title="Go to Settings"></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main-content">
+  <article class="main-content__article task-article">
+    <nav class="task-article__navigation tabs tabs_extended">
+      <div class="tabs__container">
+        <a href="#" class="tabs__tab-link">Select All</a>
+        <a href="#" class="tabs__tab-link">Deselect All</a>
+      </div>
+
+      <div class="tabs__container">
+        <a href="task-list.html" class="tabs__tab-link tabs__tab-link_active">To Do</a>
+        <a href="tasks-done.html" class="tabs__tab-link">Done</a>
+      </div>
+    </nav>
+    <ul class="task-article__list">
+      <li class="task-article__list-item single-task single-task_urgent single-task_hobby single-task_removed">
+        <button class="single-task__remove-button single-task__remove-button_selected"></button>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_high single-task_sport single-task_removed">
+        <button class="single-task__remove-button"></button>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_high single-task_work single-task_removed">
+        <button class="single-task__remove-button"></button>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_middle single-task_education single-task_removed">
+        <button class="single-task__remove-button single-task__remove-button_selected"></button>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+
+      <li class="task-article__list-item single-task single-task_low single-task_other single-task_removed">
+        <button class="single-task__remove-button"></button>
+        <div class="single-task__description">
+          <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+          <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore</p>
+        </div>
+        <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+        <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+      </li>
+    </ul>
+
+  </article>
+
+  <article class="main-content__article previous-tasks">
+
+    <nav class="previous-tasks__navigation tabs">
+      <div class="tabs__container">
+        <a href="#" class="tabs__tab-link tabs__tab-link_global tabs__tab-link_global-active" title="Go to Global List">Global list</a>
+      </div>
+
+      <div class="tabs__container">
+        <a href="#" class="tabs__tab-link tabs__tab-link_active" title="All tasks">All</a>
+        <a href="#" class="tabs__tab-link" title="Urgent tasks">Urgent</a>
+        <a href="#" class="tabs__tab-link" title="High tasks">High</a>
+        <a href="#" class="tabs__tab-link" title="Middle tasks">Middle</a>
+        <a href="#" class="tabs__tab-link" title="Low tasks">Low</a>
+      </div>
+
+    </nav>
+
+    <nav class="task-article__navigation tabs tabs_extended">
+      <div class="tabs__container">
+        <a href="#" class="tabs__tab-link">Select All</a>
+        <a href="#" class="tabs__tab-link">Deselect All</a>
+      </div>
+    </nav>
+
+    <section class="previous-tasks__section tasks-section tasks-section_work">
+      <h2 class="tasks-section__title"><span class="tasks-section__radio"></span>Work</h2>
+
+      <ul class="tasks-section__list">
+        <li class="tasks-section__list-item single-task single-task_high single-task_work single-task_removed">
+          <button class="single-task__remove-button"></button>
+          <div class="single-task__description">
+            <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+            <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore</p>
+          </div>
+          <div class="single-task__link-container">
+            <a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>
+            <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+          </div>
+          <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+        </li>
+
+        <li class="tasks-section__list-item single-task single-task_middle single-task_work single-task_removed">
+          <button class="single-task__remove-button"></button>
+          <div class="single-task__description">
+            <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+            <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore</p>
+          </div>
+          <div class="single-task__link-container">
+            <a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>
+            <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+          </div>
+          <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="previous-tasks__section tasks-section tasks-section_education">
+      <h2 class="tasks-section__title"><span class="tasks-section__radio"></span>Education</h2>
+
+      <ul class="tasks-section__list">
+        <li class="tasks-section__list-item single-task single-task_low single-task_education single-task_removed">
+          <button class="single-task__remove-button"></button>
+          <div class="single-task__description">
+            <h3 class="single-task__title">Lorem ipsum sit amet</h3>
+            <p class="single-task__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore</p>
+          </div>
+          <div class="single-task__link-container">
+            <a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>
+            <a href="#" class="single-task__edit-link icon-edit" title="Edit task"></a>
+          </div>
+          <a href="timer.html" class="single-task__status icon-tomato" title="Go to Timer"></a>
+        </li>
+      </ul>
+    </section>
+  </article>
+</main>
+
+<script src="/bundle.js"></script>
+</body>
+</html>
