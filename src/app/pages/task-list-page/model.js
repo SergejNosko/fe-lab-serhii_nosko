@@ -1,3 +1,5 @@
+import {EventBus} from "../../services/eventBus";
+
 export class Model{
     constructor(){
         this.data = {
@@ -56,11 +58,22 @@ export class Model{
                 }
             ]
         };
+
+        EventBus.add('setData', this.setData, this);
     }
 
     setData(data){
-        this.data.todayTasks.push(data);
-        return this.data.todayTasks;
+        let isNew = this.data.todayTasks.filter((task) => {
+            return task.id === data.id;
+        });
+
+        if(isNew){
+            this.data.todayTasks[isNew[0].id] = {...this.data.todayTasks[isNew[0].id], ...data};
+            EventBus.dispatch('stateChange');
+        }
+        else{
+            this.data.todayTasks.push(data);
+        }
     }
 
     getData(){

@@ -1,3 +1,5 @@
+"use strict";
+
 import {EventBus} from './services/eventBus';
 import MainHeader from './components/header/index';
 import Report from './pages/reports-page/index';

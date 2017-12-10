@@ -27,7 +27,22 @@ export const EventBus = {
     },
 
     dispatch: function(type){
-        if(typeof this.listeners[type] !== "undefined") {
+        let args = [];
+
+        for(let i = 1; i < arguments.length; i++){
+            args.push(arguments[i]);
+        }
+        if(typeof this.listeners[type] != "undefined") {
+            let listeners = this.listeners[type].slice();
+            let numOfCallbacks = listeners.length;
+            for(let i = 0; i < numOfCallbacks; i++) {
+                let listener = listeners[i];
+                if(listener && listener.callback) {
+                    listener.callback.apply(listener.scope, args);
+                }
+            }
+        }
+        /*if(typeof this.listeners[type] !== "undefined") {
             let listeners = this.listeners[type].slice();
             let numOfCallbacks = listeners.length;
             for(let i = 0; i < numOfCallbacks; i++) {
@@ -36,6 +51,6 @@ export const EventBus = {
                     listener.callback.apply(listener.scope);
                 }
             }
-        }
+        }*/
     }
 };

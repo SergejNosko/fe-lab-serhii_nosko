@@ -6,7 +6,7 @@ export class Controller{
     }
 
     sendData(data){
-        return this.model.setData(data);
+        this.model.setData(data);
     }
 
     receiveData(){
