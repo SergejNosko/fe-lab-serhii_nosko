@@ -34,6 +34,10 @@
   margin-bottom: 9px;
   box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.4);
 
+  &__remove-button{
+    display: none;
+  }
+
   &__time {
     .font(700, 11px, Roboto);
     width: 94px;
@@ -252,6 +256,14 @@
   /* Removed tasks styles */
   &_removed{
     border-left: none;
+
+    .single-task__time{
+      display: none;
+    }
+
+    .single-task__remove-button{
+      display: block;
+    }
   }
 
   &__remove-button{
@@ -267,9 +279,9 @@
       color: @white;
     }
 
-    &:hover:before{
+    /*&:hover:before{
       content: '\e906';
-    }
+    }*/
   }
 
   &_done{

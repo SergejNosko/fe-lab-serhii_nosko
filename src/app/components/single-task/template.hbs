@@ -1,5 +1,6 @@
 <li class="{{$classHelper priority categoryId}}" data-id={{id}}>
-    <div class="single-task__time">{{deadline}}</div>
+    <button class="single-task__remove-button"></button>
+    <div class="single-task__time">{{{$dateHelper deadline}}}</div>
     <div class="single-task__description">
         <h3 class="single-task__title">{{title}}</h3>
         <p class="single-task__text">{{description}}</p>

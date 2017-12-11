@@ -10,7 +10,7 @@ export class Model{
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
                     createDate: 'Today',
                     startDate: 'Today',
-                    deadline: 'today',
+                    deadline: 1514152800000,
                     isActive: false,
                     estimationTotal: 4,
                     estimationUsed: 2,
@@ -23,7 +23,7 @@ export class Model{
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
                     createDate: 'Today',
                     startDate: 'Today',
-                    deadline: 'today',
+                    deadline: 1514152800000,
                     isActive: false,
                     estimationTotal: 4,
                     estimationUsed: 2,
@@ -36,7 +36,7 @@ export class Model{
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
                     createDate: 'Today',
                     startDate: 'Today',
-                    deadline: 'today',
+                    deadline: 1514152800000,
                     isActive: false,
                     estimationTotal: 4,
                     estimationUsed: 2,
@@ -49,7 +49,7 @@ export class Model{
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
                     createDate: 'Today',
                     startDate: 'Today',
-                    deadline: 'today',
+                    deadline: 1514152800000,
                     isActive: false,
                     estimationTotal: 4,
                     estimationUsed: 2,
@@ -67,7 +67,7 @@ export class Model{
             return task.id === data.id;
         });
 
-        if(isNew){
+        if(isNew.length !== 0){
             this.data.todayTasks[isNew[0].id] = {...this.data.todayTasks[isNew[0].id], ...data};
             EventBus.dispatch('stateChange');
         }

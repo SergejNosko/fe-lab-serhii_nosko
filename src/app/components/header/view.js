@@ -1,4 +1,5 @@
 import Template from './template.hbs';
+import './helpers';
 
 export function MainHeader(data) {
   const mainHeader = document.getElementById('main-header');
@@ -7,7 +8,7 @@ export function MainHeader(data) {
 }
 
 const throttle = function(func, limit) {
-  var inThrottle = undefined;
+  let inThrottle = undefined;
   return function() {
     const args = arguments,
         context = this;

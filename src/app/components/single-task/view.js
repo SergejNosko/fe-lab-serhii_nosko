@@ -15,8 +15,8 @@ export class View {
         let newTask = {
             title: document.querySelector('#edit-modal [data-name=title]').value,
             description: document.querySelector('#edit-modal [data-name=description]').value,
-            deadline: document.querySelector('#edit-modal [data-name=deadline]').value,
-            estimation: 4
+            deadline: Date.parse(document.querySelector('#edit-modal [data-name=deadline]').value),
+            estimationTotal: document.querySelectorAll('.radio-block__radio_filled').length - 3
         };
         if(newTask.description === '' || newTask.title === '' || newTask.deadline === ''){
             if(document.querySelector('#edit-modal [name=category]:checked') === null || document.querySelector('#edit-modal [name=priority]:checked') === null)

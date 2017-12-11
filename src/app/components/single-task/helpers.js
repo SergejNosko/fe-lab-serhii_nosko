@@ -13,3 +13,26 @@ Handlebars.registerHelper('$classHelper', (priority, category) => {
 
     return classString;
 });
+
+Handlebars.registerHelper('$dateHelper', (date) => {
+    let dateObj = new Date(date);
+
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+
+    if(dateObj === Date.now()) return 'today';
+
+    return `<span class="single-task__time-number">${dateObj.getDate()}</span> ${months[dateObj.getMonth()]}`;
+});

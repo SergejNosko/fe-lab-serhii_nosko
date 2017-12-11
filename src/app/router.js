@@ -48,10 +48,9 @@ class Router {
         if(sessionStorage.getItem('isNewUser') === null) sessionStorage.setItem('isNewUser', true);
         if(sessionStorage.getItem('isNewUser') === true) sessionStorage.setItem('isNewUser', false);
 
-
-        if(document.querySelector('.main-header').innerHTML === '') MainHeader({title: 'Some'});
-
         if(window.location.pathname == '/' && hash == '') hash = this.root;
+
+        MainHeader({hash: hash.substring(1)});
 
         EventBus.dispatch(hash);
     }
