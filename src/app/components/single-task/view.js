@@ -3,8 +3,9 @@ import Template from './template.hbs';
 import {Controller} from './controller';
 
 export class View {
-    constructor(data){
+    constructor(data, type){
         this.controller = new Controller(data);
+        this.type = type;
 
         document.body.addEventListener('click', this.showModal.bind(this));
     }
@@ -36,7 +37,7 @@ export class View {
               currentModal = document.getElementById('edit-modal'),
               data = this.controller.receiveData();
 
-        if(target.parentElement.dataset.id == data.id){
+        if(target.parentElement.parentElement.dataset.id == data.id){
             modalsArticle.style.display = 'flex';
             currentModal.style.display = 'flex';
 
@@ -53,6 +54,8 @@ export class View {
 
     render(data){
         let newData = data || this.controller.receiveData();
+
+        newData.type = this.type;
 
         return Template(newData);
     }

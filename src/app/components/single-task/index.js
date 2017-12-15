@@ -1,7 +1,7 @@
 import {View} from './view';
 
-export default function SingleTask(data) {
-    const view = new View(data);
+export default function SingleTask(data, type) {
+    const view = new View(data, type);
 
     return view.render();
 };
