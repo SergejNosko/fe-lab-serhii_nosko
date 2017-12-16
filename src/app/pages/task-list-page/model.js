@@ -37,7 +37,7 @@ export class Model{
                     createDate: 'Today',
                     startDate: null,
                     deadline: 1514152800000,
-                    isActive: false,
+                    isActive: null,
                     estimationTotal: 4,
                     estimationUsed: 2,
                     priority: 4,
@@ -50,7 +50,7 @@ export class Model{
                     createDate: 'Today',
                     startDate: null,
                     deadline: 1514152800000,
-                    isActive: false,
+                    isActive: null,
                     estimationTotal: 4,
                     estimationUsed: 2,
                     priority: 2,
@@ -63,7 +63,7 @@ export class Model{
                     createDate: 'Today',
                     startDate: 'Today',
                     deadline: 1514152800000,
-                    isActive: false,
+                    isActive: null,
                     estimationTotal: 4,
                     estimationUsed: 2,
                     priority: 2,
@@ -76,7 +76,7 @@ export class Model{
                     createDate: 'Today',
                     startDate: null,
                     deadline: 1514152800000,
-                    isActive: false,
+                    isActive: null,
                     estimationTotal: 4,
                     estimationUsed: 2,
                     priority: 1,
@@ -89,7 +89,7 @@ export class Model{
                     createDate: 'Today',
                     startDate: 'Today',
                     deadline: 1514152800000,
-                    isActive: false,
+                    isActive: null,
                     estimationTotal: 4,
                     estimationUsed: 2,
                     priority: 4,
@@ -101,6 +101,45 @@ export class Model{
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
                     createDate: 'Today',
                     startDate: 'Today',
+                    deadline: 1514152800000,
+                    isActive: null,
+                    estimationTotal: 4,
+                    estimationUsed: 2,
+                    priority: 2,
+                    categoryId: 'education'
+                },
+                {
+                    id: 8,
+                    title: 'Lorem ipsum sit amet',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+                    createDate: 'Today',
+                    startDate: null,
+                    deadline: 1514152800000,
+                    isActive: false,
+                    estimationTotal: 4,
+                    estimationUsed: 2,
+                    priority: 1,
+                    categoryId: 'education'
+                },
+                {
+                    id: 9,
+                    title: 'Lorem ipsum sit amet',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+                    createDate: 'Today',
+                    startDate: null,
+                    deadline: 1514152800000,
+                    isActive: false,
+                    estimationTotal: 4,
+                    estimationUsed: 2,
+                    priority: 4,
+                    categoryId: 'sport'
+                },
+                {
+                    id: 10,
+                    title: 'Lorem ipsum sit amet',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+                    createDate: 'Today',
+                    startDate: null,
                     deadline: 1514152800000,
                     isActive: false,
                     estimationTotal: 4,
@@ -115,6 +154,17 @@ export class Model{
     }
 
     setData(data){
+        if(data.startDate === 'Today'){
+            if(
+                this.data.todayTasks.filter((task) => {
+                    return task.startDate === 'Today';
+                }
+            ).length >= 5){
+                console.error('Max task stack');
+                return;
+            }
+        }
+
         let isNew = this.data.todayTasks.filter((task) => {
             return task.id === data.id;
         });
@@ -128,7 +178,19 @@ export class Model{
         }
     }
 
-    getData(){
+    getData(filter){
+        if(filter){
+            let field;
+            for(let key in filter){
+                field = key;
+            }
+
+            if(filter[field] != 5) {
+                return this.data.todayTasks.filter((task) => {
+                    return task[field] == filter[field]
+                });
+            }
+        }
         return this.data.todayTasks;
     }
 }

@@ -9,8 +9,8 @@ export class Controller{
         this.model.setData(data);
     }
 
-    receiveData(){
-        let data = this.model.getData();
+    receiveData(filter){
+        let data = this.model.getData(filter);
 
         return data;
     }

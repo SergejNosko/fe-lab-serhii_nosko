@@ -5,10 +5,9 @@ export class Model{
         this.data = data;
     }
 
-
     setData(data){
         this.data = {...this.data, ...data};
-        EventBus.dispatch('setData', this.data);
+        let isCorrect = EventBus.dispatch('setData', this.data);
     }
 
     getData(){

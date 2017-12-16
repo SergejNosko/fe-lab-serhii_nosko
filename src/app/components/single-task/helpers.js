@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/runtime';
 
-Handlebars.registerHelper('$classHelper', (priority, category, type) => {
+Handlebars.registerHelper('$classHelper', (priority, category, type, isActive) => {
     let classString = 'single-task ';
 
     switch (type){
@@ -17,15 +17,22 @@ Handlebars.registerHelper('$classHelper', (priority, category, type) => {
 
     classString += 'single-task_' + category;
 
+    if(isActive === false) classString += ' single-task_done';
+
     return classString;
 });
 
 Handlebars.registerHelper('$buttonsHelper', (type) => {
-    if(type === 'global') return `<a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up"></a>`;
-    return;
+    if(type === 'global')
+        return `<a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up" data-query="push"></a>`;
 });
 
-Handlebars.registerHelper('$dateHelper', (date) => {
+Handlebars.registerHelper('$estimationHelper', (total, used, type) => {
+    let currentClass = type === 'global' ? total : used;
+    return `<a href="#timer" class="single-task__status single-task__status_${currentClass} icon-tomato" title="Go to Timer"></a>`
+});
+
+Handlebars.registerHelper('$dateHelper', (date, type) => {
     let dateObj = new Date(date);
 
     const months = [
@@ -43,7 +50,7 @@ Handlebars.registerHelper('$dateHelper', (date) => {
         'December'
     ];
 
-    if(dateObj === Date.now()) return 'today';
+    if(type === 'today') return 'today';
 
     return `<span class="single-task__time-number">${dateObj.getDate()}</span> ${months[dateObj.getMonth()]}`;
 });

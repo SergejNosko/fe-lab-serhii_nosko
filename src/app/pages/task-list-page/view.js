@@ -98,7 +98,9 @@ export class View{
     clickHandler(e){
         const target = e.target;
 
-        let query = target.dataset.query;
+        let query = target.dataset.query,
+            sortPriority = target.dataset.priority,
+            sortIsActive = target.dataset.isActive;
 
         if(query) {
             switch (query){
@@ -124,9 +126,26 @@ export class View{
                 default: this.showModal(query); break;
             }
         }
+
+        if(sortPriority){
+            e.preventDefault();
+            let siblings = target.parentElement.children;
+
+            let priorityData = this.controller.receiveData({priority: sortPriority});
+            priorityData.activeLink = sortPriority;
+            this.render(priorityData, false);
+        }
+
+        if(sortIsActive){
+            e.preventDefault();
+            sortIsActive = sortIsActive == 'false' ? false : null;
+
+            let activeData = this.controller.receiveData({isActive: sortIsActive});
+            this.render(activeData, true);
+        }
     }
 
-    renderGlobalList(sortedData){
+    renderGlobalList(sortedData, activeLinkNumber){
         const globalList = document.getElementById('global-list');
 
         let currentCategory,
@@ -134,6 +153,7 @@ export class View{
             list;
 
         globalList.innerHTML = GlobalList();
+        globalList.querySelector(`[data-priority="${activeLinkNumber}"]`).classList.add('tabs__tab-link_active');
 
         sortedData.forEach((task, i) => {
             if(currentCategory === undefined || currentCategory !== task.categoryId){
@@ -156,9 +176,42 @@ export class View{
 
     }
 
-    render(data){
+    render(data, isFilter){
         const root = document.getElementById('root');
-        const currentData = data || this.controller.receiveData();
+        let currentData = data || this.controller.receiveData({isActive: null}),
+            activeFilter = 5,
+            activePage = null;
+
+        if(isFilter === true) currentData = data;
+        else currentData = this.controller.receiveData({isActive: null});
+
+        root.innerHTML = Template();
+
+        if(currentData[0].isActive === false) activePage = false;
+        root.querySelector(`[data-is-active=${activePage}`).classList.add('tabs__tab-link_active');
+
+        const todayTasksList = document.getElementById('task-list');
+
+        currentData.forEach((task) => {
+            if(task.startDate === 'Today'){
+                todayTasksList.innerHTML += SingleTask(task, 'today');
+            }
+        });
+
+        if(isFilter === false){
+            currentData = data;
+            activeFilter = data.activeLink;
+        }
+        let sortedData = currentData.filter((task) => {
+            if (task.startDate === null) return task;
+        }).sort((curr, next) => {
+            return curr.categoryId > next.categoryId ? 1 : 0;
+        });
+
+        this.renderGlobalList(sortedData, activeFilter);
+
+
+
 
         /*console.log(id);
         if(id !== undefined){
@@ -173,23 +226,6 @@ export class View{
             todayTasksList.removeChild(currentListItem);
         }
         else {*/
-        root.innerHTML = Template();
-
-        const todayTasksList = document.getElementById('task-list');
-
-        currentData.forEach((task, i) => {
-            if(task.startDate === 'Today'){
-                todayTasksList.innerHTML += SingleTask(task);
-            }
-        });
-
-        let sortedData = currentData.filter((task) => {
-            if(task.startDate === null) return task;
-        }).sort((curr, next) => {
-            return curr.categoryId > next.categoryId ? 1 : 0;
-        });
-
-        this.renderGlobalList(sortedData);
 
         //let tasks = document.querySelectorAll('.single-task');
 
