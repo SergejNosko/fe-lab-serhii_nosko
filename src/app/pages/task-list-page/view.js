@@ -2,6 +2,7 @@ import {Controller} from './controller';
 import Template from './template.hbs';
 import GlobalList from './global-list.hbs';
 import FirstEntranceTemplate from './first-entrance-template.hbs';
+import './helpers';
 import SingleTask from '../../components/single-task/index';
 import {EventBus} from "../../services/eventBus";
 import uuid from 'uuid/v1';
@@ -95,6 +96,43 @@ export class View{
         target.classList.toggle('tabs__tab-link_global-active');
     }
 
+    showRemove(){
+        let tasks = document.querySelectorAll('.single-task');
+
+        if(tasks[0].classList.contains('single-task_removed')){
+            this.controller.sendRemoveRequest();
+            this.render();
+            this.showRemove();
+        }
+        else {
+            const tabs = document.getElementById('tabs'),
+                filters = document.getElementById('filters');
+
+            let newTabs = `<div class="tabs__container">
+                                    <a href="#" class="tabs__tab-link" data-query="select" data-select="select">Select All</a>
+                                    <a href="#" class="tabs__tab-link" data-query="select" data-select="deselect">Deselect All</a>
+                                  </div>`;
+            tabs.classList.add('tabs_extended');
+            tabs.insertAdjacentHTML('afterBegin', newTabs);
+
+            newTabs = `<nav class="task-article__navigation tabs tabs_extended"> ${newTabs} </nav>`;
+            filters.insertAdjacentHTML('afterEnd', newTabs);
+
+            for (let i = 0; i < tasks.length; i++) {
+                tasks[i].classList.add('single-task_removed');
+            }
+        }
+    }
+
+    findList(target){
+        let parent = target.parentElement;
+        while(parent.classList.contains('main-content__article') === false){
+            parent = parent.parentElement;
+        }
+
+        return parent.querySelectorAll('ul');
+    }
+
     clickHandler(e){
         const target = e.target;
 
@@ -121,6 +159,32 @@ export class View{
                 case 'addTask': {
                     e.preventDefault();
                     this.showModal(query);
+                    break;
+                }
+                case 'remove': {
+                    this.showRemove();
+                    break;
+                }
+                case 'select': {
+                    e.preventDefault();
+                    let lists = this.findList(target);
+                    for(let i = 0; i < lists.length; i++){
+                        let children = lists[i].children;
+                        for(let j = 0; j < children.length; j++){
+                            if(target.dataset.select === 'select') {
+                                if(children[j].classList.contains('single-task__remove-button_active') === false) {
+                                    children[j].children[0].classList.add('single-task__remove-button_active');
+                                    this.controller.setRemovedTask(+children[j].dataset.id, 'select');
+                                }
+                            }
+                            else {
+                                if (children[j].classList.contains('single-task__remove-button_active') === false) {
+                                    children[j].children[0].classList.remove('single-task__remove-button_active');
+                                    this.controller.setRemovedTask(+children[j].dataset.id, 'deselect');
+                                }
+                            }
+                        }
+                    }
                     break;
                 }
                 default: this.showModal(query); break;

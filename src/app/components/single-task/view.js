@@ -1,11 +1,14 @@
 import './helpers';
 import Template from './template.hbs';
 import {Controller} from './controller';
+import uuid from 'uuid/v1';
 
 export class View {
     constructor(data, type){
         this.controller = new Controller(data);
         this.type = type;
+
+        this.uuid = uuid();
 
         document.body.addEventListener('click', this.viewControl.bind(this));
     }
@@ -59,12 +62,18 @@ export class View {
 
             this.render(this.controller.receiveData());
         }
+
+        if(target.parentElement.dataset.id == data.id && target.parentElement.dataset.unique == this.uuid && target.dataset.query === 'addRemove'){
+            this.controller.setTaskToRemove();
+            target.classList.toggle('single-task__remove-button_active');
+        }
     }
 
     render(data){
         let newData = data || this.controller.receiveData();
 
         newData.type = this.type;
+        newData.unique = this.uuid;
 
         return Template(newData);
     }

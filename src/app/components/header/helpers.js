@@ -17,7 +17,7 @@ Handlebars.registerHelper('$menuItems', (hash) => {
         return `<li class="main-header__list-item main-header__list-item_add"><a href="#" data-query="add"
                                                                          class="main-header__link main-header__link icon-add"
                                                                          title="Tooltip"></a></li>
-        <li class="main-header__list-item"><a href="task-list-remove.html" class="main-header__link   icon-trash"
-                                              title="Go to Removed Tasks"></a></li>`
+        <li class="main-header__list-item"><a href="#" class="main-header__link icon-trash"
+                                              title="Go to Removed Tasks" data-query="remove"></a></li>`
     }
 });

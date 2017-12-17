@@ -9,6 +9,10 @@ export class Controller{
         this.model.setData(data);
     }
 
+    setTaskToRemove(){
+        this.model.sendTaskToRemove();
+    }
+
     receiveData(){
         return this.model.getData();
     }

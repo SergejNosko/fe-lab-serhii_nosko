@@ -10,6 +10,10 @@ export class Model{
         let isCorrect = EventBus.dispatch('setData', this.data);
     }
 
+    sendTaskToRemove(){
+        EventBus.dispatch('setTasksToRemove', this.data.id);
+    }
+
     getData(){
         return this.data;
     }

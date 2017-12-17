@@ -1,5 +1,5 @@
-<li class="{{$classHelper priority categoryId type isActive}}" data-id={{id}}>
-    <button class="single-task__remove-button"></button>
+<li class="{{$classHelper priority categoryId type isActive}}" data-id={{id}} data-unique={{unique}}>
+    <button class="single-task__remove-button" data-query="addRemove"></button>
     <div class="single-task__time">{{{$dateHelper deadline type}}}</div>
     <div class="single-task__description">
         <h3 class="single-task__title">{{title}}</h3>

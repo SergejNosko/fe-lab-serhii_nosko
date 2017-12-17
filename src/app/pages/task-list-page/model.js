@@ -150,7 +150,31 @@ export class Model{
             ]
         };
 
+        this.tasksToRemove = [];
+
         EventBus.add('setData', this.setData, this);
+        EventBus.add('setTasksToRemove', this.setTasksToRemove, this);
+    }
+
+    setTasksToRemove(id, type){
+        let existedTask = this.tasksToRemove.indexOf(id);
+        if(existedTask !== -1 || (existedTask !== -1 && type && type === 'deselect')) this.tasksToRemove.splice(existedTask, 1);
+        if(existedTask === -1 || (existedTask === -1 && type && type === 'select')) this.tasksToRemove.push(id);
+
+        console.log(this.tasksToRemove);
+    }
+
+    removeTasks(){
+        for(let i = 0; i < this.tasksToRemove.length; i++){
+            for(let j = 0; j < this.data.todayTasks.length; j++){
+                if(this.tasksToRemove[i] == this.data.todayTasks[j].id) {
+                    this.data.todayTasks.splice(j, 1);
+                    break;
+                }
+            }
+        }
+
+        this.tasksToRemove = [];
     }
 
     setData(data){
@@ -179,6 +203,7 @@ export class Model{
     }
 
     getData(filter){
+        console.log(filter);
         if(filter){
             let field;
             for(let key in filter){
