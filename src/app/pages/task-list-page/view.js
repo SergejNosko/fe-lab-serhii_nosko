@@ -10,8 +10,8 @@ import {EventBus} from "../../services/eventBus";
 import uuid from 'uuid/v1';
 
 export class View {
-    constructor() {
-        this.controller = new Controller();
+    constructor(data) {
+        this.controller = new Controller(data);
 
         document.body.addEventListener('click', this.clickHandler.bind(this));
         EventBus.add('stateChange', this.render, this);
@@ -267,9 +267,8 @@ export class View {
             currentData = data;
         }
         else{
-            currentData = this.controller.receiveData();
+            currentData = this.controller.receiveData({isActive: null});
         }
-
 
         if(currentData.length === 0){
             root.innerHTML = ZeroTasks();

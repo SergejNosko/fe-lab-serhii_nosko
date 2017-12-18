@@ -1,8 +1,8 @@
 import {Model} from './model';
 
 export class Controller{
-    constructor(){
-        this.model = new Model();
+    constructor(data){
+        this.model = new Model(data);
     }
 
     sendData(data){

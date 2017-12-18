@@ -43,6 +43,9 @@
                     resolve(Object.values(data.val()));
                 });
             });
+        },
+        removeData: function (id) {
+            database.ref('task/' + id).remove();
         }
     };
 

@@ -2,10 +2,8 @@ import {EventBus} from "../../services/eventBus";
 import Firebase from '../../services/firebase';
 
 export class Model{
-    constructor(){
-        this.data = Firebase.getData().then(data => {
-                        return data;
-                    });
+    constructor(data){
+        this.data = data;
                 /*{
                     id: 0,
                     title: 'Lorem ipsum sit amet',
@@ -174,6 +172,7 @@ export class Model{
             for(let j = 0; j < this.data.length; j++){
                 if(this.tasksToRemove[i] == this.data[j].id) {
                     this.data.splice(j, 1);
+                    Firebase.removeData(this.tasksToRemove[i]);
                     break;
                 }
             }
@@ -200,7 +199,8 @@ export class Model{
         });
 
         if(index !== undefined){
-            this.data[0][index] = {...this.data[index], ...data};
+            this.data[index] = {...this.data[index], ...data};
+            console.log(this.data);
             EventBus.dispatch('stateChange');
             Firebase.updateValue(data);
         }
@@ -211,23 +211,18 @@ export class Model{
     }
 
     getData(filter){
-        if(filter){
-            let field;
-            for(let key in filter){
-                field = key;
+            if(filter){
+                let field;
+                for(let key in filter){
+                    field = key;
+                }
+
+                if(filter[field] != 5) {
+                    return this.data.filter((task) => {
+                        return task[field] == filter[field]
+                    });
+                }
             }
-
-            if(filter[field] != 5) {
-                return this.data.filter((task) => {
-                    return task[field] == filter[field]
-                });
-            }
-        }
-
-        /*for(let key in this.data[0]){
-            console.log('key', key);
-        }*/
-
-        return this.data;
+            return this.data;
     }
 }
