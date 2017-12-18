@@ -9,6 +9,12 @@ export class Controller{
         this.model.setData(data);
     }
 
+    getRemovedTasksLength(){
+        let length = this.model.getRemovedTasksLength();
+
+        return length;
+    }
+
     setRemovedTask(id, type){
         this.model.setTasksToRemove(id, type);
     }

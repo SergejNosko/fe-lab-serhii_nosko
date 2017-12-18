@@ -45,8 +45,6 @@ class Router {
         let hash = window.location.hash;
 
         //if(!this.routes.hasOwnProperty(hash)) throw new Error();
-        if(sessionStorage.getItem('isNewUser') === null) sessionStorage.setItem('isNewUser', true);
-        if(sessionStorage.getItem('isNewUser') === true) sessionStorage.setItem('isNewUser', false);
 
         if(window.location.pathname == '/' && hash == '') hash = this.root;
 
@@ -59,9 +57,7 @@ class Router {
         for(let key in this.routes){
             EventBus.add(key, this.routes[key]);
         }
-
-        if(sessionStorage.getItem('isNewUser') === null) sessionStorage.setItem('isNewUser', true);
-        if(sessionStorage.getItem('isNewUser') === true) sessionStorage.setItem('isNewUser', false);
+        sessionStorage.setItem('isNewUser', true);
 
         this.pageChange();
     }

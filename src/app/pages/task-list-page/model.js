@@ -4,7 +4,7 @@ export class Model{
     constructor(){
         this.data = {
             todayTasks: [
-                {
+                /*{
                     id: 0,
                     title: 'Lorem ipsum sit amet',
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
@@ -146,7 +146,7 @@ export class Model{
                     estimationUsed: 2,
                     priority: 2,
                     categoryId: 'education'
-                }
+                }*/
             ]
         };
 
@@ -154,6 +154,10 @@ export class Model{
 
         EventBus.add('setData', this.setData, this);
         EventBus.add('setTasksToRemove', this.setTasksToRemove, this);
+    }
+
+    getRemovedTasksLength(){
+        return this.tasksToRemove.length;
     }
 
     setTasksToRemove(id, type){
@@ -173,7 +177,6 @@ export class Model{
                 }
             }
         }
-
         this.tasksToRemove = [];
     }
 
@@ -183,18 +186,20 @@ export class Model{
                 this.data.todayTasks.filter((task) => {
                     return task.startDate === 'Today';
                 }
-            ).length >= 5){
-                console.error('Max task stack');
+            ).length > 5){
+                console.error('Max task number!');
                 return;
             }
         }
 
-        let isNew = this.data.todayTasks.filter((task) => {
-            return task.id === data.id;
+        let index;
+
+        this.data.todayTasks.forEach((task, i) => {
+            if(task.id === data.id) index = i;
         });
 
-        if(isNew.length !== 0){
-            this.data.todayTasks[isNew[0].id] = {...this.data.todayTasks[isNew[0].id], ...data};
+        if(index !== undefined){
+            this.data.todayTasks[index] = {...this.data.todayTasks[index], ...data};
             EventBus.dispatch('stateChange');
         }
         else{
@@ -203,7 +208,6 @@ export class Model{
     }
 
     getData(filter){
-        console.log(filter);
         if(filter){
             let field;
             for(let key in filter){

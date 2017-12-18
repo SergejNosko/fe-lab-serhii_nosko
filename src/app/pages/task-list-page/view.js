@@ -2,23 +2,25 @@ import {Controller} from './controller';
 import Template from './template.hbs';
 import GlobalList from './global-list.hbs';
 import FirstEntranceTemplate from './first-entrance-template.hbs';
+import ZeroTasks from './zero-tasks.hbs';
+import PushFirstTask from './push-first-task.hbs';
 import './helpers';
 import SingleTask from '../../components/single-task/index';
 import {EventBus} from "../../services/eventBus";
 import uuid from 'uuid/v1';
 
-export class View{
-    constructor(){
+export class View {
+    constructor() {
         this.controller = new Controller();
 
         document.body.addEventListener('click', this.clickHandler.bind(this));
         EventBus.add('stateChange', this.render, this);
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         let target = e.target;
 
-        if(target.dataset.query == 'addTask'){
+        if (target.dataset.query == 'addTask') {
 
             let newTask = {
                 id: uuid(),
@@ -27,7 +29,7 @@ export class View{
                 createdDate: Date.now(),
                 startDate: null,
                 deadline: Date.parse(document.querySelector('#add-modal [data-name=deadline]').value),
-                isActive: false,
+                isActive: null,
                 categoryId: document.querySelector('#add-modal [name=category]:checked').value,
                 estimationTotal: document.querySelectorAll('.radio-block__radio_filled').length - 3,
                 estimationUsed: 0,
@@ -38,7 +40,7 @@ export class View{
         }
     }
 
-    showModal(query){
+    showModal(query) {
         const modalsArticle = document.getElementById('modals-article');
         switch (query) {
             case 'add': {
@@ -59,35 +61,35 @@ export class View{
         }
     }
 
-    estimationButtons(target){
+    estimationButtons(target) {
         const siblings = target.parentElement.children;
-        for(let i = 0; i < siblings.length; i++){
+        for (let i = 0; i < siblings.length; i++) {
             siblings[i].classList.remove('radio-block__radio_filled');
         }
-        for(let i = 0; i < siblings.length; i++){
+        for (let i = 0; i < siblings.length; i++) {
             siblings[i].classList.add('radio-block__radio_filled');
-            if(siblings[i] === target) break;
+            if (siblings[i] === target) break;
         }
     }
 
-    showGlobalList(target){
+    showGlobalList(target) {
         const container = target.parentElement,
-              siblings = container.parentElement.parentElement.children;
+            siblings = container.parentElement.parentElement.children;
 
-        if(target.classList.contains('tabs__tab-link_global-active')){
+        if (target.classList.contains('tabs__tab-link_global-active')) {
             container.nextElementSibling.style.display = 'none';
 
-            for(let i = 0; i < siblings.length; i++){
-                if(siblings[i].classList.contains('tasks-section')){
+            for (let i = 0; i < siblings.length; i++) {
+                if (siblings[i].classList.contains('tasks-section')) {
                     siblings[i].style.display = 'none';
                 }
             }
         }
-        else{
+        else {
             container.nextElementSibling.style.display = 'block';
 
-            for(let i = 0; i < siblings.length; i++){
-                if(siblings[i].classList.contains('tasks-section')){
+            for (let i = 0; i < siblings.length; i++) {
+                if (siblings[i].classList.contains('tasks-section')) {
                     siblings[i].style.display = 'block';
                 }
             }
@@ -96,13 +98,17 @@ export class View{
         target.classList.toggle('tabs__tab-link_global-active');
     }
 
-    showRemove(){
+    showRemove() {
         let tasks = document.querySelectorAll('.single-task');
 
-        if(tasks[0].classList.contains('single-task_removed')){
-            this.controller.sendRemoveRequest();
-            this.render();
-            this.showRemove();
+        if (tasks[0].classList.contains('single-task_removed')) {
+            if(this.controller.getRemovedTasksLength() !== 0) {
+                const currentModal = document.getElementById('remove-modal');
+                const modalsArticle = document.getElementById('modals-article');
+
+                modalsArticle.style.display = 'flex';
+                currentModal.style.display = 'flex';
+            }
         }
         else {
             const tabs = document.getElementById('tabs'),
@@ -124,24 +130,24 @@ export class View{
         }
     }
 
-    findList(target){
+    findList(target) {
         let parent = target.parentElement;
-        while(parent.classList.contains('main-content__article') === false){
+        while (parent.classList.contains('main-content__article') === false) {
             parent = parent.parentElement;
         }
 
         return parent.querySelectorAll('ul');
     }
 
-    clickHandler(e){
+    clickHandler(e) {
         const target = e.target;
 
         let query = target.dataset.query,
             sortPriority = target.dataset.priority,
             sortIsActive = target.dataset.isActive;
 
-        if(query) {
-            switch (query){
+        if (query) {
+            switch (query) {
                 case 'global': {
                     e.preventDefault();
                     this.showGlobalList(target);
@@ -165,14 +171,25 @@ export class View{
                     this.showRemove();
                     break;
                 }
+                case 'submitRemove': {
+                    this.controller.sendRemoveRequest();
+                    this.render();
+                    this.showRemove();
+                    break;
+                }
+                case 'skip': {
+                    sessionStorage.isNewUser = false;
+                    this.render({isActive: null});
+                    break;
+                }
                 case 'select': {
                     e.preventDefault();
                     let lists = this.findList(target);
-                    for(let i = 0; i < lists.length; i++){
+                    for (let i = 0; i < lists.length; i++) {
                         let children = lists[i].children;
-                        for(let j = 0; j < children.length; j++){
-                            if(target.dataset.select === 'select') {
-                                if(children[j].classList.contains('single-task__remove-button_active') === false) {
+                        for (let j = 0; j < children.length; j++) {
+                            if (target.dataset.select === 'select') {
+                                if (children[j].classList.contains('single-task__remove-button_active') === false) {
                                     children[j].children[0].classList.add('single-task__remove-button_active');
                                     this.controller.setRemovedTask(+children[j].dataset.id, 'select');
                                 }
@@ -187,29 +204,31 @@ export class View{
                     }
                     break;
                 }
-                default: this.showModal(query); break;
+                default:
+                    this.showModal(query);
+                    break;
             }
         }
 
-        if(sortPriority){
+        if (sortPriority) {
             e.preventDefault();
-            let siblings = target.parentElement.children;
 
             let priorityData = this.controller.receiveData({priority: sortPriority});
             priorityData.activeLink = sortPriority;
             this.render(priorityData, false);
         }
 
-        if(sortIsActive){
+        if (sortIsActive) {
             e.preventDefault();
             sortIsActive = sortIsActive == 'false' ? false : null;
 
             let activeData = this.controller.receiveData({isActive: sortIsActive});
+            console.log(activeData);
             this.render(activeData, true);
         }
     }
 
-    renderGlobalList(sortedData, activeLinkNumber){
+    renderGlobalList(sortedData, activeLinkNumber) {
         const globalList = document.getElementById('global-list');
 
         let currentCategory,
@@ -220,10 +239,10 @@ export class View{
         globalList.querySelector(`[data-priority="${activeLinkNumber}"]`).classList.add('tabs__tab-link_active');
 
         sortedData.forEach((task, i) => {
-            if(currentCategory === undefined || currentCategory !== task.categoryId){
+            if (currentCategory === undefined || currentCategory !== task.categoryId) {
                 section = document.createElement('section');
                 list = document.createElement('ul');
-                currentCategory =  task.categoryId;
+                currentCategory = task.categoryId;
 
                 section.className = `previous-tasks__section tasks-section tasks-section_${task.categoryId}`;
                 list.classList.add('tasks-section__list');
@@ -233,68 +252,69 @@ export class View{
                 list.innerHTML += SingleTask(task, 'global');
                 globalList.appendChild(section);
             }
-            else{
+            else {
                 list.innerHTML += SingleTask(task, 'global');
             }
         });
 
     }
 
-    render(data, isFilter){
-        const root = document.getElementById('root');
+    renderTaskList(root, data, isFilter){
         let currentData = data || this.controller.receiveData({isActive: null}),
             activeFilter = 5,
             activePage = null;
 
-        if(isFilter === true) currentData = data;
+
+        if (isFilter === true) currentData = data;
         else currentData = this.controller.receiveData({isActive: null});
+
+        if(currentData.length === 0){
+            root.innerHTML = ZeroTasks();
+            return;
+        }
 
         root.innerHTML = Template();
 
-        if(currentData[0].isActive === false) activePage = false;
+        if (currentData[0].isActive === false) activePage = false;
         root.querySelector(`[data-is-active=${activePage}`).classList.add('tabs__tab-link_active');
 
         const todayTasksList = document.getElementById('task-list');
 
-        currentData.forEach((task) => {
-            if(task.startDate === 'Today'){
-                todayTasksList.innerHTML += SingleTask(task, 'today');
-            }
+        let todaysData = currentData.filter((task) => {
+            return task.startDate === 'Today';
         });
 
-        if(isFilter === false){
+        if(todaysData.length === 0) todayTasksList.innerHTML = PushFirstTask();
+        else{
+            todaysData.forEach((task) => {
+                todayTasksList.innerHTML += SingleTask(task, 'today');
+            });
+        }
+
+        if (isFilter === false) {
             currentData = data;
             activeFilter = data.activeLink;
         }
         let sortedData = currentData.filter((task) => {
-            if (task.startDate === null) return task;
+            if (activePage === false) {
+                if (task.startDate === null) return task;
+            }
+            else if (task.startDate === null && task.isActive === null) return task;
         }).sort((curr, next) => {
             return curr.categoryId > next.categoryId ? 1 : 0;
         });
 
         this.renderGlobalList(sortedData, activeFilter);
+    }
 
-
-
-
-        /*console.log(id);
-        if(id !== undefined){
-            const todayTasksList = document.getElementById('task-list');
-            let currentTask = currentData.filter((task) => {
-                return task.id === id;
-            });
-
-            let currentListItem = todayTasksList.querySelector(`[data-id="${id}"]`);
-            console.log(todayTasksList, currentListItem);
-            todayTasksList.innerHTML += SingleTask(currentTask);
-            todayTasksList.removeChild(currentListItem);
+    render(data, isFilter) {
+        const root = document.getElementById('root');
+        let isNewUser = sessionStorage.getItem('isNewUser');
+        if(isNewUser == "true"){
+            root.innerHTML = FirstEntranceTemplate();
         }
-        else {*/
-
-        //let tasks = document.querySelectorAll('.single-task');
-
-        /*for(let i = 0; i < tasks.length; i++){
-            tasks[i].classList.add('single-task_removed');
-        }*/
+        else {
+            this.renderTaskList(root, data, isFilter);
+        }
     }
 }

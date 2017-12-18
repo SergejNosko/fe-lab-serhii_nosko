@@ -7,7 +7,7 @@ export class Model{
 
     setData(data){
         this.data = {...this.data, ...data};
-        let isCorrect = EventBus.dispatch('setData', this.data);
+        EventBus.dispatch('setData', this.data);
     }
 
     sendTaskToRemove(){

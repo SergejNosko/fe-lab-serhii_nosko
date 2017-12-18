@@ -1,7 +1,7 @@
 <article class="modals-article" id="modals-article">
-    <section class="modals-article__item modal-window modal-window_remove">
+    <section class="modals-article__item modal-window modal-window_remove" id="remove-modal">
         <div class="modal-window__top-buttons">
-            <button class="modal-window__button icon-close"  data-query="close"></button>
+            <button class="modal-window__button icon-close" data-query="close"></button>
 
         </div>
 
@@ -12,8 +12,8 @@
         </p>
 
         <div class="button-container">
-            <button class="button-container__item button-container__item_blue">Cancel</button>
-            <button class="button-container__item button-container__item_red">Remove</button>
+            <button class="button-container__item button-container__item_blue" data-query="close">Cancel</button>
+            <button class="button-container__item button-container__item_red" data-query="submitRemove">Remove</button>
         </div>
     </section>
 
@@ -196,21 +196,6 @@
 
 <main class="main-content">
 
-    <article class="main-content__article zero-tasks zero-tasks_first-entrance">
-        <img src="/tomato_settings.svg" alt="Add task" class="zero-tasks__image">
-        <h2 class="zero-tasks__title">As you visited our site for a first time you can check<br> and customize your default
-            application settings</h2>
-        <div class="zero-tasks__buttons button-container">
-            <button class="button-container__item button-container__item_blue timer__buttons_start">Skip</button>
-            <button class="button-container__item button-container__item_green timer__buttons_start">Go to Settings</button>
-        </div>
-    </article>
-
-    <article class="main-content__article zero-tasks">
-        <img src="/tomato-add.svg" alt="Add task" class="zero-tasks__image">
-        <h2 class="zero-tasks__title">Add your first task</h2>
-    </article>
-
     <article class="main-content__article task-article">
         <nav class="task-article__navigation tabs" id="tabs">
             <div class="tabs__container">
@@ -218,12 +203,6 @@
                 <a href="#" class="tabs__tab-link" data-is-active="false">Done</a>
             </div>
         </nav>
-
-        <section class="task-article__section empty-task-list">
-            <h2 class="empty-task-list__title">Task added,<br>
-                drag it to the top 5 in daily task list</h2>
-            <button class="empty-task-list__button icon-arrow_circle"></button>
-        </section>
 
         <section class="task-article__section zero-tasks zero-tasks_left">
             <img src="/tomato-addv02.svg" alt="Add task" class="zero-tasks__image">
