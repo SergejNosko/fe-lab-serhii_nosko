@@ -3,10 +3,9 @@
 
     firebase.initializeApp(config);
 
-    let database = firebase.database(),
-        values = database.ref();
+    let database = firebase.database();
 
-    module.exports = factory(values);
+    module.exports = factory(database);
 
 })(config = {
     apiKey: "AIzaSyBp3LNeGd5-vpIKPYeLHve-DoZx4cnaLZs",
@@ -15,24 +14,35 @@
     projectId: "pomodoro-app-444c5",
     storageBucket: "",
     messagingSenderId: "645997009951"
-}, (values) => {
-    let firebaseUserApi = {};
+}, (database) => {
+    let firebaseUserApi = {},
+        taskSchema = database.ref('task');
 
     firebaseUserApi = function() {
 
     };
 
-    values.on('child_changed', (res) => {
+    /*taskSchema.on('child_changed', (res) => {
         console.log('Firebase change event triggered! Value - ', res.val());
     });
 
-    values.on('value', (res) => {
+    taskSchema.on('value', (res) => {
         console.log('Firebase add event triggered! Value - ', res.val());
-    });
+    });*/
 
     firebaseUserApi.prototype = {
         setValue: function(value) {
-            values.push(value);
+            database.ref('task/' + value.id).set(value);
+        },
+        updateValue: function (value) {
+            database.ref('task/' + value.id).update(value);
+        },
+        getData: function () {
+            return new Promise((resolve, reject) => {
+                taskSchema.once('value').then((data) => {
+                    resolve(Object.values(data.val()));
+                });
+            });
         }
     };
 

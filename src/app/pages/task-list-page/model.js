@@ -1,9 +1,11 @@
 import {EventBus} from "../../services/eventBus";
+import Firebase from '../../services/firebase';
 
 export class Model{
     constructor(){
-        this.data = {
-            todayTasks: [
+        this.data = Firebase.getData().then(data => {
+                        return data;
+                    });
                 /*{
                     id: 0,
                     title: 'Lorem ipsum sit amet',
@@ -147,13 +149,14 @@ export class Model{
                     priority: 2,
                     categoryId: 'education'
                 }*/
-            ]
-        };
+
+
 
         this.tasksToRemove = [];
 
         EventBus.add('setData', this.setData, this);
         EventBus.add('setTasksToRemove', this.setTasksToRemove, this);
+        EventBus.add('getRemovedTaskLength', this.getRemovedTasksLength, this);
     }
 
     getRemovedTasksLength(){
@@ -164,15 +167,13 @@ export class Model{
         let existedTask = this.tasksToRemove.indexOf(id);
         if(existedTask !== -1 || (existedTask !== -1 && type && type === 'deselect')) this.tasksToRemove.splice(existedTask, 1);
         if(existedTask === -1 || (existedTask === -1 && type && type === 'select')) this.tasksToRemove.push(id);
-
-        console.log(this.tasksToRemove);
     }
 
     removeTasks(){
         for(let i = 0; i < this.tasksToRemove.length; i++){
-            for(let j = 0; j < this.data.todayTasks.length; j++){
-                if(this.tasksToRemove[i] == this.data.todayTasks[j].id) {
-                    this.data.todayTasks.splice(j, 1);
+            for(let j = 0; j < this.data.length; j++){
+                if(this.tasksToRemove[i] == this.data[j].id) {
+                    this.data.splice(j, 1);
                     break;
                 }
             }
@@ -183,7 +184,7 @@ export class Model{
     setData(data){
         if(data.startDate === 'Today'){
             if(
-                this.data.todayTasks.filter((task) => {
+                this.data.filter((task) => {
                     return task.startDate === 'Today';
                 }
             ).length > 5){
@@ -194,16 +195,18 @@ export class Model{
 
         let index;
 
-        this.data.todayTasks.forEach((task, i) => {
+        this.data.forEach((task, i) => {
             if(task.id === data.id) index = i;
         });
 
         if(index !== undefined){
-            this.data.todayTasks[index] = {...this.data.todayTasks[index], ...data};
+            this.data[0][index] = {...this.data[index], ...data};
             EventBus.dispatch('stateChange');
+            Firebase.updateValue(data);
         }
         else{
-            this.data.todayTasks.push(data);
+            this.data.push(data);
+            Firebase.setValue(data);
         }
     }
 
@@ -215,11 +218,16 @@ export class Model{
             }
 
             if(filter[field] != 5) {
-                return this.data.todayTasks.filter((task) => {
+                return this.data.filter((task) => {
                     return task[field] == filter[field]
                 });
             }
         }
-        return this.data.todayTasks;
+
+        /*for(let key in this.data[0]){
+            console.log('key', key);
+        }*/
+
+        return this.data;
     }
 }

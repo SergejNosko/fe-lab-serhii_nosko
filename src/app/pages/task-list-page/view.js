@@ -178,7 +178,7 @@ export class View {
                     break;
                 }
                 case 'skip': {
-                    sessionStorage.isNewUser = false;
+                    sessionStorage.setItem('isNewUser', true);
                     this.render({isActive: null});
                     break;
                 }
@@ -223,7 +223,6 @@ export class View {
             sortIsActive = sortIsActive == 'false' ? false : null;
 
             let activeData = this.controller.receiveData({isActive: sortIsActive});
-            console.log(activeData);
             this.render(activeData, true);
         }
     }
@@ -264,9 +263,13 @@ export class View {
             activeFilter = 5,
             activePage = null;
 
+        if (isFilter === true){
+            currentData = data;
+        }
+        else{
+            currentData = this.controller.receiveData();
+        }
 
-        if (isFilter === true) currentData = data;
-        else currentData = this.controller.receiveData({isActive: null});
 
         if(currentData.length === 0){
             root.innerHTML = ZeroTasks();
@@ -279,6 +282,7 @@ export class View {
         root.querySelector(`[data-is-active=${activePage}`).classList.add('tabs__tab-link_active');
 
         const todayTasksList = document.getElementById('task-list');
+
 
         let todaysData = currentData.filter((task) => {
             return task.startDate === 'Today';
@@ -299,7 +303,7 @@ export class View {
             if (activePage === false) {
                 if (task.startDate === null) return task;
             }
-            else if (task.startDate === null && task.isActive === null) return task;
+            else if (!task.startDate || task.startDate === null && task.isActive === null) return task;
         }).sort((curr, next) => {
             return curr.categoryId > next.categoryId ? 1 : 0;
         });
@@ -310,7 +314,7 @@ export class View {
     render(data, isFilter) {
         const root = document.getElementById('root');
         let isNewUser = sessionStorage.getItem('isNewUser');
-        if(isNewUser == "true"){
+        if(!isNewUser){
             root.innerHTML = FirstEntranceTemplate();
         }
         else {

@@ -1,5 +1,6 @@
 import Template from './template.hbs';
 import './helpers';
+import {EventBus} from '../../services/eventBus';
 
 export function MainHeader(data) {
   const mainHeader = document.getElementById('main-header');

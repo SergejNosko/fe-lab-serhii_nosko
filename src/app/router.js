@@ -44,8 +44,6 @@ class Router {
     pageChange(){
         let hash = window.location.hash;
 
-        //if(!this.routes.hasOwnProperty(hash)) throw new Error();
-
         if(window.location.pathname == '/' && hash == '') hash = this.root;
 
         MainHeader({hash: hash.substring(1)});
@@ -57,7 +55,6 @@ class Router {
         for(let key in this.routes){
             EventBus.add(key, this.routes[key]);
         }
-        sessionStorage.setItem('isNewUser', true);
 
         this.pageChange();
     }
