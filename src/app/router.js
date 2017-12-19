@@ -55,7 +55,6 @@ class Router {
         for(let key in this.routes){
             EventBus.add(key, this.routes[key]);
         }
-
         this.pageChange();
     }
 }

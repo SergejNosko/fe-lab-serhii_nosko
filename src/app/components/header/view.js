@@ -34,3 +34,4 @@ window.addEventListener('scroll', throttle(function() {
     header.classList.remove('main-header_fixed');
   }
 }, 50));
+

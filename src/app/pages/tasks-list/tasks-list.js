@@ -1,9 +1,4 @@
-import Firebase from '../../services/firebase';
-import Categories from './categories.hbs';
-import Template from './template.hbs';
-
-
-export default function Controller (voters) {
+(function (voters) {
 
   function isCorrect(current) {
     if (current.elem instanceof HTMLElement === false) {
@@ -24,18 +19,15 @@ export default function Controller (voters) {
     }
     return true;
   }
-  /*if (voters && !Array.isArray(voters)) {
-=======
+
   if (voters && !Array.isArray(voters)) {
->>>>>>> origin/productivity-app
     console.error('Parameter should be an array!');
     return;
   }
 
   if (voters && !voters.every(isCorrect)) {
     return;
-<<<<<<< HEAD
-  }*/
+  }
 
   /*-----------------------Main Class-----------------------------*/
   class TaskList {
@@ -168,64 +160,13 @@ export default function Controller (voters) {
   };
   let list;
 
-  function handleSave(e) {
-    let target = e.target,
-        query = target.dataset.query;
-
-    if(query){
-      const root = document.getElementById('root');
-
-      switch (query){
-        case 'saveSetting':{
-          let settings = list.map((item) => {
-            return item.value;
-          });
-
-          Firebase.setValue(settings, 'settings');
-
-          sessionStorage.setItem('isNewUser', false);
-          break;
-        }
-        case 'categories': {
-          root.innerHTML = Categories();
-          break;
-        }
-        case 'settings': {
-          let isNewUser = sessionStorage.getItem('isNewUser');
-
-          root.innerHTML = Template();
-
-          if(!isNewUser) Controller();
-          else{
-            Firebase.getData('settings').then((data) => {
-              Controller(data);
-            });
-          }
-        }
-      }
-    }
-  }
-
-  if (!voters){
-    list = [
-      new TaskList(document.getElementById('voter1'), 5, 15, 25),
-      new TaskList(document.getElementById('voter2'), 1, 2, 5),
-      new TaskList(document.getElementById('voter3'), 1, 3, 5),
-      new TaskList(document.getElementById('voter4'), 5, 15, 30)
-    ];
-  }
-  else{
-    for(let i = 1; i <= 4; i++){
-      document.getElementById(`voter${i}`).querySelector('.single-setting__text-field').value = voters[i - 1];
-    }
-    list = [
-      new TaskList(document.getElementById('voter1'), 5, 15, voters[0]),
-      new TaskList(document.getElementById('voter2'), 1, 2, voters[1]),
-      new TaskList(document.getElementById('voter3'), 1, 3, voters[2]),
-      new TaskList(document.getElementById('voter4'), 5, 15, voters[3])
-    ];
-  }
-
+  if (!voters) list = [
+    new TaskList(document.getElementById('voter1'), 5, 15, 25),
+    new TaskList(document.getElementById('voter2'), 1, 2, 5),
+    new TaskList(document.getElementById('voter3'), 1, 3, 5),
+    new TaskList(document.getElementById('voter4'), 5, 15, 30)
+  ];
+  else list = voters;
 
   let renderValues = list.map((task) => {
     return +task.value;
@@ -233,6 +174,4 @@ export default function Controller (voters) {
 
   let renderObj = render(renderValues);
   renderObj();
-
-  document.body.addEventListener('click', handleSave);
-}
+})();

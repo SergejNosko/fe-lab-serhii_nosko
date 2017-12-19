@@ -7,6 +7,7 @@
 
     module.exports = factory(database);
 
+
 })(config = {
     apiKey: "AIzaSyBp3LNeGd5-vpIKPYeLHve-DoZx4cnaLZs",
     authDomain: "pomodoro-app-444c5.firebaseapp.com",
@@ -14,9 +15,11 @@
     projectId: "pomodoro-app-444c5",
     storageBucket: "",
     messagingSenderId: "645997009951"
+
 }, (database) => {
     let firebaseUserApi = {},
         taskSchema = database.ref('task');
+
 
     firebaseUserApi = function() {
 
