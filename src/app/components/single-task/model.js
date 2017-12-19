@@ -14,6 +14,11 @@ export class Model{
         EventBus.dispatch('setTasksToRemove', this.data.id);
     }
 
+    removeTask(){
+        EventBus.dispatch('removeImmediate');
+        EventBus.dispatch('stateChange');
+    }
+
     getData(){
         return this.data;
     }

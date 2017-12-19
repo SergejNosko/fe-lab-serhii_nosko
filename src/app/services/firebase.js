@@ -22,30 +22,29 @@
 
     };
 
-    /*taskSchema.on('child_changed', (res) => {
-        console.log('Firebase change event triggered! Value - ', res.val());
-    });
-
-    taskSchema.on('value', (res) => {
-        console.log('Firebase add event triggered! Value - ', res.val());
-    });*/
-
     firebaseUserApi.prototype = {
-        setValue: function(value) {
-            database.ref('task/' + value.id).set(value);
+        setValue: function(value, ref) {
+            let table = database.ref('task/' + value.id);
+
+            if(ref) table = database.ref(ref);
+
+            return table.set(value);
         },
         updateValue: function (value) {
-            database.ref('task/' + value.id).update(value);
+            return database.ref('task/' + value.id).update(value);
         },
-        getData: function () {
+        getData: function (ref) {
             return new Promise((resolve, reject) => {
+                if(ref) taskSchema = database.ref(ref);
+                else taskSchema = database.ref('task');
+
                 taskSchema.once('value').then((data) => {
                     resolve(Object.values(data.val()));
                 });
             });
         },
         removeData: function (id) {
-            database.ref('task/' + id).remove();
+            return database.ref('task/' + id).remove();
         }
     };
 

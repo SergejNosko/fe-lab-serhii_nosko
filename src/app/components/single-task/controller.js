@@ -13,6 +13,11 @@ export class Controller{
         this.model.sendTaskToRemove();
     }
 
+    immediateRemove(){
+        this.model.sendTaskToRemove();
+        this.model.removeTask();
+    }
+
     receiveData(){
         return this.model.getData();
     }

@@ -4,11 +4,13 @@
   position: fixed;
   bottom: 20px;
   right: calc(~"(100% - 1185px) / 2");
-  display: none;
+  display: flex;
+  opacity: 0;
   align-items: center;
   border: 1px solid @white;
   border-radius: 5px;
   box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.4);
+  animation: showMessage 3s ease;
 
   &__emotion{
     font-size: 33px;
@@ -57,11 +59,26 @@
     }
   }
 
-  &_notification{
+  &_note{
     background: #529bcd;
 
     .notification__emotion{
       background: #75afd7;
     }
+  }
+}
+
+@keyframes showMessage {
+  0%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 1;
+  }
+  75%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
   }
 }

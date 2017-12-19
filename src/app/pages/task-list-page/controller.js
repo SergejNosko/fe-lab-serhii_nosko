@@ -6,7 +6,7 @@ export class Controller{
     }
 
     sendData(data){
-        this.model.setData(data);
+        return this.model.setData(data);
     }
 
     getRemovedTasksLength(){
@@ -19,8 +19,8 @@ export class Controller{
         this.model.setTasksToRemove(id, type);
     }
 
-    sendRemoveRequest(){
-        this.model.removeTasks();
+    sendRemoveRequest(id){
+        this.model.removeTasks(id);
     }
 
     receiveData(filter){

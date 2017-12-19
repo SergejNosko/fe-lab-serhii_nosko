@@ -2,6 +2,8 @@ import './helpers';
 import Template from './template.hbs';
 import {Controller} from './controller';
 import uuid from 'uuid/v1';
+import Timer from '../../pages/timer-page/index';
+import {EventBus} from '../../services/eventBus';
 
 export class View {
     constructor(data, type){
@@ -34,6 +36,12 @@ export class View {
         this.render(this.controller.receiveData());
     }
 
+    handleImmediateRemove(e){
+        e.preventDefault();
+
+        this.controller.immediateRemove();
+    }
+
     viewControl(e){
         let target = e.target;
         const modalsArticle = document.getElementById('modals-article'),
@@ -46,6 +54,7 @@ export class View {
             currentModal.style.display = 'flex';
 
             document.querySelector('[data-query=edit]').addEventListener('click', this.handleSubmit.bind(this));
+            document.querySelector('[data-query=immediateRemove]').addEventListener('click', this.handleImmediateRemove.bind(this));
         }
 
         if(target.dataset.query === 'close'){
@@ -58,7 +67,7 @@ export class View {
         if(parentId == data.id && target.dataset.query === 'push'){
             e.preventDefault();
 
-            this.controller.sendData({startDate: 'Today'});
+            this.controller.sendData({startDate: Date.now()});
 
             this.render(this.controller.receiveData());
         }
@@ -66,6 +75,10 @@ export class View {
         if(target.parentElement.dataset.id == data.id && target.parentElement.dataset.unique == this.uuid && target.dataset.query === 'addRemove'){
             this.controller.setTaskToRemove();
             target.classList.toggle('single-task__remove-button_active');
+        }
+
+        if(target.parentElement.dataset.id == data.id && target.dataset.query === 'timer'){
+            EventBus.dispatch('#timer', data);
         }
     }
 

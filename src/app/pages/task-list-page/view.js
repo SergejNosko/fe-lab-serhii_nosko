@@ -8,6 +8,7 @@ import './helpers';
 import SingleTask from '../../components/single-task/index';
 import {EventBus} from "../../services/eventBus";
 import uuid from 'uuid/v1';
+import Notification from '../../components/notifications/index';
 
 export class View {
     constructor(data) {
@@ -37,6 +38,7 @@ export class View {
             };
             this.controller.sendData(newTask);
             this.render(this.controller.receiveData());
+            //Notification().showMessage('success', {message: 'Task was successfully created!'});
         }
     }
 
@@ -178,7 +180,7 @@ export class View {
                     break;
                 }
                 case 'skip': {
-                    sessionStorage.setItem('isNewUser', true);
+                    sessionStorage.setItem('isNewUser', false);
                     this.render({isActive: null});
                     break;
                 }
@@ -204,9 +206,10 @@ export class View {
                     }
                     break;
                 }
-                default:
+                default: {
                     this.showModal(query);
                     break;
+                }
             }
         }
 
@@ -270,21 +273,28 @@ export class View {
             currentData = this.controller.receiveData({isActive: null});
         }
 
-        if(currentData.length === 0){
+        if(currentData.length === 0 && isFilter !== true){
             root.innerHTML = ZeroTasks();
             return;
         }
 
         root.innerHTML = Template();
 
-        if (currentData[0].isActive === false) activePage = false;
+        if (currentData.length !== 0 && currentData[0].isActive === false) activePage = false;
         root.querySelector(`[data-is-active=${activePage}`).classList.add('tabs__tab-link_active');
 
         const todayTasksList = document.getElementById('task-list');
 
 
+        let todayDateObj = new Date(),
+            taskDateObj;
         let todaysData = currentData.filter((task) => {
-            return task.startDate === 'Today';
+            if(task.startDate) {
+                taskDateObj = new Date(task.startDate);
+
+                if(taskDateObj.getDate() == todayDateObj.getDate() && taskDateObj.getYear() == todayDateObj.getYear())
+                    return task;
+            }
         });
 
         if(todaysData.length === 0) todayTasksList.innerHTML = PushFirstTask();

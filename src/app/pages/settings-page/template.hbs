@@ -3,8 +3,8 @@
         <header class="settings-article__header settings-header">
             <h2 class="settings-header__title">Pomodoro settings</h2>
             <nav class="settings-header__navigation tabs">
-                <a href="settings.html" class="tabs__tab-link tabs__tab-link_active">Pomodoros</a>
-                <a href="settings-categories.html" class="tabs__tab-link">Categories</a>
+                <a href="#settings" class="tabs__tab-link" data-query="settings">Pomodoros</a>
+                <a href="#settings" class="tabs__tab-link" data-query="categories">Categories</a>
             </nav>
         </header>
 
@@ -82,8 +82,8 @@
         </figure>
 
         <div class="full-chart__buttons-container button-container">
-            <button class="button-container__item button-container__item_blue">Go to Tasks</button>
-            <button class="button-container__item button-container__item_green">Save</button>
+            <button class="button-container__item button-container__item_blue"><a href="#task-list">Go to Tasks</a></button>
+            <button class="button-container__item button-container__item_green" data-query="saveSetting">Save</button>
         </div>
     </article>
 </main>

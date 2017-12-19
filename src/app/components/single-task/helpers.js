@@ -29,7 +29,7 @@ Handlebars.registerHelper('$buttonsHelper', (type) => {
 
 Handlebars.registerHelper('$estimationHelper', (total, used, type) => {
     let currentClass = type === 'global' ? total : used;
-    return `<a href="#timer" class="single-task__status single-task__status_${currentClass} icon-tomato" title="Go to Timer"></a>`
+    return `<a href="#" class="single-task__status single-task__status_${currentClass} icon-tomato" data-query="timer" title="Go to Timer"></a>`
 });
 
 Handlebars.registerHelper('$dateHelper', (date, type) => {
