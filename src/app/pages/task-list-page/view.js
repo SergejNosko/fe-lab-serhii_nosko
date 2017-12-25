@@ -38,7 +38,6 @@ export class View {
             };
             this.controller.sendData(newTask);
             this.render(this.controller.receiveData());
-            //Notification().showMessage('success', {message: 'Task was successfully created!'});
         }
     }
 
@@ -49,7 +48,7 @@ export class View {
                 const currentModal = document.getElementById('add-modal');
 
                 modalsArticle.style.display = 'flex';
-                currentModal.style.display = 'flex';
+                currentModal.classList.add('modal-window__active');
 
                 document.querySelector('.modals-article').addEventListener('click', this.handleSubmit.bind(this));
                 break;
@@ -109,7 +108,7 @@ export class View {
                 const modalsArticle = document.getElementById('modals-article');
 
                 modalsArticle.style.display = 'flex';
-                currentModal.style.display = 'flex';
+                currentModal.classList.add('modal-window__active');
             }
         }
         else {

@@ -52,12 +52,16 @@
   }
 
   &__description {
-    flex: 1 0 auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   &__title {
     .font(500, 19px, Roboto);
     margin-bottom: 10px;
+    flex: 1 0 100%;
   }
 
   &__link-container{
@@ -83,6 +87,8 @@
     .font(400, 16px, Roboto);
     color: @grey;
     margin: 0;
+    flex: 1 0 100%;
+    overflow-wrap: break-word;
   }
 
   &__status {
@@ -548,3 +554,6 @@
   }
 }
 
+@media all and (max-width: 1024px){
+
+}

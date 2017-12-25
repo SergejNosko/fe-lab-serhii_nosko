@@ -4,6 +4,7 @@ import {Controller} from './controller';
 import uuid from 'uuid/v1';
 import Timer from '../../pages/timer-page/index';
 import {EventBus} from '../../services/eventBus';
+import MainHeader from '../../components/header/index';
 
 export class View {
     constructor(data, type){
@@ -51,7 +52,7 @@ export class View {
 
         if(parentId == data.id && target.dataset.query === 'edit'){
             modalsArticle.style.display = 'flex';
-            currentModal.style.display = 'flex';
+            currentModal.classList.add('modal-window__active');
 
             document.querySelector('[data-query=edit]').addEventListener('click', this.handleSubmit.bind(this));
             document.querySelector('[data-query=immediateRemove]').addEventListener('click', this.handleImmediateRemove.bind(this));
@@ -78,6 +79,8 @@ export class View {
         }
 
         if(target.parentElement.dataset.id == data.id && target.dataset.query === 'timer'){
+
+            MainHeader({hash: 'timer'});
             EventBus.dispatch('#timer', data);
         }
     }

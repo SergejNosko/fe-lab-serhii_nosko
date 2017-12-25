@@ -5,10 +5,13 @@ Handlebars.registerHelper('$headerTitle', (hash) => {
         case 'task-list': {
             return `Daily Task List 
                     <a href="#" data-query="add" 
-                        class="main-header__link" 
+                        class="main-header__link main-header__add-button" 
                         title="Tooltip">+</a>`
         }
-        default: return hash;
+      case 'timer': {
+        return '';
+      }
+      default: return hash;
     }
 });
 

@@ -24,18 +24,6 @@ export default function Controller (voters) {
     }
     return true;
   }
-  /*if (voters && !Array.isArray(voters)) {
-=======
-  if (voters && !Array.isArray(voters)) {
->>>>>>> origin/productivity-app
-    console.error('Parameter should be an array!');
-    return;
-  }
-
-  if (voters && !voters.every(isCorrect)) {
-    return;
-<<<<<<< HEAD
-  }*/
 
   /*-----------------------Main Class-----------------------------*/
   class TaskList {

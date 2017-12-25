@@ -16,6 +16,8 @@
 
   }
 
+
+
   &__navigation{
     margin-bottom: 21px;
   }
@@ -49,6 +51,11 @@
         color: @white;
       }
     }
+  }
+
+  &__add-button{
+    font-weight: bold;
+    color: #ffffff;
   }
 
   &__logo{
@@ -95,4 +102,26 @@
   }
 
 
+}
+
+@media all and (max-width: 1024px) {
+  .main-header{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 30px 25px;
+  }
+
+  .main-header__title{
+    font-size: 32px;
+    order: 0;
+  }
+
+  .main-header__navigation{
+    margin-bottom: 0;
+  }
+
+  .main-header__link{
+    font-size: 35px;
+  }
 }

@@ -35,6 +35,12 @@
   align-items: center;
 
   &__title{
+    .font(400, 30px, Roboto);
+    color: @white;
+    margin-bottom: 35px;
+  }
+
+  &__sub-title{
     .font(400, 17px, Roboto);
     color: @white;
     margin-bottom: 35px;
@@ -128,7 +134,11 @@
       color: @white;
     }
   }
+}
 
-
-
+@media all and (max-width: 1024px) {
+  .main-content__back-button{
+    width: 35px;
+    height: 65px;
+  }
 }
