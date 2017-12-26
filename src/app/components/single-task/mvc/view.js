@@ -1,10 +1,10 @@
-import './helpers';
-import Template from './template.hbs';
+import '../template/helpers';
+import Template from '../template/template.hbs';
 import {Controller} from './controller';
 import uuid from 'uuid/v1';
-import Timer from '../../pages/timer-page/index';
-import {EventBus} from '../../services/eventBus';
-import MainHeader from '../../components/header/index';
+import Timer from '../../../pages/timer-page/index';
+import {EventBus} from '../../../services/eventBus';
+import MainHeader from '../../../components/header/index';
 
 export class View {
     constructor(data, type){

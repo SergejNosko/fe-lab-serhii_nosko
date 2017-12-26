@@ -1,5 +1,5 @@
-import Template from './template.hbs';
-import './helpers';
+import Template from './template/template.hbs';
+import './template/helpers';
 import {EventBus} from '../../services/eventBus';
 
 export function MainHeader(data) {

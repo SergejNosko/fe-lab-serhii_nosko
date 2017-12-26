@@ -1,4 +1,4 @@
-import Template from './template.hbs';
+import Template from './template/template.hbs';
 import Controller from './controller';
 import Firebase from '../../services/firebase';
 

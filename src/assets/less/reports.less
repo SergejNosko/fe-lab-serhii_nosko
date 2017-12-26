@@ -11,6 +11,10 @@
       padding: 0 10px;
       border-right: 1px solid @nepal;
 
+      @media all and @laptop{
+        font-size: 24px;
+      }
+
       &:last-of-type{
         border-right: none;
       }
@@ -63,8 +67,4 @@
 
 .generate-color(@parent-selector: chart, @main-selector: chart__list-item, @alt-selector: '', @color-schema: @priority-color);
 
-@media all and (max-width: 1024px){
-  .report__list-item{
-    font-size: 24px;
-  }
-}
+

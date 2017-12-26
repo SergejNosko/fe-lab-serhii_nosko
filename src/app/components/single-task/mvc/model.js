@@ -1,4 +1,4 @@
-import {EventBus} from '../../services/eventBus';
+import {EventBus} from '../../../services/eventBus';
 
 export class Model{
     constructor(data){

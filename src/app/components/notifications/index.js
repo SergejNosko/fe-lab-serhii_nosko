@@ -1,4 +1,4 @@
-import Template from './template.hbs';
+import Template from './template/template.hbs';
 
 export default function () {
     return {

@@ -2,12 +2,24 @@
   display: flex;
   justify-content: flex-end;
 
+  @media all and @laptop{
+    margin-bottom: 20px;
+  }
+
+  @media all and @mobile{
+    margin-bottom: 50px;
+  }
+
   &__tab-link {
     .font(400, 16px, PTSans);
     color: @nepal;
     transition: all ease .3s;
     padding: 0 10px 0 10px;
     border-right: 1px solid @nepal;
+
+    @media all and @laptop{
+      font-size: 24px;
+    }
 
     &:hover {
       color: @spray;
@@ -62,19 +74,3 @@
   }
 }
 
-@media all and (max-width: 1024px) {
-
-  .tabs{
-    margin-bottom: 20px;
-  }
-
-  .tabs__tab-link{
-    font-size: 24px;
-  }
-}
-
-@media all and (max-width: 768px) {
-  .tabs{
-    margin-bottom: 50px;
-  }
-}

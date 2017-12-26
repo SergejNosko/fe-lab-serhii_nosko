@@ -1,14 +1,14 @@
 import {Controller} from './controller';
-import Template from './template.hbs';
-import GlobalList from './global-list.hbs';
-import FirstEntranceTemplate from './first-entrance-template.hbs';
-import ZeroTasks from './zero-tasks.hbs';
-import PushFirstTask from './push-first-task.hbs';
-import './helpers';
-import SingleTask from '../../components/single-task/index';
-import {EventBus} from "../../services/eventBus";
+import Template from '../template/template.hbs';
+import GlobalList from '../template/global-list.hbs';
+import FirstEntranceTemplate from '../template/first-entrance-template.hbs';
+import ZeroTasks from '../template/zero-tasks.hbs';
+import PushFirstTask from '../template/push-first-task.hbs';
+import '../template/helpers';
+import SingleTask from '../../../components/single-task/index';
+import {EventBus} from "../../../services/eventBus";
 import uuid from 'uuid/v1';
-import Notification from '../../components/notifications/index';
+import Notification from '../../../components/notifications/index';
 
 export class View {
     constructor(data) {
@@ -154,6 +154,11 @@ export class View {
                     this.showGlobalList(target);
                     break;
                 }
+                case 'closeNote': {
+                    target.parentElement.offsetHeight;
+                    target.parentElement.style.animation = 'hide .1s ease';
+                    break;
+                }
                 case 'estimation': {
                     this.estimationButtons(target);
                     break;
@@ -214,18 +219,14 @@ export class View {
 
         if (sortPriority) {
             e.preventDefault();
-
-            let priorityData = this.controller.receiveData({priority: sortPriority});
-            priorityData.activeLink = sortPriority;
-            this.render(priorityData, false);
+            this.render(null, sortPriority);
         }
 
         if (sortIsActive) {
             e.preventDefault();
             sortIsActive = sortIsActive == 'false' ? false : null;
 
-            let activeData = this.controller.receiveData({isActive: sortIsActive});
-            this.render(activeData, true);
+            this.render(null, 0, sortIsActive);
         }
     }
 
@@ -260,41 +261,28 @@ export class View {
 
     }
 
-    renderTaskList(root, data, isFilter){
+    renderTaskList(root, data, isFilter, page){
         let currentData = data || this.controller.receiveData({isActive: null}),
-            activeFilter = 5,
-            activePage = null;
+            activeFilter = isFilter || 0,
+            activePage = page === false ? false : null;
 
-        if (isFilter === true){
-            currentData = data;
-        }
-        else{
-            currentData = this.controller.receiveData({isActive: null});
-        }
+        /*----------------Start template rendering----------------------*/
 
-        if(currentData.length === 0 && isFilter !== true){
+        if(currentData.length === 0 && page !== false){
             root.innerHTML = ZeroTasks();
             return;
         }
 
         root.innerHTML = Template();
 
-        if (currentData.length !== 0 && currentData[0].isActive === false) activePage = false;
         root.querySelector(`[data-is-active=${activePage}`).classList.add('tabs__tab-link_active');
 
         const todayTasksList = document.getElementById('task-list');
 
+        /*---------------Get tasks for today-------------------------------*/
 
-        let todayDateObj = new Date(),
-            taskDateObj;
-        let todaysData = currentData.filter((task) => {
-            if(task.startDate) {
-                taskDateObj = new Date(task.startDate);
+        let todaysData = this.controller.receiveData({isActive: activePage, startDate: true});
 
-                if(taskDateObj.getDate() == todayDateObj.getDate() && taskDateObj.getYear() == todayDateObj.getYear())
-                    return task;
-            }
-        });
 
         if(todaysData.length === 0) todayTasksList.innerHTML = PushFirstTask();
         else{
@@ -303,30 +291,32 @@ export class View {
             });
         }
 
-        if (isFilter === false) {
-            currentData = data;
-            activeFilter = data.activeLink;
+        /*-------------------Get other tasks--------------------------------------*/
+
+        let globalDataObj = {
+            startDate: null,
+            isActive: activePage
+        };
+
+        if(activeFilter != 0){
+            globalDataObj.priority = activeFilter
         }
-        let sortedData = currentData.filter((task) => {
-            if (activePage === false) {
-                if (task.startDate === null) return task;
-            }
-            else if (!task.startDate || task.startDate === null && task.isActive === null) return task;
-        }).sort((curr, next) => {
+
+        let sortedData = this.controller.receiveData(globalDataObj).sort((curr, next) => {
             return curr.categoryId > next.categoryId ? 1 : 0;
         });
 
         this.renderGlobalList(sortedData, activeFilter);
     }
 
-    render(data, isFilter) {
+    render(data, isFilter, page) {
         const root = document.getElementById('root');
         let isNewUser = sessionStorage.getItem('isNewUser');
         if(!isNewUser){
             root.innerHTML = FirstEntranceTemplate();
         }
         else {
-            this.renderTaskList(root, data, isFilter);
+            this.renderTaskList(root, data, isFilter, page);
         }
     }
 }

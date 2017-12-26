@@ -43,6 +43,11 @@
 
   &__item {
     flex: 1 0 50%;
+
+    @media all and @mobile{
+      flex: 1 0 100%;
+      align-items: center;
+    }
   }
 }
 
@@ -88,6 +93,10 @@
     position: relative;
     display: flex;
     align-items: center;
+
+    @media all and @mobile{
+      margin-left: 20px;
+    }
   }
 
   &__text-field {

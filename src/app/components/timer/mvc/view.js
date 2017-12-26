@@ -1,5 +1,5 @@
-import Template from './template.hbs';
-import TimerCompleted from './timer-completed.hbs';
+import Template from '../template/template.hbs';
+import TimerCompleted from '../template/timer-completed.hbs';
 import {Controller} from './controller';
 
 export class View{

@@ -19,6 +19,11 @@
     cursor: pointer;
     transition: all ease .3s;
 
+    @media all and @laptop{
+      width: 35px;
+      height: 65px;
+    }
+
     &:hover{
       color: @spray;
     }
@@ -133,12 +138,5 @@
       .font(400, 26px, PTSans);
       color: @white;
     }
-  }
-}
-
-@media all and (max-width: 1024px) {
-  .main-content__back-button{
-    width: 35px;
-    height: 65px;
   }
 }

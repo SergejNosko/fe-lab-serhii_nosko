@@ -1,6 +1,6 @@
 import Firebase from '../../services/firebase';
-import Categories from './categories.hbs';
-import Template from './template.hbs';
+import Categories from './template/categories.hbs';
+import Template from './template/template.hbs';
 
 
 export default function Controller (voters) {

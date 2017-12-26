@@ -99,7 +99,7 @@
     padding: 21px 22px;
 
     &:after {
-      content: '3';
+      content: '0';
       .font(700, 24px, PTSans);
       position: absolute;
       top: 50%;
@@ -113,6 +113,10 @@
 
     &:hover:after{
       content: '';
+    }
+
+    &_0:after{
+      content: '0';
     }
 
     &_1:after{
@@ -552,8 +556,4 @@
     font-size: 60px;
     cursor: pointer;
   }
-}
-
-@media all and (max-width: 1024px){
-
 }

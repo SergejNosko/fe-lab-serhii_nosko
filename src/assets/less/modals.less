@@ -14,6 +14,14 @@
     max-width: 500px;
     background: #2e3e52;
     margin: 50px auto 0;
+
+    @media all and @mobile{
+      max-width: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 35px 85px 0;
+    }
   }
 }
 
@@ -37,6 +45,10 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 11px;
+
+    @media all and @mobile {
+      margin-bottom: 55px;
+    }
   }
 
   &__button{
@@ -47,6 +59,10 @@
     color: @nepal;
     cursor: pointer;
     transition: all ease .3s;
+
+    @media all and @mobile{
+      margin-bottom: 35px;
+    }
 
     &:hover{
       color: @spray;
@@ -62,6 +78,10 @@
     color: @white;
     text-align: center;
     margin-bottom: 23px;
+
+    @media all and @mobile{
+      margin-bottom: 55px;
+    }
   }
 
   &__label{
@@ -70,6 +90,10 @@
     color: @white;
     margin-bottom: 25px;
     text-transform: uppercase;
+
+    @media all and @mobile{
+      margin-bottom: 35px;
+    }
   }
 
   &__text{
@@ -187,40 +211,6 @@
 
 .generate-color(@parent-selector: radio-block_categories, @main-selector: radio-block__radio, @alt-selector: 'radio');
 
-@media all and (max-width: 768px) {
-  .modals-article__item{
-    max-width: none;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 35px 85px 0;
-  }
-
-  .modal-window__label{
-    font-size: 16px;
-  }
-
-  .modal-window__button{
-    width: 27px;
-    height: 27px;
-  }
-
-  .modal-window__label{
-    margin-bottom: 35px;
-  }
-
-  .radio-block__list{
-    margin-top: 30px;
-  }
-
-  .modal-window__title{
-    margin-bottom: 55px;
-  }
-
-  .modal-window__top-buttons{
-    margin-bottom: 55px;
-  }
-}
 
 @keyframes fade-in {
   0%{

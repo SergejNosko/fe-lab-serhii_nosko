@@ -6,7 +6,7 @@ Handlebars.registerHelper('$headerTitle', (hash) => {
             return `Daily Task List 
                     <a href="#" data-query="add" 
                         class="main-header__link main-header__add-button" 
-                        title="Tooltip">+</a>`
+                        title="Add task">+</a>`
         }
       case 'timer': {
         return '';

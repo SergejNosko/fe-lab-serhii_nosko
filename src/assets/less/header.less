@@ -4,11 +4,23 @@
   max-width: 1185px;
   .flex-column;
 
+  @media all and @laptop{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 30px 25px;
+  }
+
   &__title{
     .font(500, 28px, Roboto);
     color: @white;
     text-align: center;
     order: 1;
+
+    @media all and @laptop{
+      font-size: 32px;
+      order: 0;
+    }
 
     &::first-letter{
       text-transform: uppercase;
@@ -20,6 +32,10 @@
 
   &__navigation{
     margin-bottom: 21px;
+
+    @media all and @laptop{
+      margin-bottom: 0;
+    }
   }
 
   &__list{
@@ -39,6 +55,10 @@
   &__link{
     color: @nepal;
     transition: all ease .3s;
+
+    @media all and @laptop{
+      font-size: 35px;
+    }
 
     &:hover{
       color: @spray;
@@ -102,26 +122,4 @@
   }
 
 
-}
-
-@media all and (max-width: 1024px) {
-  .main-header{
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 56px 30px 25px;
-  }
-
-  .main-header__title{
-    font-size: 32px;
-    order: 0;
-  }
-
-  .main-header__navigation{
-    margin-bottom: 0;
-  }
-
-  .main-header__link{
-    font-size: 35px;
-  }
 }

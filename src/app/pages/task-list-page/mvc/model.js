@@ -1,6 +1,6 @@
-import {EventBus} from "../../services/eventBus";
-import Firebase from '../../services/firebase';
-import Notification from '../../components/notifications/index';
+import {EventBus} from "../../../services/eventBus";
+import Firebase from '../../../services/firebase';
+import Notification from '../../../components/notifications/index';
 
 export class Model{
     constructor(data){
@@ -80,18 +80,17 @@ export class Model{
     }
 
     getData(filter){
+        let requiredData = this.data;
             if(filter){
-                let field;
                 for(let key in filter){
-                    field = key;
-                }
-
-                if(filter[field] != 5) {
-                    return this.data.filter((task) => {
-                        return task[field] == filter[field]
+                    requiredData = requiredData.filter((task) => {
+                        if(key === 'isActive' || typeof task[key] === 'string' && typeof filter[key] === 'string'){
+                            return filter[key] == task[key]
+                        }
+                        return !!filter[key] == !!task[key]
                     });
                 }
             }
-            return this.data;
+        return requiredData;
     }
 }
