@@ -1,6 +1,7 @@
 import Template from '../template/template.hbs';
 import '../template/helpers';
 import TimerCompleted from '../template/timer-completed.hbs';
+import TimerBreak from '../template/timer-break.hbs';
 import TimerProcess from '../template/timer-process.hbs';
 import {Controller} from './controller';
 import Firebase from '../../../services/firebase';
@@ -14,8 +15,8 @@ export class View {
   }
 
   timeLeft(title) {
-    const minutes = Math.floor((this.totalTime - 1) / 60),
-          seconds = this.totalTime - 1 % 60;
+    const minutes = Math.floor((this.totalTime) / 60),
+          seconds = this.totalTime % 60;
 
     if(minutes === 0){
       title.innerHTML = `<span class="timer__body-title-number">${seconds}</span> sec`
@@ -26,10 +27,13 @@ export class View {
 
   }
 
-  animationStart(e){
+  animationStart(){
+    this.totalTime = this.currentState === 'process' ? this.settings[0] : this.settings[2];
+
     const timerTitle = document.querySelector('[data-title=timer]');
 
     this.timeLeft(timerTitle);
+    this.totalTime--;
 
     this.timer = setInterval(() => {
       this.timeLeft(timerTitle);
@@ -37,42 +41,93 @@ export class View {
     }, 1000);
   }
 
-  animationEnd(e){
+  animationEnd(status){
     clearInterval(this.timer);
+
+    this.controller.setEstimation({status: status});
+
+    const timer = document.getElementById('timer');
+    const data = this.controller.getData();
+
+    this.currentState = 'break';
+
+    timer.innerHTML = TimerBreak(data);
+
+    this.setAnimationProperties();
   }
 
-  handleStartTimer() {
-    Firebase.getData('settings').then((data) => {
-      const timerData = this.controller.getData();
-      const timer = document.getElementById('timer');
-      timer.innerHTML = TimerProcess(timerData);
+  animationBreakEnd(){
+    clearInterval(this.timer);
 
-      const progress = document.querySelector('[data-anim~="left"]'),
-        progressHalf = document.querySelector('[data-anim~="right"]'),
-        wrapper = document.querySelector('[data-anim~="wrapper"]');
+    const buttonsContainer = document.querySelector('[data-buttons="timer-break"]');
+    const timerTitle = document.querySelector('[data-title=timer]');
 
-      progress.style.animationDuration = data[0] + 's';
-      progressHalf.style.animationDuration = data[0] / 2 + 's';
-      wrapper.style.animationDelay = data[0] / 2 + 's';
+    timerTitle.innerHTML = `Break<br> is over`;
+    buttonsContainer.innerHTML += `<button class="button-container__item button-container__item_blue" data-query="timerFinish">Finish Task</button>`;
 
-      this.totalTime = data[0]; //!!!!!!!!!!!!!convert to minutes
+    this.currentState = 'process';
+  }
 
-      progress.addEventListener('animationstart', this.animationStart.bind(this));
+  setAnimationProperties(){
+    const progress = document.querySelector('[data-anim~="left"]'),
+      progressHalf = document.querySelector('[data-anim~="right"]'),
+      wrapper = document.querySelector('[data-anim~="wrapper"]');
 
-      progress.addEventListener('animationend', this.animationEnd.bind(this));
-    });
+    const time = this.currentState === 'process' ? this.settings[0] : this.settings[2];
 
+    progress.style.animationDuration = time + 's';
+    progressHalf.style.animationDuration = time / 2 + 's';
+    wrapper.style.animationDelay = time / 2 + 's';
+
+    progress.addEventListener('animationstart', this.animationStart.bind(this));
+
+    if(this.currentState === 'process'){
+      progress.addEventListener('animationend', this.animationEnd.bind(this, 'finished'));
+    }
+    else{
+      progress.addEventListener('animationend', this.animationBreakEnd.bind(this, 'finished'));
+    }
+  }
+
+  handleStartTimer(e) {
+    const target = e.target;
+
+    if(!target.dataset.query) return;
+
+    const timerData = this.controller.getData();
+    const timer = document.getElementById('timer');
+
+    switch (target.dataset.query){
+      case 'timerStart':{
+        timer.innerHTML = TimerProcess(timerData);
+
+        this.setAnimationProperties();
+        break;
+      }
+      case 'finishPomodoro': {
+        this.animationEnd.call(this, 'finished');
+        break;
+      }
+      case 'failPomodoro': {
+        this.animationEnd.call(this, 'failed');
+        break;
+      }
+    }
   }
 
   render() {
     const timer = document.getElementById('timer');
     const data = this.controller.getData();
 
-    if (data.pomodoros.length !== 0)
-      timer.innerHTML = TimerProcess(data);
-    else
-      timer.innerHTML = Template(data);
+    console.log(data);
 
-    document.querySelector('[data-query=timerStart]').addEventListener('click', this.handleStartTimer.bind(this));
+    /*if (data.pomodoros[0].status !== 'none')
+      timer.innerHTML = TimerProcess(data);
+    else*/
+  Firebase.getData('settings').then((settings) => {
+      this.settings = settings;
+      timer.innerHTML = Template(data);
+    document.body.addEventListener('click', this.handleStartTimer.bind(this));
+  });
   }
 }

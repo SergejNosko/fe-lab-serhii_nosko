@@ -61,15 +61,18 @@
     display: flex;
     margin-bottom: 60px;
 
-    &-button{
-      background: url("/empty-tomato.svg") no-repeat 50% 50%;
+    &-item{
       width: 25px;
       height: 23px;
       margin: 0 5px;
       border: none;
       cursor: pointer;
 
-      &_completed{
+      &_none{
+        background: url("/empty-tomato.svg") no-repeat 50% 50%;
+      }
+
+      &_finished{
         background: url("/fill-tomato.svg") no-repeat 50% 50%;
       }
 

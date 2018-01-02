@@ -1,9 +1,37 @@
 import {EventBus} from '../../../services/eventBus';
+import Firebase from '../../../services/firebase';
+import Notification from '../../../components/notifications/index';
 
 export class Model{
     constructor(data){
         this.data = data;
-        this.data.pomodoros = [];
+
+        if(!this.data.pomodoros)
+          this.data.pomodoros = [];
+
+       for(let i = 0; i < this.data.estimationTotal; i++) {
+          if(!this.data.pomodoros[i])
+            this.data.pomodoros[i] = {
+              status: 'none'
+            }
+        }
+    }
+
+    setEstimation(data){
+      let index;
+
+      this.data.pomodoros.find((pomodoro, i) => {
+        if(pomodoro.status === 'none'){
+         index = i;
+         return pomodoro;
+        }
+      });
+
+      this.data.pomodoros[index].status = data.status;
+
+      Firebase.updateValue(this.data).catch((err) => {
+        Notification().showMessage('error', 'Oops! Error was occurred!');
+      });
     }
 
     getData(){

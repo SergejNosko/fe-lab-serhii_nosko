@@ -193,7 +193,7 @@ export default function Controller (voters) {
       }
     }
   }
-console.log(voters);
+
   if (!voters){
     list = [
       new TaskList(document.getElementById('voter1'), 5, 15, 25),

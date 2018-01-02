@@ -5,6 +5,10 @@ export class Controller{
         this.model = new Model(data);
     }
 
+    setEstimation(data){
+      this.model.setEstimation(data);
+    }
+
     getData(){
         return this.model.getData();
     }
