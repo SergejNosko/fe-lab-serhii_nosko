@@ -1,4 +1,4 @@
-import Template from './template.hbs';
+import Template from './template/template.hbs';
 import TemplateTimer from '../../components/timer/index';
 
 export function Timer(data) {

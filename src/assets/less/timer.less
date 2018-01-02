@@ -30,9 +30,14 @@
 
     &_right{
       right: 0;
-      //transform: translateX(100%);
     }
   }
+}
+
+[data-anim~=base] {
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function:linear;
 }
 
 .timer{
@@ -102,20 +107,49 @@
     background: @background-color;
     overflow: hidden;
     box-shadow: 0 5px 40px 2px rgba(0, 0, 0, 0.4);
+    position: relative;
 
-    &-progress{
-      width: 100%;
-      height: 100%;
-      background: @nepal;
+    &-wrapper{
+      width: 240px;
+      height: 240px;
+      position: absolute;
       display: flex;
       justify-content: center;
       align-items: center;
+      border: 5px solid @background-color;
+      clip: rect(0px, 240px, 240px, 120px);
+      z-index: 5;
+
+      &[data-anim~=wrapper]{
+        animation-duration: 0.01s;
+        animation-delay: 3s;
+        animation-name: close-wrapper;
+      }
+    }
+
+    &-progress{
+      width: 150px;
+      height: 150px;
+      background: @background-color;
+      border: 40px solid @nepal;
+      position: absolute;
       border-radius: 50%;
+      clip: rect(0px, 120px, 240px, 0px);
+
+      &[data-anim~=left] {
+        animation-duration: 6s;
+        animation-name: left-spin;
+      }
+
+      &[data-anim~=right] {
+        animation-duration: 3s;
+        animation-name: right-spin;
+      }
     }
 
     &-title{
-      width: 165px;
-      height: 165px;
+      width: 150px;
+      height: 150px;
       box-sizing: border-box;
       .flex-column;
       justify-content: center;
@@ -124,9 +158,8 @@
       background: @background-color;
       z-index: 10;
       text-align: center;
-      //padding: 10px 55px;
       border-radius: 50%;
-
+      position: absolute;
 
       &-number{
         font-size: 100px;
@@ -135,8 +168,37 @@
     }
 
     &-title-start{
+      width: 150px;
+      height: 150px;
+      box-sizing: border-box;
       .font(400, 26px, PTSans);
       color: @white;
+      z-index: 10;
+      position: absolute;
     }
+  }
+}
+
+@keyframes right-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes left-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes close-wrapper {
+  to {
+    clip: rect(auto, auto, auto, auto);
   }
 }
