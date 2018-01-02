@@ -17,6 +17,12 @@ export class Model{
         }
     }
 
+    checkPomodoros(){
+      return this.data.pomodoros.every((pomodoro) => {
+        return pomodoro.status !== 'none'
+      });
+    }
+
     setEstimation(data){
       let index;
 
@@ -28,6 +34,7 @@ export class Model{
       });
 
       this.data.pomodoros[index].status = data.status;
+      this.data.estimationUsed++;
 
       Firebase.updateValue(this.data).catch((err) => {
         Notification().showMessage('error', 'Oops! Error was occurred!');

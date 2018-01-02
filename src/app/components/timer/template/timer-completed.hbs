@@ -2,21 +2,13 @@
   <h2 class="timer__title">{{title}}</h2>
   <h3 class="timer__sub-title">{{description}}</h3>
 
-    <ul class="timer__pomodoros">
-        <li class="timer__pomodoros-item">
-            <button class="timer__pomodoros-button timer__pomodoros timer__pomodoros-button_completed"></button>
-        </li>
-        <li class="timer__pomodoros-item">
-            <button class="timer__pomodoros-button timer__pomodoros-button_completed"></button>
-        </li>
-        <li class="timer__pomodoros-item">
-            <button class="timer__pomodoros-button timer__pomodoros-button_completed"></button>
-        </li>
-    </ul>
+  {{{$estimations estimationTotal pomodoros}}}
 
     <section class="timer__buttons timer__body">
-        <div class="timer__body-progress">
-            <h3 class="timer__body-title">You Completed Task</h3>
-        </div>
+      <div class="timer__body-wrapper" data-anim="base wrapper">
+        <div class="timer__body-progress" data-anim="base left"></div>
+        <div class="timer__body-progress" data-anim="base right"></div>
+      </div>
+      <h3 class="timer__body-title">You Completed Task</h3>
     </section>
 </article>

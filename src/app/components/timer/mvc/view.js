@@ -17,12 +17,13 @@ export class View {
   timeLeft(title) {
     const minutes = Math.floor((this.totalTime) / 60),
           seconds = this.totalTime % 60;
+    const subString = this.currentState === 'break' ? 'break' : '';
 
     if(minutes === 0){
-      title.innerHTML = `<span class="timer__body-title-number">${seconds}</span> sec`
+      title.innerHTML = `${subString}<span class="timer__body-title-number">${seconds}</span> sec`
     }
     else{
-      title.innerHTML = `<span class="timer__body-title-number">${minutes}</span> min`
+      title.innerHTML = `${subString}<span class="timer__body-title-number">${minutes}</span> min`
     }
 
   }
@@ -44,16 +45,23 @@ export class View {
   animationEnd(status){
     clearInterval(this.timer);
 
-    this.controller.setEstimation({status: status});
-
     const timer = document.getElementById('timer');
     const data = this.controller.getData();
 
-    this.currentState = 'break';
+    this.controller.setEstimation({status: status});
 
-    timer.innerHTML = TimerBreak(data);
+    const isFinished = this.controller.checkPomodoro();
 
-    this.setAnimationProperties();
+    if(isFinished) {
+      timer.innerHTML = TimerCompleted(data);
+    }
+    else{
+      this.currentState = 'break';
+
+      timer.innerHTML = TimerBreak(data);
+
+      this.setAnimationProperties();
+    }
   }
 
   animationBreakEnd(){

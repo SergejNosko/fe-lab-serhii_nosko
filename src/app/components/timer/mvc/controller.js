@@ -5,6 +5,10 @@ export class Controller{
         this.model = new Model(data);
     }
 
+    checkPomodoro(){
+      return this.model.checkPomodoros();
+    }
+
     setEstimation(data){
       this.model.setEstimation(data);
     }
