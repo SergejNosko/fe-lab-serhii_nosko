@@ -17,6 +17,19 @@ export class Model{
         }
     }
 
+    fillRemainedPomodoros(){
+      for(let i = 0; i < this.data.pomodoros.length; i++){
+        if(this.data.pomodoros[i].status === 'none')
+          this.data.pomodoros[i].status = 'failed';
+      }
+
+      this.data.estimationUsed = this.data.estimationTotal;
+
+      Firebase.updateValue(this.data).catch((err) => {
+        Notification().showMessage('error', 'Oops! Error was occurred!');
+      });
+    }
+
     checkPomodoros(){
       return this.data.pomodoros.every((pomodoro) => {
         return pomodoro.status !== 'none'
@@ -36,7 +49,9 @@ export class Model{
       this.data.pomodoros[index].status = data.status;
       this.data.estimationUsed++;
 
-      Firebase.updateValue(this.data).catch((err) => {
+      Firebase.updateValue(this.data).then((data) => {
+        Notification().showMessage('success', 'You completed task!');
+      }).catch((err) => {
         Notification().showMessage('error', 'Oops! Error was occurred!');
       });
     }

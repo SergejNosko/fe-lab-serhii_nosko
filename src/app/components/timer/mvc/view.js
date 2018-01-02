@@ -120,6 +120,15 @@ export class View {
         this.animationEnd.call(this, 'failed');
         break;
       }
+      case 'timerFinish': {
+        const timer = document.getElementById('timer');
+        const data = this.controller.getData();
+
+        this.controller.fillRemained();
+
+        timer.innerHTML = TimerCompleted(data);
+      }
+
     }
   }
 
