@@ -169,6 +169,8 @@ export default function Controller (voters) {
             return item.value;
           });
 
+          settings.push(0); //current iteration
+
           Firebase.setValue(settings, 'settings');
 
           sessionStorage.setItem('isNewUser', false);

@@ -24,8 +24,11 @@ export class Model{
       }
 
       this.data.estimationUsed = this.data.estimationTotal;
+      this.data.isActive = false;
 
-      Firebase.updateValue(this.data).catch((err) => {
+      Firebase.updateValue(this.data).then((data) => {
+        Notification().showMessage('success', 'You completed task!');
+      }).catch((err) => {
         Notification().showMessage('error', 'Oops! Error was occurred!');
       });
     }
@@ -49,9 +52,7 @@ export class Model{
       this.data.pomodoros[index].status = data.status;
       this.data.estimationUsed++;
 
-      Firebase.updateValue(this.data).then((data) => {
-        Notification().showMessage('success', 'You completed task!');
-      }).catch((err) => {
+      Firebase.updateValue(this.data).catch((err) => {
         Notification().showMessage('error', 'Oops! Error was occurred!');
       });
     }

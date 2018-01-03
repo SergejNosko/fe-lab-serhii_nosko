@@ -33,8 +33,12 @@
 
             return table.set(value);
         },
-        updateValue: function (value) {
-            return database.ref('task/' + value.id).update(value);
+        updateValue: function (value, ref) {
+          let table = database.ref('task/' + value.id);
+
+          if(ref) table = database.ref(ref);
+
+          return table.update(value);
         },
         getData: function (ref) {
             return new Promise((resolve, reject) => {

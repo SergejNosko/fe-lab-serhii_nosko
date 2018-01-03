@@ -5,6 +5,7 @@ import TimerBreak from '../template/timer-break.hbs';
 import TimerProcess from '../template/timer-process.hbs';
 import {Controller} from './controller';
 import Firebase from '../../../services/firebase';
+import Notification from '../../../components/notifications/index';
 
 export class View {
   constructor(data) {
@@ -29,7 +30,9 @@ export class View {
   }
 
   animationStart(){
-    this.totalTime = this.currentState === 'process' ? this.settings[0] : this.settings[2];
+    this.totalTime = this.setIterationTime();
+
+    console.log(this.totalTime, this.settings[4]);
 
     const timerTitle = document.querySelector('[data-title=timer]');
 
@@ -54,6 +57,8 @@ export class View {
 
     if(isFinished) {
       timer.innerHTML = TimerCompleted(data);
+      this.viewController('visible');
+      this.controller.fillRemained();
     }
     else{
       this.currentState = 'break';
@@ -76,12 +81,35 @@ export class View {
     this.currentState = 'process';
   }
 
+  setCurrentIteration(){
+    if(this.settings[4] === this.settings[1]) {
+      this.settings[4] = 1;
+    }
+    else{
+      this.settings[4]++;
+    }
+
+    Firebase.updateValue(this.settings, 'settings');
+  }
+
+  setIterationTime(){
+    if(this.currentState === 'process'){
+      return this.settings[0];
+    }
+    else{
+      if(this.settings[4] === this.settings[1]) {
+        return this.settings[3];
+      }
+      return this.settings[2];
+    }
+  }
+
   setAnimationProperties(){
     const progress = document.querySelector('[data-anim~="left"]'),
       progressHalf = document.querySelector('[data-anim~="right"]'),
       wrapper = document.querySelector('[data-anim~="wrapper"]');
 
-    const time = this.currentState === 'process' ? this.settings[0] : this.settings[2];
+    const time = this.setIterationTime();
 
     progress.style.animationDuration = time + 's';
     progressHalf.style.animationDuration = time / 2 + 's';
@@ -97,6 +125,18 @@ export class View {
     }
   }
 
+  viewController(overflow){
+    const header = document.getElementById('main-header');
+    const timerButtons = document.getElementById('timer-buttons');
+
+    if(overflow === 'visible'){
+      timerButtons.innerHTML += `<a href="#report" class="main-content__back-button icon-arrow-right" title="Go to Global List"></a>`;
+    }
+
+    header.style.visibility = overflow;
+    timerButtons.style.visibility = overflow;
+  }
+
   handleStartTimer(e) {
     const target = e.target;
 
@@ -107,6 +147,10 @@ export class View {
 
     switch (target.dataset.query){
       case 'timerStart':{
+        this.viewController('hidden');
+        this.currentState = 'process';
+        this.setCurrentIteration();
+
         timer.innerHTML = TimerProcess(timerData);
 
         this.setAnimationProperties();
@@ -136,15 +180,15 @@ export class View {
     const timer = document.getElementById('timer');
     const data = this.controller.getData();
 
-    console.log(data);
-
-    /*if (data.pomodoros[0].status !== 'none')
-      timer.innerHTML = TimerProcess(data);
-    else*/
   Firebase.getData('settings').then((settings) => {
+    if(data.estimationTotal === data.estimationUsed){
+      timer.innerHTML = TimerCompleted(data);
+    }
+    else{
       this.settings = settings;
       timer.innerHTML = Template(data);
-    document.body.addEventListener('click', this.handleStartTimer.bind(this));
+      document.body.addEventListener('click', this.handleStartTimer.bind(this));
+    }
   });
   }
 }
