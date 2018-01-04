@@ -17,6 +17,24 @@ export class Model{
         }
     }
 
+    addPomodoro(){
+      if(this.data.pomodoros.length < 5 && this.data.estimationTotal < 5) {
+        this.data.pomodoros.push({status: 'none'});
+        this.data.estimationTotal++;
+
+        Firebase.updateValue(this.data).catch((err) => {
+          Notification().showMessage('error', 'Oops! Error was occurred!');
+        });
+
+        return true;
+      }
+      else{
+        Notification().showMessage('error', 'There can\'t be more than 5 estimations!');
+
+        return false;
+      }
+    }
+
     fillRemainedPomodoros(){
       for(let i = 0; i < this.data.pomodoros.length; i++){
         if(this.data.pomodoros[i].status === 'none')

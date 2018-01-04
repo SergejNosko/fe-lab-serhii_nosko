@@ -5,6 +5,10 @@ export class Controller{
         this.model = new Model(data);
     }
 
+    addPomodoro(){
+      return this.model.addPomodoro();
+    }
+
     fillRemained(){
       this.model.fillRemainedPomodoros();
     }

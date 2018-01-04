@@ -17,24 +17,27 @@ export class View {
 
   timeLeft(title) {
     const minutes = Math.floor((this.totalTime) / 60),
-          seconds = this.totalTime % 60;
+      seconds = this.totalTime % 60;
     const subString = this.currentState === 'break' ? 'break' : '';
 
-    if(minutes === 0){
+    if (minutes === 0) {
       title.innerHTML = `${subString}<span class="timer__body-title-number">${seconds}</span> sec`
     }
-    else{
+    else {
       title.innerHTML = `${subString}<span class="timer__body-title-number">${minutes}</span> min`
     }
 
   }
 
-  animationStart(){
+  animationStart() {
     this.totalTime = this.setIterationTime();
 
-    console.log(this.totalTime, this.settings[4]);
-
     const timerTitle = document.querySelector('[data-title=timer]');
+    const timerPomodoros = document.getElementById('timer-pomodoros');
+
+    timerPomodoros.innerHTML += `<li class="timer__pomodoros-item">
+        <div class="timer__pomodoros-button timer__pomodoros-button_process icon-add" data-query="addPomodoro"></div>
+      </li>`;
 
     this.timeLeft(timerTitle);
     this.totalTime--;
@@ -45,7 +48,7 @@ export class View {
     }, 1000);
   }
 
-  animationEnd(status){
+  animationEnd(status) {
     clearInterval(this.timer);
 
     const timer = document.getElementById('timer');
@@ -55,12 +58,12 @@ export class View {
 
     const isFinished = this.controller.checkPomodoro();
 
-    if(isFinished) {
+    if (isFinished) {
       timer.innerHTML = TimerCompleted(data);
       this.viewController('visible');
       this.controller.fillRemained();
     }
-    else{
+    else {
       this.currentState = 'break';
 
       timer.innerHTML = TimerBreak(data);
@@ -69,7 +72,7 @@ export class View {
     }
   }
 
-  animationBreakEnd(){
+  animationBreakEnd() {
     clearInterval(this.timer);
 
     const buttonsContainer = document.querySelector('[data-buttons="timer-break"]');
@@ -81,30 +84,30 @@ export class View {
     this.currentState = 'process';
   }
 
-  setCurrentIteration(){
-    if(this.settings[4] === this.settings[1]) {
+  setCurrentIteration() {
+    if (this.settings[4] === this.settings[1]) {
       this.settings[4] = 1;
     }
-    else{
+    else {
       this.settings[4]++;
     }
 
     Firebase.updateValue(this.settings, 'settings');
   }
 
-  setIterationTime(){
-    if(this.currentState === 'process'){
+  setIterationTime() {
+    if (this.currentState === 'process') {
       return this.settings[0];
     }
-    else{
-      if(this.settings[4] === this.settings[1]) {
+    else {
+      if (this.settings[4] === this.settings[1]) {
         return this.settings[3];
       }
       return this.settings[2];
     }
   }
 
-  setAnimationProperties(){
+  setAnimationProperties() {
     const progress = document.querySelector('[data-anim~="left"]'),
       progressHalf = document.querySelector('[data-anim~="right"]'),
       wrapper = document.querySelector('[data-anim~="wrapper"]');
@@ -117,19 +120,19 @@ export class View {
 
     progress.addEventListener('animationstart', this.animationStart.bind(this));
 
-    if(this.currentState === 'process'){
+    if (this.currentState === 'process') {
       progress.addEventListener('animationend', this.animationEnd.bind(this, 'finished'));
     }
-    else{
+    else {
       progress.addEventListener('animationend', this.animationBreakEnd.bind(this, 'finished'));
     }
   }
 
-  viewController(overflow){
+  viewController(overflow) {
     const header = document.getElementById('main-header');
     const timerButtons = document.getElementById('timer-buttons');
 
-    if(overflow === 'visible'){
+    if (overflow === 'visible') {
       timerButtons.innerHTML += `<a href="#report" class="main-content__back-button icon-arrow-right" title="Go to Global List"></a>`;
     }
 
@@ -140,13 +143,13 @@ export class View {
   handleStartTimer(e) {
     const target = e.target;
 
-    if(!target.dataset.query) return;
+    if (!target.dataset.query) return;
 
     const timerData = this.controller.getData();
     const timer = document.getElementById('timer');
 
-    switch (target.dataset.query){
-      case 'timerStart':{
+    switch (target.dataset.query) {
+      case 'timerStart': {
         this.viewController('hidden');
         this.currentState = 'process';
         this.setCurrentIteration();
@@ -171,6 +174,21 @@ export class View {
         this.controller.fillRemained();
 
         timer.innerHTML = TimerCompleted(data);
+        break;
+      }
+      case 'addPomodoro': {
+        const isAdded = this.controller.addPomodoro();
+
+        if (isAdded) {
+          const timerPomodoros = document.getElementById('timer-pomodoros');
+          const li = document.createElement('li');
+
+          li.innerHTML += `<li class="timer__pomodoros-item">
+               <div class="timer__pomodoros-item_button timer__pomodoros-item_none"></div>
+             </li>`;
+
+          timerPomodoros.insertBefore(li, timerPomodoros.lastChild);
+        }
       }
 
     }
@@ -180,15 +198,15 @@ export class View {
     const timer = document.getElementById('timer');
     const data = this.controller.getData();
 
-  Firebase.getData('settings').then((settings) => {
-    if(data.estimationTotal === data.estimationUsed){
-      timer.innerHTML = TimerCompleted(data);
-    }
-    else{
-      this.settings = settings;
-      timer.innerHTML = Template(data);
-      document.body.addEventListener('click', this.handleStartTimer.bind(this));
-    }
-  });
+    Firebase.getData('settings').then((settings) => {
+      if (data.estimationTotal === data.estimationUsed) {
+        timer.innerHTML = TimerCompleted(data);
+      }
+      else {
+        this.settings = settings;
+        timer.innerHTML = Template(data);
+        document.body.addEventListener('click', this.handleStartTimer.bind(this));
+      }
+    });
   }
 }
