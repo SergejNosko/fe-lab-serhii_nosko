@@ -1,3 +1,10 @@
-import {Report} from './report';
+import {View} from './mvc/view';
+import Firebase from '../../services/firebase';
 
-export default Report;
+export default function Report() {
+  Firebase.getData().then((data) => {
+    const view = new View(data);
+
+    view.render();
+  });
+};
