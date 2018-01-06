@@ -38,6 +38,44 @@ export class Model{
     return data;
   }
 
+  getDaysInMonth(month, year){
+    const date = new Date();
+
+    return 32 - new Date(year, month, 32).getDate();
+  }
+
+  getMonthData(){
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getMonth();
+
+    const daysInMonth = this.getDaysInMonth(currentMonth, currentYear);
+
+    let sortArr = [[], [], [], [], []];
+
+    for(let i = 0; i < sortArr.length; i++){
+      for(let j = 0; j < daysInMonth; j++){
+        sortArr[i][j] = 0;
+      }
+    }
+
+    let data = this.data
+      .filter((item) => {
+        const itemMonth = new Date(item.startDate).getMonth();
+
+        return itemMonth === currentMonth;
+      })
+      .reduce((prev, item) => {
+        const itemDate = new Date(item.startDate).getDate();
+
+        sortArr[item.priority - 1][itemDate - 1]++;
+
+        return prev;
+      }, sortArr);
+
+    return data;
+  }
+
   getTodayData(){
     const todayDate = new Date().getDate();
     const currentMonth = new Date().getMonth();
@@ -65,7 +103,7 @@ export class Model{
   }
 
   sendData(){
-    const data = this.getWeekData();
+    const data = this.getMonthData();
 
     return data;
   }

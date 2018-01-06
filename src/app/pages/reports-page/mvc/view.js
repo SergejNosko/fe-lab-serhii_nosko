@@ -5,119 +5,8 @@ import Highcharts from 'highcharts';
 export class View {
   constructor(data) {
     this.controller = new Controller(data);
-  }
 
-  drawWeeklyChart(data) {
-    Highcharts.chart('report', {
-      title: '',
-      chart: {
-        type: 'column',
-        backgroundColor: '#2A3F50',
-        width: 570,
-        height: 350
-      },
-      xAxis: {
-        type: 'category',
-        categories: [ 'SUN', 'MON', 'THU', 'WED', 'THR', 'FRI', 'SUT',],
-        lineColor: '#fff',
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: '#fff',
-            fontFamily: 'PT Sans, sans-serif',
-            fontSize: '13px'
-          }
-        },
-      },
-      yAxis: {
-        title: '',
-        gridLineColor: '#345168',
-        lineColor: '#fff',
-        lineWidth: 1,
-        labels: {
-          style: {
-            color: '#fff',
-            fontFamily: 'PT Sans, sans-serif',
-            fontSize: '13px'
-          }
-        }
-      },
-      legend: {
-        symbolRadius: 0,
-        symbolHeight: 8,
-        symbolWidth: 8,
-        margin: 50,
-        itemStyle: {
-          color: '#8da5b8',
-          fontWeight: 'normal',
-          fontSize: 12
-        },
-        itemHoverStyle: {
-          color: '#82c7e0'
-        }
-      },
-      plotOptions: {
-        series: {
-          borderWidth: 0,
-          pointWidth: 30,
-          groupPadding: 0,
-          dataLabels: {
-            enabled: false,
-            format: '{point.y}'
-          }
-        },
-        column: {
-          stacking: 'normal'
-        }
-      },
-
-      tooltip: {
-        backgroundColor: '#dbeaf5',
-        borderColor: '#dbeaf5',
-        formatter: function () {
-          return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
-        }
-      },
-
-      series: [
-        {
-          name: 'URGENT',
-          data: data[0],
-          stack: 0,
-          color: '#F75C4C'
-        },
-        {
-          name: 'HIGH',
-          data: data[1],
-          stack: 0,
-          color: '#FFA841'
-        },
-        {
-          name: 'MIDDLE',
-          data: data[2],
-          stack: 0,
-          color: '#FDDC43'
-        },
-        {
-          name: 'LOW',
-          data: data[3],
-          stack: 0,
-          color: '#1ABC9C'
-        },
-        {
-          name: 'FAILED',
-          data: data[4],
-          stack: 1,
-          color: '#8da5b8'
-        }
-      ]
-    });
-  }
-
-
-
-  drawDailyChart(data) {
-    Highcharts.chart('report', {
+    this.chart = {
       title: '',
       chart: {
         type: 'column',
@@ -156,10 +45,6 @@ export class View {
         symbolHeight: 8,
         symbolWidth: 8,
         margin: 50,
-        style: {
-          display: 'flex',
-          alignItems: 'center'
-        },
         itemStyle: {
           color: '#8da5b8',
           fontWeight: 'normal',
@@ -187,9 +72,117 @@ export class View {
         formatter: function () {
           return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.series.data[0].y}<br/>`
         }
-      },
+      }
+    }
+  }
 
-      series: [{
+  drawWeeklyChart(data) {
+    const chart = this.chart;
+
+    chart.series = [
+      {
+        name: 'URGENT',
+        data: data[0],
+        stack: 0,
+        color: '#F75C4C'
+      },
+      {
+        name: 'HIGH',
+        data: data[1],
+        stack: 0,
+        color: '#FFA841'
+      },
+      {
+        name: 'MIDDLE',
+        data: data[2],
+        stack: 0,
+        color: '#FDDC43'
+      },
+      {
+        name: 'LOW',
+        data: data[3],
+        stack: 0,
+        color: '#1ABC9C'
+      },
+      {
+        name: 'FAILED',
+        data: data[4],
+        stack: 1,
+        color: '#8da5b8'
+      }
+    ];
+
+    chart.xAxis.categories = ['SUN', 'MON', 'THU', 'WED', 'THR', 'FRI', 'SUT'];
+    chart.plotOptions.series.groupPadding = 0;
+    chart.plotOptions.column = {
+      stacking: 'normal'
+    };
+    chart.plotOptions.series.pointWidth = 30;
+    chart.tooltip.formatter = function () {
+      return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
+    };
+
+    return chart;
+  }
+
+  drawMonthlyChart(data){
+    const chart = this.chart;
+
+    chart.xAxis.categories = [];
+    for(let i = 0; i < data[0].length; i++){
+      chart.xAxis.categories[i] = i + 1;
+    }
+
+    chart.chart.width = 730;
+    chart.plotOptions.series.groupPadding = 0;
+    chart.plotOptions.column = {
+      stacking: 'normal'
+    };
+    chart.plotOptions.series.pointWidth = 5;
+    chart.tooltip.formatter = function () {
+      return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
+    };
+
+    chart.series = [
+      {
+        name: 'URGENT',
+        data: data[0],
+        stack: 0,
+        color: '#F75C4C'
+      },
+      {
+        name: 'HIGH',
+        data: data[1],
+        stack: 0,
+        color: '#FFA841'
+      },
+      {
+        name: 'MIDDLE',
+        data: data[2],
+        stack: 0,
+        color: '#FDDC43'
+      },
+      {
+        name: 'LOW',
+        data: data[3],
+        stack: 0,
+        color: '#1ABC9C'
+      },
+      {
+        name: 'FAILED',
+        data: data[4],
+        stack: 0,
+        color: '#8da5b8'
+      }
+    ];
+
+    return chart;
+  }
+
+  drawDailyChart(data) {
+    const chart = this.chart;
+
+      chart.series = [{
         name: 'URGENT',
         data: [{
           name: 'URGENT',
@@ -224,8 +217,9 @@ export class View {
           y: data[4]
         }],
         color: '#8da5b8'
-      }]
-    });
+      }];
+
+      return chart;
   }
 
   render() {
@@ -235,8 +229,8 @@ export class View {
 
     const data = this.controller.receiveData();
 
-    console.log(data);
+    const chart = this.drawMonthlyChart(data);
 
-    this.drawWeeklyChart(data);
+    Highcharts.chart('report', chart);
   }
 }
