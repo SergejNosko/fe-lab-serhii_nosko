@@ -47,10 +47,6 @@ export class View {
         symbolHeight: 8,
         symbolWidth: 8,
         margin: 50,
-        style: {
-          display: 'flex',
-          alignItems: 'center'
-        },
         itemStyle: {
           color: '#8da5b8',
           fontWeight: 'normal',
@@ -64,7 +60,7 @@ export class View {
         series: {
           borderWidth: 0,
           pointWidth: 30,
-          groupPadding: 0.5,
+          groupPadding: 0,
           dataLabels: {
             enabled: false,
             format: '{point.y}'
@@ -79,7 +75,7 @@ export class View {
         backgroundColor: '#dbeaf5',
         borderColor: '#dbeaf5',
         formatter: function () {
-          return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.series.data[0].y}<br/>`
+          return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
         }
       },
 
@@ -111,7 +107,7 @@ export class View {
         {
           name: 'FAILED',
           data: data[4],
-          stack: 0,
+          stack: 1,
           color: '#8da5b8'
         }
       ]
