@@ -1,6 +1,7 @@
 import Template from './template/template.hbs';
 import Controller from './controller';
 import Firebase from '../../services/firebase';
+//import TabPlugin from '../../services/tabPlugin';
 
 export function View() {
     const root = document.getElementById('root');
@@ -12,6 +13,8 @@ export function View() {
     else{
         Firebase.getData('settings').then((data) => {
            Controller(data);
+
+           $('a').tooltip();
         });
     }
 }

@@ -152,9 +152,36 @@ export default function Controller (voters) {
       renderLoop(duration);
       renderDurationList(duration);
       renderCycleList(duration);
+
+      $('[data-query]').customTab({self: this, params: [], callback: renderRequiredPage});
     };
   };
   let list;
+
+  function renderRequiredPage(query) {
+    const root = document.getElementById('root');
+
+    switch (query) {
+      case 'categories': {
+        root.innerHTML = Categories();
+
+        $('[data-query]').customTab({self: this, params: [], callback: renderRequiredPage});
+        break;
+      }
+      case 'settings': {
+        let isNewUser = sessionStorage.getItem('isNewUser');
+
+        root.innerHTML = Template();
+
+        if (!isNewUser) Controller();
+        else {
+          Firebase.getData('settings').then((data) => {
+            Controller(data);
+          });
+        }
+      }
+    }
+  }
 
   function handleSave(e) {
     let target = e.target,
@@ -176,7 +203,7 @@ export default function Controller (voters) {
           sessionStorage.setItem('isNewUser', false);
           break;
         }
-        case 'categories': {
+        /*case 'categories': {
           root.innerHTML = Categories();
           break;
         }
@@ -191,7 +218,7 @@ export default function Controller (voters) {
               Controller(data);
             });
           }
-        }
+        }*/
       }
     }
   }

@@ -24,12 +24,12 @@ Handlebars.registerHelper('$classHelper', (priority, category, type, isActive) =
 
 Handlebars.registerHelper('$buttonsHelper', (type) => {
     if(type === 'global')
-        return `<a href="#" class="single-task__edit-link icon-arrows-up" title="Push taks up" data-query="push"></a>`;
+        return `<a href="#" class="single-task__edit-link icon-arrows-up" data-title="Push taks up" data-query="push"></a>`;
 });
 
 Handlebars.registerHelper('$estimationHelper', (total, used, type) => {
     let currentClass = type === 'global' ? total : used;
-    return `<a href="#" class="single-task__status single-task__status_${currentClass} icon-tomato" data-query="timer" title="Go to Timer"></a>`
+    return `<a href="#" class="single-task__status single-task__status_${currentClass} icon-tomato" data-query="timer" data-title="Go to Timer"></a>`
 });
 
 Handlebars.registerHelper('$dateHelper', (date, type) => {

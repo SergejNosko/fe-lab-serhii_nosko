@@ -7,6 +7,8 @@ import PushFirstTask from '../template/push-first-task.hbs';
 import '../template/helpers';
 import SingleTask from '../../../components/single-task/index';
 import {EventBus} from "../../../services/eventBus";
+import Tooltip from "../../../services/tooltipPlugin";
+import CustomTab from "../../../services/tabPlugin";
 import uuid from 'uuid/v1';
 import Notification from '../../../components/notifications/index';
 
@@ -216,18 +218,6 @@ export class View {
                 }
             }
         }
-
-        if (sortPriority) {
-            e.preventDefault();
-            this.render(null, sortPriority);
-        }
-
-        if (sortIsActive) {
-            e.preventDefault();
-            sortIsActive = sortIsActive == 'false' ? false : null;
-
-            this.render(null, 0, sortIsActive);
-        }
     }
 
     renderGlobalList(sortedData, activeLinkNumber) {
@@ -262,6 +252,7 @@ export class View {
     }
 
     renderTaskList(root, data, isFilter, page){
+
         let currentData = data || this.controller.receiveData({isActive: null}),
             activeFilter = isFilter || 0,
             activePage = page === false ? false : null;
@@ -310,6 +301,7 @@ export class View {
     }
 
     render(data, isFilter, page) {
+
         const root = document.getElementById('root');
         let isNewUser = sessionStorage.getItem('isNewUser');
         if(!isNewUser){
@@ -318,5 +310,9 @@ export class View {
         else {
             this.renderTaskList(root, data, isFilter, page);
         }
+
+      $('a').tooltip();
+      $('[data-priority]').customTab({self: this, params: [null], callback: this.render});
+      $('[data-is-active]').customTab({self: this, params: [null, 0], callback: this.render});
     }
 }

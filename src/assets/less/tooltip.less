@@ -1,0 +1,32 @@
+.tooltip{
+  background: #dbeaf5;
+  padding: 10px;
+  position: absolute;
+  border-radius: 3px;
+  .font(500, 12px, Roboto);
+
+  &:after{
+    content: '';
+    width: 6px;
+    height: 5px;
+    background: #dbeaf5;
+    position: absolute;
+    left: 15px;
+    top: -3px;
+    transform: rotate(45deg);
+  }
+
+  &_big{
+
+    &:after{
+      content: '';
+      width: 6px;
+      height: 5px;
+      background: #dbeaf5;
+      position: absolute;
+      left: ~"calc(100% - 20px)";
+      top: -3px;
+      transform: rotate(45deg);
+    }
+  }
+}

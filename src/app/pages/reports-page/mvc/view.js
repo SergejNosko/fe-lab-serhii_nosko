@@ -16,7 +16,6 @@ export class View {
       },
       xAxis: {
         type: 'category',
-        categories: ['URGENT', 'HIGH', 'MIDDLE', 'LOW', 'FAILED'],
         lineColor: '#fff',
         tickWidth: 0,
         labels: {
@@ -79,6 +78,8 @@ export class View {
   drawWeeklyChart(data) {
     const chart = this.chart;
 
+    chart.chart.width = 570;
+
     chart.series = [
       {
         name: 'URGENT',
@@ -117,6 +118,7 @@ export class View {
     chart.plotOptions.column = {
       stacking: 'normal'
     };
+    chart.xAxis.labels.style.fontSize = 13;
     chart.plotOptions.series.pointWidth = 30;
     chart.tooltip.formatter = function () {
       return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
@@ -133,7 +135,8 @@ export class View {
       chart.xAxis.categories[i] = i + 1;
     }
 
-    chart.chart.width = 730;
+    chart.xAxis.labels.style.fontSize = 11;
+    chart.chart.width = 700;
     chart.plotOptions.series.groupPadding = 0;
     chart.plotOptions.column = {
       stacking: 'normal'
@@ -182,6 +185,10 @@ export class View {
   drawDailyChart(data) {
     const chart = this.chart;
 
+    chart.xAxis.categories = ['URGENT', 'HIGH', 'MIDDLE', 'LOW', 'FAILED'];
+    chart.chart.width = 570;
+    chart.xAxis.labels.style.fontSize = 13;
+
       chart.series = [{
         name: 'URGENT',
         data: [{
@@ -222,15 +229,33 @@ export class View {
       return chart;
   }
 
-  render() {
+  renderRequiredChart(type){
+    const data = this.controller.receiveData(type);
+
+    switch (type){
+      case 'day': {
+        return this.drawDailyChart(data);
+      }
+      case 'week': {
+        return this.drawWeeklyChart(data);
+      }
+      case 'month': {
+        return this.drawMonthlyChart(data);
+      }
+    }
+  }
+
+  render(type) {
     const root = document.getElementById('root');
+    const chartType = type || 'day';
 
     root.innerHTML = Template();
 
-    const data = this.controller.receiveData();
-
-    const chart = this.drawMonthlyChart(data);
+    const chart = this.renderRequiredChart(chartType);
 
     Highcharts.chart('report', chart);
+
+    $('a').tooltip();
+    $('[data-type]').customTab({self: this, params: [], callback: this.render});
   }
 }

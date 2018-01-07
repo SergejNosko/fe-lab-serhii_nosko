@@ -133,7 +133,7 @@ export class View {
     const timerButtons = document.getElementById('timer-buttons');
 
     if (overflow === 'visible') {
-      timerButtons.innerHTML += `<a href="#report" class="main-content__back-button icon-arrow-right" title="Go to Global List"></a>`;
+      timerButtons.innerHTML += `<a href="#report" class="main-content__back-button icon-arrow-right" data-title="Go to Global List"></a>`;
     }
 
     header.style.visibility = overflow;
@@ -207,6 +207,8 @@ export class View {
         timer.innerHTML = Template(data);
         document.body.addEventListener('click', this.handleStartTimer.bind(this));
       }
+
+      $('a').tooltip();
     });
   }
 }

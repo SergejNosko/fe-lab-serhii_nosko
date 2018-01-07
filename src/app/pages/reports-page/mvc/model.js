@@ -101,10 +101,4 @@ export class Model{
 
     return data;
   }
-
-  sendData(){
-    const data = this.getMonthData();
-
-    return data;
-  }
 }
