@@ -3,10 +3,10 @@ export const EventBus = {
 
     add: function(type, callback, scope){
         if(typeof this.listeners[type] !== 'undefined'){
-            this.listeners[type].push({scope, callback});
+            this.listeners[type].push({scope: scope, callback: callback});
         }
         else{
-            this.listeners[type] = [{scope, callback}];
+            this.listeners[type] = [{scope: scope, callback: callback}];
         }
     },
 

@@ -5,6 +5,8 @@ import Highcharts from 'highcharts';
 export class View {
   constructor(data) {
     this.controller = new Controller(data);
+    this.tooltipType = 'task';
+    this.chartType = 'day';
 
     this.chart = {
       title: '',
@@ -68,9 +70,6 @@ export class View {
       tooltip: {
         backgroundColor: '#dbeaf5',
         borderColor: '#dbeaf5',
-        formatter: function () {
-          return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.series.data[0].y}<br/>`
-        }
       }
     }
   }
@@ -120,9 +119,6 @@ export class View {
     };
     chart.xAxis.labels.style.fontSize = 13;
     chart.plotOptions.series.pointWidth = 30;
-    chart.tooltip.formatter = function () {
-      return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
-    };
 
     return chart;
   }
@@ -142,9 +138,6 @@ export class View {
       stacking: 'normal'
     };
     chart.plotOptions.series.pointWidth = 5;
-    chart.tooltip.formatter = function () {
-      return `<span class="report__tooltip-title">${this.series.name}</span><br><span class="report__tooltip-span">Tasks</span>: ${this.y}<br/>`
-    };
 
     chart.series = [
       {
@@ -229,33 +222,59 @@ export class View {
       return chart;
   }
 
-  renderRequiredChart(type){
-    const data = this.controller.receiveData(type);
-
+  renderRequiredChart(type, tooltip){
+    const data = this.controller.receiveData(type, tooltip);
+    let chart;
     switch (type){
       case 'day': {
+        chart = this.drawDailyChart(data);
+
+        chart.tooltip.formatter = function () {
+          return `<span class="report__tooltip-title">${this.series.name}</span><br>
+                  <span class="report__tooltip-span">${tooltip === 'pomodoro' ? 'Pomodoros' : 'Tasks'}</span>: ${this.series.data[0].y}<br/>`
+        };
+
         return this.drawDailyChart(data);
       }
       case 'week': {
+        chart = this.drawDailyChart(data);
+
+        chart.tooltip.formatter = function () {
+          return `<span class="report__tooltip-title">${this.series.name}</span><br>
+                  <span class="report__tooltip-span">${tooltip === 'pomodoro' ? 'Pomodoros' : 'Tasks'}</span>: ${this.series.data[0].y}<br/>`
+        };
+
         return this.drawWeeklyChart(data);
       }
       case 'month': {
+        chart = this.drawDailyChart(data);
+
+        chart.tooltip.formatter = function () {
+          return `<span class="report__tooltip-title">${this.series.name}</span><br>
+                  <span class="report__tooltip-span">${tooltip === 'pomodoro' ? 'Pomodoros' : 'Tasks'}</span>: ${this.y}<br/>`
+        };
+
         return this.drawMonthlyChart(data);
       }
     }
   }
 
-  render(type) {
+  render(type, tooltip) {
     const root = document.getElementById('root');
-    const chartType = type || 'day';
+    const chartType = type || this.chartType;
+    const tooltipType = tooltip || this.tooltipType;
+
+    if(type) this.chartType = type;
+    if(tooltip) this.tooltipType = tooltip;
 
     root.innerHTML = Template();
 
-    const chart = this.renderRequiredChart(chartType);
+    const chart = this.renderRequiredChart(chartType, tooltipType);
 
     Highcharts.chart('report', chart);
 
     $('a').tooltip();
     $('[data-type]').customTab({self: this, params: [], callback: this.render});
+    $('[data-tooltip]').customTab({self: this, params: [chartType], callback: this.render});
   }
 }

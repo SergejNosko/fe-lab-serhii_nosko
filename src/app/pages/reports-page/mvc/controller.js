@@ -5,16 +5,16 @@ export class Controller{
     this.model = new Model(data);
   }
 
-  receiveData(type){
+  receiveData(type, tooltip){
     switch (type){
       case 'day': {
-        return this.model.getTodayData();
+        return this.model.getTodayData(tooltip);
       }
       case 'week': {
-        return this.model.getWeekData();
+        return this.model.getWeekData(tooltip);
       }
       case 'month': {
-        return this.model.getMonthData();
+        return this.model.getMonthData(tooltip);
       }
     }
   }

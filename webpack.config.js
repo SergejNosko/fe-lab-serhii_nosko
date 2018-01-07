@@ -54,7 +54,6 @@ module.exports = {
     new ExtractTextPlugin('styles.css'),
     new CopyWebpackPlugin([
       'src/index.html',
-      { from: 'src/static/', to: 'static/' },
       'src/assets/images'
     ])
   ],

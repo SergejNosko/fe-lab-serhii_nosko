@@ -14,7 +14,7 @@ export class Model{
     return todayDate;
   }
 
-  getWeekData(){
+  getWeekData(tooltip){
     const currentWeekStart = this.getCurrentWeek();
     const currentWeekEnd = this.getCurrentWeek();
     currentWeekEnd.setDate(currentWeekStart.getDate() + 7);
@@ -24,13 +24,21 @@ export class Model{
     let data = this.data
       .filter((item) => {
         const taskDate = new Date(item.startDate);
+        const currentDate = taskDate.getDate();
 
-        return taskDate >= currentWeekStart && taskDate <= currentWeekEnd;
+        return currentDate >= currentWeekStart.getDate() && currentDate <= currentWeekEnd.getDate();
       })
       .reduce((prev, item) => {
-        const taskDay = new Date(item.startDate).getDate();
+        const taskDay = new Date(item.startDate).getDay();
 
-        prev[item.priority - 1][taskDay]++;
+        if(tooltip === 'pomodoro'){
+          prev[item.priority - 1][taskDay] += item.estimationTotal;
+        }
+        else {
+          prev[item.priority - 1][taskDay]++;
+        }
+
+        //prev[item.priority - 1][taskDay]++;
 
         return prev;
       }, numberOfTasks);
@@ -44,7 +52,7 @@ export class Model{
     return 32 - new Date(year, month, 32).getDate();
   }
 
-  getMonthData(){
+  getMonthData(tooltip){
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getMonth();
@@ -68,7 +76,12 @@ export class Model{
       .reduce((prev, item) => {
         const itemDate = new Date(item.startDate).getDate();
 
-        sortArr[item.priority - 1][itemDate - 1]++;
+        if(tooltip === 'pomodoro'){
+          sortArr[item.priority - 1][itemDate - 1] += item.estimationTotal;
+        }
+        else {
+          sortArr[item.priority - 1][itemDate - 1]++;
+        }
 
         return prev;
       }, sortArr);
@@ -76,7 +89,7 @@ export class Model{
     return data;
   }
 
-  getTodayData(){
+  getTodayData(tooltip){
     const todayDate = new Date().getDate();
     const currentMonth = new Date().getMonth();
 
@@ -89,13 +102,21 @@ export class Model{
       })
 
       .map((item) => {
-        return +item.priority
+        return {
+          priority: +item.priority,
+          estimation: +item.estimationTotal
+        }
       })
 
       .sort()
 
       .reduce((prev, current) => {
-        prev[current - 1]++;
+        if(tooltip === 'pomodoro'){
+          prev[current.priority - 1] += current.estimation;
+        }
+        else {
+          prev[current.priority - 1]++;
+        }
         return prev;
       }, [0, 0, 0, 0, 0]);
 
