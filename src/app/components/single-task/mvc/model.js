@@ -1,4 +1,4 @@
-import {EventBus} from '../../../services/eventBus';
+import {EventBus} from "../../../services/eventBus";
 
 export class Model{
     constructor(data){
@@ -7,16 +7,16 @@ export class Model{
 
     setData(data){
         this.data = {...this.data, ...data};
-        EventBus.dispatch('setData', this.data);
+        EventBus.dispatch("setData", this.data);
     }
 
     sendTaskToRemove(){
-        EventBus.dispatch('setTasksToRemove', this.data.id);
+        EventBus.dispatch("setTasksToRemove", this.data.id);
     }
 
     removeTask(){
-        EventBus.dispatch('removeImmediate');
-        EventBus.dispatch('stateChange');
+        EventBus.dispatch("removeImmediate");
+        EventBus.dispatch("stateChange");
     }
 
     getData(){

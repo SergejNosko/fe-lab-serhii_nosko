@@ -1,3 +1,3 @@
-import {Timer} from './timer'
+import {Timer} from "./timer";
 
 export default Timer;

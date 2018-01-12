@@ -2,7 +2,7 @@ export const EventBus = {
     listeners: {},
 
     add: function(type, callback, scope){
-        if(typeof this.listeners[type] !== 'undefined'){
+        if(typeof this.listeners[type] !== "undefined"){
             this.listeners[type].push({scope: scope, callback: callback});
         }
         else{
@@ -16,9 +16,7 @@ export const EventBus = {
             let newArray = [];
             for(let i = 0; i < numOfCallbacks; i++) {
                 let listener = this.listeners[type][i];
-                if(listener.scope === scope && listener.callback === callback) {
-
-                } else {
+                if(listener.scope !== scope && listener.callback !== callback) {
                     newArray.push(listener);
                 }
             }

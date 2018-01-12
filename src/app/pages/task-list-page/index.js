@@ -1,5 +1,5 @@
-import {View} from './mvc/view';
-import Firebase from '../../services/firebase';
+import {View} from "./mvc/view";
+import Firebase from "../../services/firebase";
 
 export default function TaskList() {
     Firebase.getData().then((data) => {
@@ -7,4 +7,4 @@ export default function TaskList() {
 
         view.render();
     });
-};
+}

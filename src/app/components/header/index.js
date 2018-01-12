@@ -1,3 +1,3 @@
-import {MainHeader} from './view';
+import {MainHeader} from "./view";
 
 export default MainHeader;

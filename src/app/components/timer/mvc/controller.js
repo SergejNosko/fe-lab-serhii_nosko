@@ -1,4 +1,4 @@
-import {Model} from './model';
+import {Model} from "./model";
 
 export class Controller{
     constructor(data){
@@ -6,19 +6,19 @@ export class Controller{
     }
 
     addPomodoro(){
-      return this.model.addPomodoro();
+        return this.model.addPomodoro();
     }
 
     fillRemained(){
-      this.model.fillRemainedPomodoros();
+        this.model.fillRemainedPomodoros();
     }
 
     checkPomodoro(){
-      return this.model.checkPomodoros();
+        return this.model.checkPomodoros();
     }
 
     setEstimation(data){
-      this.model.setEstimation(data);
+        this.model.setEstimation(data);
     }
 
     getData(){

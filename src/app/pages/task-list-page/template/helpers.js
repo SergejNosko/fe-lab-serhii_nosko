@@ -1,5 +1,5 @@
-import Handlebars from 'handlebars/runtime';
+import Handlebars from "handlebars/runtime";
 
-Handlebars.registerHelper('$additionMenu', () => {
+Handlebars.registerHelper("$additionMenu", () => {
 
 });

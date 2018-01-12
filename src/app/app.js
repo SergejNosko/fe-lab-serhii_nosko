@@ -1,5 +1,9 @@
-require('./router');
+/*import $ from "jquery";
 
-require('../assets/less/main.less');
+window.$ = $;*/
+
+require("./router");
+
+require("../assets/less/main.less");
 
 
