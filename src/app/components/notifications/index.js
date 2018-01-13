@@ -5,7 +5,7 @@ export default function () {
         showMessage: function (type, message) {
             const root = document.getElementById("root");
 
-            root.innerHTML += Template({type: type, message: message});
+            //root.innerHTML += Template({type: type, message: message});
         }
     };
 }
