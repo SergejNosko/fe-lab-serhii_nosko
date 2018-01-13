@@ -4,7 +4,7 @@ import "./template/helpers";
 export function MainHeader(data) {
     const mainHeader = document.getElementById("main-header");
 
-    mainHeader.innerHTML = Template(data);
+    //mainHeader.innerHTML = Template(data);
 }
 
 const throttle = function(func, limit) {
