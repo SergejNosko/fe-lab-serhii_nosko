@@ -20,7 +20,7 @@ module.exports = function (config) {
           // skip assest
           { test: /\.less$/, loader: 'ignore-loader'},
           { test: /\.css$/, loader: 'ignore-loader' },
-          { test: /\.hbs$/, loader: 'ignore-loader' },
+          { test: /\.hbs$/, loader: 'handlebars-loader' },
           // instrument only testing sources with Istanbul
           {
             test: /\.js$/,

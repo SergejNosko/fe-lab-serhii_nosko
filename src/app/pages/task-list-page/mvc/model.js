@@ -46,7 +46,7 @@ export class Model{
                 this.data.filter((task) => {
                     return task.startDate && task.isActive !== false;
                 }
-                ).length > 5){
+                ).length >= 5){
                 Notification().showMessage("note", "Max number of tasks for today!");
                 return;
             }

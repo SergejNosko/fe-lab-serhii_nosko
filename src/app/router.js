@@ -7,7 +7,7 @@ import Timer from "./pages/timer-page/index";
 import Settings from "./pages/settings-page/index";
 import TaskList from "./pages/task-list-page/index";
 
-class Router {
+export class Router {
     constructor() {
         if (Router.instance) {
             return Router.instance;
@@ -59,6 +59,6 @@ class Router {
     }
 }
 
-let router = new Router();
+/*let router = new Router();
 
-router.init();
+router.init();*/
