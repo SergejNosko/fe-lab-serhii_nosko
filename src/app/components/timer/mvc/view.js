@@ -7,7 +7,13 @@ import {Controller} from "./controller";
 import Firebase from "../../../services/firebase";
 import $ from "jquery";
 
+/**
+ * @module TimerComponent View
+ */
 export class View {
+  /**
+   * Initialize controller, timer, totalTime and currentState fields
+   */
     constructor(data) {
         this.controller = new Controller(data);
         this.timer = null;
@@ -15,6 +21,9 @@ export class View {
         this.currentState = "process";
     }
 
+    /**
+     * Calculate how much time is left to finish the stage
+     */
     timeLeft(title) {
         const minutes = Math.floor((this.totalTime) / 60),
             seconds = this.totalTime % 60;
@@ -29,6 +38,9 @@ export class View {
 
     }
 
+    /**
+     * Starts the timer animation and change the timer state
+     */
     animationStart() {
         this.totalTime = this.setIterationTime();
 
@@ -48,6 +60,9 @@ export class View {
         }, 1000);
     }
 
+    /**
+     * Ends the timer animation and change the timer state
+     */
     animationEnd(status) {
         clearInterval(this.timer);
 
@@ -72,6 +87,9 @@ export class View {
         }
     }
 
+    /**
+     * Fires when timer animation ends and currentState is break
+     */
     animationBreakEnd() {
         clearInterval(this.timer);
 
@@ -84,6 +102,9 @@ export class View {
         this.currentState = "process";
     }
 
+    /**
+     * Check the current timer iteration, set it to 1 if iteration is equal to settings work iteration property  or increase it by 1 if not
+     */
     setCurrentIteration() {
         if (this.settings[4] === this.settings[1]) {
             this.settings[4] = 1;
@@ -95,6 +116,10 @@ export class View {
         Firebase.updateValue(this.settings, "settings");
     }
 
+    /**
+     * Returns an iteration time according to currentState and currentIteration
+     * @return {number} iteration time
+     */
     setIterationTime() {
         if (this.currentState === "process") {
             return this.settings[0];
@@ -107,6 +132,9 @@ export class View {
         }
     }
 
+    /**
+     * Sets animation duration property to the timer and define animationstart and animationend events
+     */
     setAnimationProperties() {
         const progress = document.querySelector("[data-anim~=\"left\"]"),
             progressHalf = document.querySelector("[data-anim~=\"right\"]"),
@@ -128,6 +156,10 @@ export class View {
         }
     }
 
+    /**
+     * Show or hide some elements on the page according to the parameter
+     * @param {string} overflow - option that tells the function to hide or show some elements on the page
+     */
     viewController(overflow) {
         const header = document.getElementById("main-header");
         const timerButtons = document.getElementById("timer-page-buttons");
@@ -140,6 +172,9 @@ export class View {
         timerButtons.style.visibility = overflow;
     }
 
+    /**
+     * Event handler that fires when user clicks on some elements on the page and reacts properly on these actions
+     */
     handleStartTimer(e) {
         const target = e.target;
 
@@ -194,6 +229,9 @@ export class View {
         }
     }
 
+    /**
+     * Render the timer template
+     */
     render() {
         const timer = document.getElementById("timer-page");
         const data = this.controller.getData();

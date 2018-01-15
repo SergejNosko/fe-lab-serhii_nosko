@@ -2,7 +2,13 @@ import {EventBus} from "../../../services/eventBus";
 import Firebase from "../../../services/firebase";
 import Notification from "../../../components/notifications/index";
 
+/**
+ *  @module TimerComponent Model
+ */
 export class Model{
+  /**
+   * Initialize the data field and add the pomodoro field to the data
+   */
     constructor(data){
         this.data = data;
 
@@ -17,6 +23,10 @@ export class Model{
         }
     }
 
+    /**
+     * If pomodoros field length is less then 5 add another item to it
+     * @return {boolean} true if success, false if not
+     */
     addPomodoro(){
         if(this.data.pomodoros.length < 5 && this.data.estimationTotal < 5) {
             this.data.pomodoros.push({status: "none"});
@@ -35,6 +45,9 @@ export class Model{
         }
     }
 
+    /**
+     * Set the pomodoro items ,that has status 'none', status 'failed'
+     */
     fillRemainedPomodoros(){
         for(let i = 0; i < this.data.pomodoros.length; i++){
             if(this.data.pomodoros[i].status === "none")
@@ -51,12 +64,18 @@ export class Model{
         });
     }
 
+    /**
+     * Checks all pomodoros to have status not to equal 'none'
+     */
     checkPomodoros(){
         return this.data.pomodoros.every((pomodoro) => {
             return pomodoro.status !== "none";
         });
     }
 
+    /**
+     * Find first pomodoro item that has status 'none' and change it's status according to the passed data
+     */
     setEstimation(data){
         let index;
 
@@ -75,10 +94,17 @@ export class Model{
         });
     }
 
+    /**
+     * Returns current data
+     * @return {object} Timer data
+     */
     getData(){
         return this.data;
     }
 
+    /**
+     * Change the data field to the passed parameter
+     */
     setData(data){
         this.data = {...this.data, ...data};
         EventBus.dispatch("setData", this.data);

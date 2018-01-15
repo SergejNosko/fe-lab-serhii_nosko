@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: single-task/mvc/controller.js</title>
+    <title>JSDoc: Module: TimerComponent View</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,63 +17,59 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: single-task/mvc/controller.js</h1>
+    <h1 class="page-title">Module: TimerComponent View</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import {Model} from "./model";
+        
+    
+</header>
 
-/**
- * @module SingleTask Controller
- */
-export class Controller {
-  /**
-   * Creates a Single Task Model instance
-   * @param {object} data - information about single task
-   */
-  constructor(data) {
-    this.model = new Model(data);
-  }
+<article>
+    <div class="container-overview">
+    
+        
 
-  /**
-   * Call Model setData method
-   * @param {object} data - information about single task
-   */
-  sendData(data) {
-    this.model.setData(data);
-  }
+        
+    
+    </div>
 
-  /**
-   * Call Model sendTaskToRemove method
-   */
-  setTaskToRemove() {
-    this.model.sendTaskToRemove();
-  }
+    
 
-  /**
-   * Call Model sendTaskToRemove and removeTask methods
-   */
-  immediateRemove() {
-    this.model.sendTaskToRemove();
-    this.model.removeTask();
-  }
+    
 
-  /**
-   * Call Model getData method
-   * @return {object} Task data
-   */
-  receiveData() {
-    return this.model.getData();
-  }
-}
-</code></pre>
-        </article>
-    </section>
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-TimerComponent%2520View.View.html">View</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

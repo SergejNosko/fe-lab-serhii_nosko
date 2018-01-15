@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Model</title>
+    <title>JSDoc: Class: Controller</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Model</h1>
+    <h1 class="page-title">Class: Controller</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-SingleTask%2520Model.html">SingleTask Model</a>.</span>Model<span class="signature">(data)</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-TimerComponent%2520Controller.html">TimerComponent Controller</a>.</span>Controller<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -42,7 +42,7 @@
     
 
     
-    <h4 class="name" id="Model"><span class="type-signature"></span>new Model<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Controller"><span class="type-signature"></span>new Controller<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -50,7 +50,7 @@
 
 
 <div class="description">
-    Initialize data property
+    Initialize model field
 </div>
 
 
@@ -59,55 +59,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">object with task data</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -143,7 +94,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="single-task_mvc_model.js.html">single-task/mvc/model.js</a>, <a href="single-task_mvc_model.js.html#line11">line 11</a>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -197,7 +148,7 @@
     
 
     
-    <h4 class="name" id="getData"><span class="type-signature"></span>getData<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="addPomodoro"><span class="type-signature"></span>addPomodoro<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -205,7 +156,7 @@
 
 
 <div class="description">
-    Return task data
+    Calls the model addPomodoro method and returns a changed data
 </div>
 
 
@@ -249,7 +200,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="single-task_mvc_model.js.html">single-task/mvc/model.js</a>, <a href="single-task_mvc_model.js.html#line43">line 43</a>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -276,7 +227,7 @@
 
         
 <div class="param-desc">
-    Task data
+    Changed timer data
 </div>
 
 
@@ -305,7 +256,7 @@
     
 
     
-    <h4 class="name" id="removeTask"><span class="type-signature"></span>removeTask<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="checkPomodoro"><span class="type-signature"></span>checkPomodoro<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -313,7 +264,7 @@
 
 
 <div class="description">
-    Remove task
+    Check whether all estimations have been done
 </div>
 
 
@@ -357,7 +308,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="single-task_mvc_model.js.html">single-task/mvc/model.js</a>, <a href="single-task_mvc_model.js.html#line34">line 34</a>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -380,6 +331,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if all done, false if not
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -391,7 +364,7 @@
     
 
     
-    <h4 class="name" id="sendTaskToRemove"><span class="type-signature"></span>sendTaskToRemove<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="fillRemained"><span class="type-signature"></span>fillRemained<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -399,7 +372,7 @@
 
 
 <div class="description">
-    Makes the task potential for removal
+    Calls the model fillRemainedPomodoros method
 </div>
 
 
@@ -443,7 +416,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="single-task_mvc_model.js.html">single-task/mvc/model.js</a>, <a href="single-task_mvc_model.js.html#line27">line 27</a>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -477,7 +450,7 @@
     
 
     
-    <h4 class="name" id="setData"><span class="type-signature"></span>setData<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getData"><span class="type-signature"></span>getData<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -485,7 +458,201 @@
 
 
 <div class="description">
-    Change the data property to the passed data parameter
+    Returns timer data
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    timer data
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setData"><span class="type-signature"></span>setData<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Calls the setData method of the model
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setEstimation"><span class="type-signature"></span>setEstimation<span class="signature">(data)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Call model setEstimation method
 </div>
 
 
@@ -537,7 +704,7 @@
 
             
 
-            <td class="description last">object with task data</td>
+            <td class="description last">object width status field</td>
         </tr>
 
     
@@ -578,7 +745,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="single-task_mvc_model.js.html">single-task/mvc/model.js</a>, <a href="single-task_mvc_model.js.html#line19">line 19</a>
+        <a href="timer_mvc_controller.js.html">timer/mvc/controller.js</a>, <a href="timer_mvc_controller.js.html#line41">line 41</a>
     </li></ul></dd>
     
 

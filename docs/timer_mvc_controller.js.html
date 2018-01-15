@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: single-task/mvc/controller.js</title>
+    <title>JSDoc: Source: timer/mvc/controller.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: single-task/mvc/controller.js</h1>
+    <h1 class="page-title">Source: timer/mvc/controller.js</h1>
 
     
 
@@ -29,47 +29,61 @@
             <pre class="prettyprint source linenums"><code>import {Model} from "./model";
 
 /**
- * @module SingleTask Controller
+ * @module TimerComponent Controller
  */
-export class Controller {
+export class Controller{
   /**
-   * Creates a Single Task Model instance
-   * @param {object} data - information about single task
+   * Initialize model field
    */
-  constructor(data) {
-    this.model = new Model(data);
-  }
+    constructor(data){
+        this.model = new Model(data);
+    }
+
+    /**
+     * Calls the model addPomodoro method and returns a changed data
+     * @return {object} Changed timer data
+     */
+    addPomodoro(){
+        return this.model.addPomodoro();
+    }
 
   /**
-   * Call Model setData method
-   * @param {object} data - information about single task
+   * Calls the model fillRemainedPomodoros method
    */
-  sendData(data) {
-    this.model.setData(data);
-  }
+    fillRemained(){
+        this.model.fillRemainedPomodoros();
+    }
 
-  /**
-   * Call Model sendTaskToRemove method
-   */
-  setTaskToRemove() {
-    this.model.sendTaskToRemove();
-  }
+    /**
+     * Check whether all estimations have been done
+     * @return {boolean} true if all done, false if not
+     */
+    checkPomodoro(){
+        return this.model.checkPomodoros();
+    }
 
-  /**
-   * Call Model sendTaskToRemove and removeTask methods
-   */
-  immediateRemove() {
-    this.model.sendTaskToRemove();
-    this.model.removeTask();
-  }
+    /**
+     * Call model setEstimation method
+     * @param {object} data - object width status field
+     */
+    setEstimation(data){
+        this.model.setEstimation(data);
+    }
 
-  /**
-   * Call Model getData method
-   * @return {object} Task data
-   */
-  receiveData() {
-    return this.model.getData();
-  }
+    /**
+     * Returns timer data
+     * @return {object} timer data
+     */
+    getData(){
+        return this.model.getData();
+    }
+
+    /**
+     * Calls the setData method of the model
+     */
+    setData(data){
+        this.model.setData(data);
+    }
 }
 </code></pre>
         </article>

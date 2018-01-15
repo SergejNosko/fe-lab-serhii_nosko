@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: single-task/mvc/controller.js</title>
+    <title>JSDoc: Source: timer/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: single-task/mvc/controller.js</h1>
+    <h1 class="page-title">Source: timer/index.js</h1>
 
     
 
@@ -26,50 +26,17 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {Model} from "./model";
+            <pre class="prettyprint source linenums"><code>import {View} from "./mvc/view";
 
 /**
- * @module SingleTask Controller
+ * @module TimerComponent
+ * @description Render timer template
+ * @param {object} data - task data object
  */
-export class Controller {
-  /**
-   * Creates a Single Task Model instance
-   * @param {object} data - information about single task
-   */
-  constructor(data) {
-    this.model = new Model(data);
-  }
+export default function Timer(data) {
+    let view = new View(data);
 
-  /**
-   * Call Model setData method
-   * @param {object} data - information about single task
-   */
-  sendData(data) {
-    this.model.setData(data);
-  }
-
-  /**
-   * Call Model sendTaskToRemove method
-   */
-  setTaskToRemove() {
-    this.model.sendTaskToRemove();
-  }
-
-  /**
-   * Call Model sendTaskToRemove and removeTask methods
-   */
-  immediateRemove() {
-    this.model.sendTaskToRemove();
-    this.model.removeTask();
-  }
-
-  /**
-   * Call Model getData method
-   * @return {object} Task data
-   */
-  receiveData() {
-    return this.model.getData();
-  }
+    view.render();
 }
 </code></pre>
         </article>
