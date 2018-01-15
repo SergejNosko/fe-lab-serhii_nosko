@@ -5,7 +5,15 @@ import uuid from "uuid/v1";
 import {EventBus} from "../../../services/eventBus";
 import MainHeader from "../../../components/header/index";
 
+/**
+ *@module SingleTask View
+ */
 export class View {
+    /**
+     * Initialize controller, type and uuid fields
+     * @param {object} data - single task data
+     * @param {string} type - type of the task(today, global)
+     */
     constructor(data, type){
         this.controller = new Controller(data);
         this.type = type;
@@ -15,6 +23,9 @@ export class View {
         document.body.addEventListener("click", this.viewControl.bind(this));
     }
 
+    /**
+     * Collects data, tells the controller to add the data to the model and render template
+     */
     handleSubmit(e){
         e.preventDefault();
 
@@ -36,12 +47,18 @@ export class View {
         this.render(this.controller.receiveData());
     }
 
+    /**
+     *Tells the controller to remove current task
+     */
     handleImmediateRemove(e){
         e.preventDefault();
 
         this.controller.immediateRemove();
     }
 
+    /**
+     *Event handler that fires when user clicks on some elements on the page and change the page
+     */
     viewControl(e){
         let target = e.target;
         const modalsArticle = document.getElementById("modals-article"),
@@ -84,6 +101,10 @@ export class View {
         }
     }
 
+    /**
+     * Render the SingleTask template with passed data
+     * @param  {object} data - task data
+     */
     render(data){
         let newData = data || this.controller.receiveData();
 

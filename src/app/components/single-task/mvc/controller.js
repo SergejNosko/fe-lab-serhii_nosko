@@ -1,24 +1,45 @@
 import {Model} from "./model";
 
-export class Controller{
-    constructor(data){
-        this.model = new Model(data);
-    }
+/**
+ * @module SingleTask Controller
+ */
+export class Controller {
+  /**
+   * Creates a Single Task Model instance
+   * @param {object} data - information about single task
+   */
+  constructor(data) {
+    this.model = new Model(data);
+  }
 
-    sendData(data){
-        this.model.setData(data);
-    }
+  /**
+   * Call Model setData method
+   * @param {object} data - information about single task
+   */
+  sendData(data) {
+    this.model.setData(data);
+  }
 
-    setTaskToRemove(){
-        this.model.sendTaskToRemove();
-    }
+  /**
+   * Call Model sendTaskToRemove method
+   */
+  setTaskToRemove() {
+    this.model.sendTaskToRemove();
+  }
 
-    immediateRemove(){
-        this.model.sendTaskToRemove();
-        this.model.removeTask();
-    }
+  /**
+   * Call Model sendTaskToRemove and removeTask methods
+   */
+  immediateRemove() {
+    this.model.sendTaskToRemove();
+    this.model.removeTask();
+  }
 
-    receiveData(){
-        return this.model.getData();
-    }
+  /**
+   * Call Model getData method
+   * @return {object} Task data
+   */
+  receiveData() {
+    return this.model.getData();
+  }
 }
