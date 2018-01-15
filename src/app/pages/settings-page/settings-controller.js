@@ -3,10 +3,24 @@ import Categories from "./template/categories.hbs";
 import Template from "./template/template.hbs";
 import $ from "jquery";
 
+/**
+ * @namespace SettingPageController
+ * */
+/**
+ * @memberOf SettingPageController
+ * @description Renders the work cycle according to the parameter
+ * @param {array} voters - array of the settings values
+ * */
 export default function Controller(voters) {
 
     /*-----------------------Main Class-----------------------------*/
-    class TaskList {
+    /**
+     * Has the setting data
+     * */
+    class Setting {
+        /**
+         * Initialize class fields
+         * */
         constructor(elem, step, minValue, maxValue) {
             this.elem = elem;
             this.step = step;
@@ -24,6 +38,9 @@ export default function Controller(voters) {
             });
         }
 
+        /**
+         * Event handler that fires when user clicks on the '+' and '-' buttons
+         * */
         voteAction(action) {
             if (action === "increase") {
                 if (this.value === this.maxValue) return false;
@@ -40,14 +57,28 @@ export default function Controller(voters) {
     }
 
     /*----------------------Render Function-------------------------*/
-    const render = (renderValues) => {
+  /**
+   * Returns a function that renders the work cycle chart
+   * @return {function} renders the work cycle chart
+   * @memberOf SettingPageController
+   */
+  const render = (renderValues) => {
         let chart = document.getElementById("chart");
 
+        /**
+         * Calculates the width of the chunk of the work cycle chart
+         * @return {string} width in percent
+         * */
         function calculateWidth(value, duration) {
             return (value / duration) * 100 + "%";
         }
 
         /*------------------------Chart render function-----------------*/
+        /**
+         * Draws the work cycle chart
+         * @param {number} duration - duration of the work cycle in minutes
+         * @memberOf SettingPageController
+         * */
         function renderLoop(duration) {
             for (let i = 0; i < renderValues[1] * 2; i++) {
                 let workElem = document.createElement("div");
@@ -76,6 +107,11 @@ export default function Controller(voters) {
         }
 
         /*------------------------Cycle list render function-----------------*/
+        /**
+         * Draws the work cycle top sign
+         * @param {number} duration - duration of the work cycle in minutes
+         * @memberOf SettingPageController
+         * */
         function renderCycleList(duration) {
             let hours = Math.floor(duration / 60),
                 minutes = duration % 60,
@@ -99,6 +135,11 @@ export default function Controller(voters) {
         }
 
         /*------------------------Duration list render function-----------------*/
+    /**
+     * Draws the work cycle bottom sign
+     * @param {number} duration - duration of the work cycle in minutes
+     * @memberOf SettingPageController
+     * */
         function renderDurationList(duration) {
             let hours = Math.floor(duration / 30);
 
@@ -138,6 +179,11 @@ export default function Controller(voters) {
     };
     let list;
 
+    /**
+     * Render the required page according to the parameter
+     * @param {string} query - type of the page
+     * @memberOf SettingPageController
+     * */
     function renderRequiredPage(query) {
         const root = document.getElementById("root");
 
@@ -163,6 +209,10 @@ export default function Controller(voters) {
         }
     }
 
+    /**
+     * Event handler that fires when user clicks on the save button
+     * @memberOf SettingPageController
+     * */
     function handleSave(e) {
         let target = e.target,
             query = target.dataset.query;
@@ -187,10 +237,10 @@ export default function Controller(voters) {
 
     if (!voters) {
         list = [
-            new TaskList(document.getElementById("voter1"), 5, 15, 25),
-            new TaskList(document.getElementById("voter2"), 1, 2, 5),
-            new TaskList(document.getElementById("voter3"), 1, 3, 5),
-            new TaskList(document.getElementById("voter4"), 5, 15, 30)
+            new Setting(document.getElementById("voter1"), 5, 15, 25),
+            new Setting(document.getElementById("voter2"), 1, 2, 5),
+            new Setting(document.getElementById("voter3"), 1, 3, 5),
+            new Setting(document.getElementById("voter4"), 5, 15, 30)
         ];
     }
     else {
@@ -198,10 +248,10 @@ export default function Controller(voters) {
             document.getElementById(`voter${i}`).querySelector(".single-setting__text-field").value = voters[i - 1];
         }
         list = [
-            new TaskList(document.getElementById("voter1"), 5, 15, 25),
-            new TaskList(document.getElementById("voter2"), 1, 2, 5),
-            new TaskList(document.getElementById("voter3"), 1, 3, 5),
-            new TaskList(document.getElementById("voter4"), 5, 15, 30)
+            new Setting(document.getElementById("voter1"), 5, 15, 25),
+            new Setting(document.getElementById("voter2"), 1, 2, 5),
+            new Setting(document.getElementById("voter3"), 1, 3, 5),
+            new Setting(document.getElementById("voter4"), 5, 15, 30)
         ];
     }
 

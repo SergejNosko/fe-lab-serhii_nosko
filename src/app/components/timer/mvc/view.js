@@ -8,7 +8,7 @@ import Firebase from "../../../services/firebase";
 import $ from "jquery";
 
 /**
- * @module TimerComponent View
+ * @module TimerComponentView
  */
 export class View {
   /**

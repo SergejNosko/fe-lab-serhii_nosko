@@ -1,9 +1,13 @@
 import Template from "./template/template.hbs";
 import Controller from "./settings-controller";
 import Firebase from "../../services/firebase";
-//import TabPlugin from '../../services/tabPlugin';
 import $ from "jquery";
 
+
+/**
+ * @module SettingsPageView
+ * @description Renders setting page template
+ * */
 export function View() {
     const root = document.getElementById("root");
     let isNewUser = sessionStorage.getItem("isNewUser");

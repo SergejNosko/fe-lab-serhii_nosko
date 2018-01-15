@@ -3,7 +3,7 @@ import Firebase from "../../../services/firebase";
 import Notification from "../../../components/notifications/index";
 
 /**
- *  @module TimerComponent Model
+ *  @module TimerComponentModel
  */
 export class Model{
   /**

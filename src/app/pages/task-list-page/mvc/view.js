@@ -12,7 +12,14 @@ import {EventBus} from "../../../services/eventBus";
 import uuid from "uuid/v1";
 import $ from "jquery";
 
+/**
+ * @module TaskListView
+ * */
 export class View {
+  /**
+   * Initialize the controller field
+   * @param {array} data - tasks array
+   * */
     constructor(data) {
         this.controller = new Controller(data);
 
@@ -20,6 +27,10 @@ export class View {
         EventBus.add("stateChange", this.render, this);
     }
 
+    /**
+       * Collects data from the modal window, sends it to the controller and render a template again
+     *
+     * */
     handleSubmit(e) {
         let target = e.target;
 
@@ -43,6 +54,10 @@ export class View {
         }
     }
 
+    /**
+     * Show or hide the modal window according to the passed parameter
+       * @param {string} query - tells to the method to show or hide the modal window
+     * */
     showModal(query) {
         const modalsArticle = document.getElementById("modals-article");
         switch (query) {
@@ -64,6 +79,10 @@ export class View {
         }
     }
 
+    /**
+     * Draws an estimation buttons in the modal window
+     * @param {object} target - DOM element where the buttons will be drawn
+     * */
     estimationButtons(target) {
         const siblings = target.parentElement.children;
         for (let i = 0; i < siblings.length; i++) {
@@ -75,6 +94,10 @@ export class View {
         }
     }
 
+    /**
+     * Renders the global list
+     * @param {object} target - DOM element where the global list will be drawn
+     * */
     showGlobalList(target) {
         const container = target.parentElement,
             siblings = container.parentElement.parentElement.children;
@@ -101,6 +124,9 @@ export class View {
         target.classList.toggle("tabs__tab-link_global-active");
     }
 
+    /**
+     * Shows the removing page or delete highlighted tasks if page is already shown
+     * */
     showRemove() {
         let tasks = document.querySelectorAll(".single-task");
 
@@ -133,6 +159,11 @@ export class View {
         }
     }
 
+    /**
+     * Finds an ul element
+     * @param {object} target - DOM element where to find the ul
+     * @return {object} found ul element
+     * */
     findList(target) {
         let parent = target.parentElement;
         while (parent.classList.contains("main-content__article") === false) {
@@ -142,6 +173,9 @@ export class View {
         return parent.querySelectorAll("ul");
     }
 
+    /**
+     * Event handler that fires when the user clicks on some elements on the page
+     * */
     clickHandler(e) {
         const target = e.target;
 
@@ -218,6 +252,11 @@ export class View {
         }
     }
 
+    /**
+     * Renders the global task list
+     * @param {array} sortedData - sorted tasks data array
+     * @param {number} activeLinkNumber - a number of the current active link
+     * */
     renderGlobalList(sortedData, activeLinkNumber) {
         const globalList = document.getElementById("global-list");
 
@@ -249,6 +288,13 @@ export class View {
 
     }
 
+    /**
+     * Renders a list of the tasks that have not been completed
+     * @param {object} root - DOM element with id 'root'
+     * @param {array} data - tasks array
+     * @param {string} isFilter - global list filter
+     * @param {string} page - active page filter
+     * */
     renderTaskList(root, data, isFilter, page){
 
         let currentData = data || this.controller.receiveData({isActive: null}),
@@ -298,6 +344,12 @@ export class View {
         this.renderGlobalList(sortedData, activeFilter);
     }
 
+    /**
+     * Renders the task list page template
+     * @param {array} data - tasks data array
+     * @param {string} isFilter - global list filter
+     * @param {string} page - active page filter
+     * */
     render(data, isFilter, page) {
 
         const root = document.getElementById("root");

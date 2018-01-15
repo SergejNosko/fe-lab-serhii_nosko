@@ -3,7 +3,14 @@ import Template from "../template/template.hbs";
 import Highcharts from "highcharts";
 import $ from "jquery";
 
+/**
+ * @module ReportsPageView
+ * */
 export class View {
+    /**
+     * Initializes controller, tooltipType, chartType, chart fields
+     * @param {array} data - tasks data array
+     * */
     constructor(data) {
         this.controller = new Controller(data);
         this.tooltipType = "task";
@@ -75,6 +82,11 @@ export class View {
         };
     }
 
+    /**
+     * Returns an object with the chart settings for the tasks done today
+     * @return {object} chart settings
+     * */
+
     drawWeeklyChart(data) {
         const chart = this.chart;
 
@@ -124,6 +136,10 @@ export class View {
         return chart;
     }
 
+  /**
+   * Returns an object with the chart settings for the tasks done this week
+   * @return {object} chart settings
+   * */
     drawMonthlyChart(data){
         const chart = this.chart;
 
@@ -176,6 +192,10 @@ export class View {
         return chart;
     }
 
+  /**
+   * Returns an object with the chart settings for the tasks done this month
+   * @return {object} chart settings
+   * */
     drawDailyChart(data) {
         const chart = this.chart;
 
@@ -223,6 +243,10 @@ export class View {
         return chart;
     }
 
+    /**
+     * Render the correct chart according to the type parameter
+     * @return {object} chart settings
+     * */
     renderRequiredChart(type, tooltip){
         const data = this.controller.receiveData(type, tooltip);
         let chart;
@@ -260,6 +284,11 @@ export class View {
         }
     }
 
+    /**
+     * Renders the report template
+     * @param {string} type - type of the chart
+     * @param {string} tooltip - tooltip message
+     * */
     render(type, tooltip) {
         const root = document.getElementById("root");
         const chartType = type || this.chartType;

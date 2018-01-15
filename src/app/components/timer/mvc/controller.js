@@ -1,7 +1,7 @@
 import {Model} from "./model";
 
 /**
- * @module TimerComponent Controller
+ * @module TimerComponentController
  */
 export class Controller{
   /**

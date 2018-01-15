@@ -6,7 +6,7 @@ import {EventBus} from "../../../services/eventBus";
 import MainHeader from "../../../components/header/index";
 
 /**
- *@module SingleTask View
+ *@module SingleTaskView
  */
 export class View {
     /**

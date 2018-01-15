@@ -1,7 +1,7 @@
 import {Model} from "./model";
 
 /**
- * @module SingleTask Controller
+ * @module SingleTaskController
  */
 export class Controller {
   /**

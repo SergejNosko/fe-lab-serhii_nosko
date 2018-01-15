@@ -1,10 +1,21 @@
+/**
+ * @module ReportsPageModel
+ * */
 export class Model{
+  /**
+   * Initialize the data field by filtering a passed parameter
+   * @param {array} data - tasks data array
+   * */
     constructor(data){
         this.data = data.filter((item) => {
             return item.isActive === false;
         });
     }
 
+    /**
+     * Returns a Date object with which data points to current week beginning
+     * @return {Date} - current week beginning
+     * */
     getCurrentWeek(){
         let todayDate = new Date();
         const weekDay = todayDate.getDay();
@@ -14,6 +25,11 @@ export class Model{
         return todayDate;
     }
 
+    /**
+     * Finds all tasks that were done this week, sort them into categories, calculates their number
+     * @param {string} tooltip - tooltip message
+     * @return {array} the number of tasks for each day of the week
+     * */
     getWeekData(tooltip){
         const currentWeekStart = this.getCurrentWeek();
         const currentWeekEnd = this.getCurrentWeek();
@@ -46,10 +62,19 @@ export class Model{
         return data;
     }
 
+    /**
+     * Returns the number of days in the current month
+     * @return {number} number of days
+     * */
     getDaysInMonth(month, year){
         return 32 - new Date(year, month, 32).getDate();
     }
 
+    /**
+     * Finds all tasks that was been done this month, sort them into categories, calculates their number
+     * @param {string} tooltip - tooltip message
+     * @return {array} the number of tasks for each day of the month
+     * */
     getMonthData(tooltip){
         const currentDate = new Date();
         const currentMonth = currentDate.getMonth();
@@ -87,6 +112,11 @@ export class Model{
         return data;
     }
 
+    /**
+     * Finds all tasks that was been done this day, sort them into categories, calculates their number
+     * @param {string} tooltip - tooltip message
+     * @return {array} number of tasks divided into categories
+     * */
     getTodayData(tooltip){
         const todayDate = new Date().getDate();
         const currentMonth = new Date().getMonth();

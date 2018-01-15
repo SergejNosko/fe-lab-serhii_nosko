@@ -1,7 +1,7 @@
 import {EventBus} from "../../../services/eventBus";
 
 /**
- * @module SingleTask Model
+ * @module SingleTaskModel
  */
 export class Model{
   /**
