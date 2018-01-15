@@ -32,7 +32,7 @@ module.exports = function (config) {
                 loader: 'babel-loader'
               }],
             enforce: 'post',
-            exclude: /node_modules|tests|\.spec\.js$|app.js$|view.js|helpers.js|tooltipPlugin.js|tabPlugin.js/
+            exclude: /node_modules|tests|\.spec\.js$|app.js$|view.js|helpers.js|tooltipPlugin.js|tabPlugin.js|settings-controller.js/
           }]
       },
       devtool: 'inline-source-map'

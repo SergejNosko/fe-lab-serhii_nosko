@@ -1,7 +1,7 @@
-import Timer from "../../../../src/app/components/timer/index";
+import Timer from "../../../../src/app/pages/timer-page/index";
+import TemplateTimer from "../../../../src/app/components/timer/index";
 
-describe('Timer component main file', () => {
-
+describe('Timer main file', () => {
   let data = {
     id: 1,
     title: 'title',
@@ -16,10 +16,10 @@ describe('Timer component main file', () => {
     priority: 2
   };
 
-  it('Timer function shouldn\'t throw an error', () => {
+  it("Timer function shouldn't throw errors", () => {
 
     expect(() => {
       Timer(data);
-    }).not.toThrowError(Error);
+    }).not.toThrow();
   });
 });

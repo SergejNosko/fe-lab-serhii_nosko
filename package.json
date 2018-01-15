@@ -6,7 +6,8 @@
     "Andrii Dieiev"
   ],
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "test": "karma start"
   },
   "dependencies": {
     "firebase": "^4.7.0",
@@ -14,6 +15,7 @@
     "highcharts": "^6.0.4",
     "jquery": "^3.2.1",
     "uuid": "^3.1.0"
+
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

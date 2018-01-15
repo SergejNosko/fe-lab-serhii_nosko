@@ -1,11 +1,13 @@
-(function (config, factory) {
-    const firebase = require("firebase");
+import firebase from "firebase";
+
+export default (function (config, factory) {
+
 
     firebase.initializeApp(config);
 
     let database = firebase.database();
 
-    module.exports = factory(database);
+    return factory(database);
 
 
 })({

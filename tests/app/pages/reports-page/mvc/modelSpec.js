@@ -31,52 +31,9 @@ describe('Reports page model', () => {
 
   });
 
-  /*it('getTodayData should call some array methods inside itself', () => {
-
-    let arr = [data];
-
-    spyOn(arr, 'filter');
-    spyOn(arr, 'reduce');
-
-    spyOn(model, 'getTodayData').and.callFake(() => {
-      const currentWeekStart = model.getCurrentWeek();
-      const currentWeekEnd = model.getCurrentWeek();
-      currentWeekEnd.setDate(currentWeekStart.getDate() + 7);
-
-      let numberOfTasks = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
-
-      let data = arr
-        .filter((item) => {
-          const taskDate = new Date(item.startDate);
-          const currentDate = taskDate.getDate();
-
-          console.log(taskDate, currentDate);
-
-          return currentDate >= currentWeekStart.getDate() && currentDate <= currentWeekEnd.getDate();
-        });
-      data.reduce((prev, item) => {
-          const taskDay = new Date(item.startDate).getDay();
-
-          if(tooltip === "pomodoro"){
-            prev[item.priority - 1][taskDay] += item.estimationTotal;
-          }
-          else {
-            prev[item.priority - 1][taskDay]++;
-          }
-
-          return prev;
-        }, numberOfTasks);
-
-      return data;
-    });
-
-    let dailyTasks = model.getTodayData('title');
-
-  });*/
-
   it('getWeekData method should return two-dimensional array of numbers', () => {
 
-    let weekTasks = model.getWeekData('tooltip');
+    let weekTasks = model.getWeekData('pomodoro');
 
     expect(Array.isArray(weekTasks)).toBeTruthy();
 
@@ -86,7 +43,7 @@ describe('Reports page model', () => {
 
   it('getMonthData method should return two-dimensional array', () => {
 
-    let monthTasks = model.getMonthData('tooltip');
+    let monthTasks = model.getMonthData('pomodoro');
 
     expect(Array.isArray(monthTasks)).toBeTruthy();
 

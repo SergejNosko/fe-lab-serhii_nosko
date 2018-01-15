@@ -10,6 +10,9 @@ module.exports = {
       "experimentalObjectRestSpread": true
     }
   },
+  "globals": {
+    "Promise": true
+  },
   "rules": {
     "indent": [
       "error",

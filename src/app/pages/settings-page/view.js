@@ -1,5 +1,5 @@
 import Template from "./template/template.hbs";
-import Controller from "./controller";
+import Controller from "./settings-controller";
 import Firebase from "../../services/firebase";
 //import TabPlugin from '../../services/tabPlugin';
 import $ from "jquery";
