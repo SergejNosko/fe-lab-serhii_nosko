@@ -68,13 +68,13 @@ export class Router {
 
         if (window.location.pathname == "/" && hash == "") hash = this.root;
 
-        MainHeader({hash: hash.substring(1)});
+        MainHeader({hash: hash});
 
         EventBus.dispatch(hash);
     }
 
     /**
-     * Adds routes to the EventBus and show the default page
+     * Adds routes to the EventBus and show the defauld page
      * */
     init() {
         for (let key in this.routes) {
