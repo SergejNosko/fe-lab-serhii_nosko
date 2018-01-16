@@ -44,8 +44,8 @@ export class View {
     animationStart() {
         this.totalTime = this.setIterationTime();
 
-        const timerTitle = document.querySelector("[data-title=timer-page]");
-        const timerPomodoros = document.getElementById("timer-page-pomodoros");
+        const timerTitle = document.querySelector("[data-title=timer]");
+        const timerPomodoros = document.getElementById("timer-pomodoros");
 
         timerPomodoros.innerHTML += `<li class="timer__pomodoros-item">
         <div class="timer__pomodoros-button timer__pomodoros-button_process icon-add" data-query="addPomodoro"></div>
@@ -66,7 +66,7 @@ export class View {
     animationEnd(status) {
         clearInterval(this.timer);
 
-        const timer = document.getElementById("timer-page");
+        const timer = document.getElementById("timer");
         const data = this.controller.getData();
 
         this.controller.setEstimation({status: status});
@@ -93,8 +93,8 @@ export class View {
     animationBreakEnd() {
         clearInterval(this.timer);
 
-        const buttonsContainer = document.querySelector("[data-buttons=\"timer-page-break\"]");
-        const timerTitle = document.querySelector("[data-title=timer-page]");
+        const buttonsContainer = document.querySelector("[data-buttons=\"timer-break\"]");
+        const timerTitle = document.querySelector("[data-title=timer]");
 
         timerTitle.innerHTML = "Break<br> is over";
         buttonsContainer.innerHTML += "<button class=\"button-container__item button-container__item_blue\" data-query=\"timerFinish\">Finish Task</button>";
@@ -162,7 +162,7 @@ export class View {
      */
     viewController(overflow) {
         const header = document.getElementById("main-header");
-        const timerButtons = document.getElementById("timer-page-buttons");
+        const timerButtons = document.getElementById("timer-buttons");
 
         if (overflow === "visible") {
             timerButtons.innerHTML += "<a href=\"#report\" class=\"main-content__back-button icon-arrow-right\" data-title=\"Go to Global List\"></a>";
@@ -181,7 +181,7 @@ export class View {
         if (!target.dataset.query) return;
 
         const timerData = this.controller.getData();
-        const timer = document.getElementById("timer-page");
+        const timer = document.getElementById("timer");
 
         switch (target.dataset.query) {
         case "timerStart": {
@@ -203,7 +203,7 @@ export class View {
             break;
         }
         case "timerFinish": {
-            const timer = document.getElementById("timer-page");
+            const timer = document.getElementById("timer");
             const data = this.controller.getData();
 
             this.controller.fillRemained();
@@ -215,7 +215,7 @@ export class View {
             const isAdded = this.controller.addPomodoro();
 
             if (isAdded) {
-                const timerPomodoros = document.getElementById("timer-page-pomodoros");
+                const timerPomodoros = document.getElementById("timer-pomodoros");
                 const li = document.createElement("li");
 
                 li.innerHTML += `<li class="timer__pomodoros-item">
@@ -233,8 +233,12 @@ export class View {
      * Render the timer template
      */
     render() {
-        const timer = document.getElementById("timer-page");
+        const timer = document.getElementById("timer");
         const data = this.controller.getData();
+
+        /*if(!data.startDate){
+            this.controller.setData({startDate: Date.now()});
+        }*/
 
         Firebase.getData("settings").then((settings) => {
             if (data.estimationTotal === data.estimationUsed) {
