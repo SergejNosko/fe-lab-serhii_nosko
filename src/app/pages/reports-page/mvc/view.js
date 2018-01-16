@@ -136,7 +136,7 @@ export class View {
         return chart;
     }
 
-  /**
+    /**
    * Returns an object with the chart settings for the tasks done this week
    * @return {object} chart settings
    * */
@@ -192,7 +192,7 @@ export class View {
         return chart;
     }
 
-  /**
+    /**
    * Returns an object with the chart settings for the tasks done this month
    * @return {object} chart settings
    * */

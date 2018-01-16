@@ -1,5 +1,8 @@
 import firebase from "firebase";
 
+/**
+ * @namespace Firebase
+ * */
 export default (function (config, factory) {
 
 
@@ -28,6 +31,13 @@ export default (function (config, factory) {
     };
 
     firebaseUserApi.prototype = {
+        /**
+       * Saves data to the Firebase DB
+       * @param {object} value - task object
+       * @param {string} ref - database reference
+       * @return {array} tasks array
+       * @memberOf Firebase
+       * */
         setValue: function(value, ref) {
             let table = database.ref("task/" + value.id);
 
@@ -35,6 +45,13 @@ export default (function (config, factory) {
 
             return table.set(value);
         },
+        /**
+       * Updates data in the Firebase DB
+       * @param {object} value - task object
+       * @param {string} ref - database reference
+       * @return {array} tasks array
+       * @memberOf Firebase
+       * */
         updateValue: function (value, ref) {
             let table = database.ref("task/" + value.id);
 
@@ -42,6 +59,12 @@ export default (function (config, factory) {
 
             return table.update(value);
         },
+        /**
+       * Gets data from the Firebase DB
+       * @param {string} ref - database reference
+       * @return {Promise} Promise with the tasks array
+       * @memberOf Firebase
+       * */
         getData: function (ref) {
             return new Promise((resolve) => {
                 if(ref) taskSchema = database.ref(ref);
@@ -52,6 +75,12 @@ export default (function (config, factory) {
                 });
             });
         },
+        /**
+       * Removes data from the Firebase DB
+       * @param {string} id - task id
+       * @return {array} tasks array
+       * @memberOf Firebase
+       * */
         removeData: function (id) {
             return database.ref("task/" + id).remove();
         }

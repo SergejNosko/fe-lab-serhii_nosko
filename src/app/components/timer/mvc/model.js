@@ -6,7 +6,7 @@ import Notification from "../../../components/notifications/index";
  *  @module TimerComponentModel
  */
 export class Model{
-  /**
+    /**
    * Initialize the data field and add the pomodoro field to the data
    */
     constructor(data){

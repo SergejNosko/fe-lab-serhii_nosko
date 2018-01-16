@@ -6,7 +6,7 @@ import Notification from "../../../components/notifications/index";
  * @module TaskListModel
  * */
 export class Model{
-  /**
+    /**
    * Initialize data and tasksToRemove fields
    * @param {array} data - array of the tasks data
    * */

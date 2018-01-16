@@ -2,7 +2,7 @@
  * @module ReportsPageModel
  * */
 export class Model{
-  /**
+    /**
    * Initialize the data field by filtering a passed parameter
    * @param {array} data - tasks data array
    * */

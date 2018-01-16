@@ -4,7 +4,7 @@ import {Model} from "./model";
  * @module ReportsPageController
  */
 export class Controller{
-  /**
+    /**
    * Initialize the model field
    * @param {array} data - array of tasks
    * */

@@ -11,7 +11,7 @@ import $ from "jquery";
  * @module TimerComponentView
  */
 export class View {
-  /**
+    /**
    * Initialize controller, timer, totalTime and currentState fields
    */
     constructor(data) {

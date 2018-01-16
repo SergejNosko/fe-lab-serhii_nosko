@@ -16,7 +16,7 @@ import $ from "jquery";
  * @module TaskListView
  * */
 export class View {
-  /**
+    /**
    * Initialize the controller field
    * @param {array} data - tasks array
    * */

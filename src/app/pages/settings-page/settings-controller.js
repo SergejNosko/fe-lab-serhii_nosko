@@ -57,12 +57,12 @@ export default function Controller(voters) {
     }
 
     /*----------------------Render Function-------------------------*/
-  /**
+    /**
    * Returns a function that renders the work cycle chart
    * @return {function} renders the work cycle chart
    * @memberOf SettingPageController
    */
-  const render = (renderValues) => {
+    const render = (renderValues) => {
         let chart = document.getElementById("chart");
 
         /**
@@ -135,7 +135,7 @@ export default function Controller(voters) {
         }
 
         /*------------------------Duration list render function-----------------*/
-    /**
+        /**
      * Draws the work cycle bottom sign
      * @param {number} duration - duration of the work cycle in minutes
      * @memberOf SettingPageController

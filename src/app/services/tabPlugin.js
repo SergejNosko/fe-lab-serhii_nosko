@@ -1,5 +1,6 @@
 import jQuery from "jquery";
 
+
 (($) => {
     $.fn.customTab = function (options) {
         const settings = $.extend({

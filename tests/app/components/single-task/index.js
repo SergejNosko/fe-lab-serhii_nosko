@@ -1,6 +1,10 @@
 import SingleTask from "../../../../src/app/components/single-task/index";
 
 describe('Single task component main file', () => {
+  let headerBlock = document.createElement('header');
+  headerBlock.id = 'main-header';
+
+  document.body.appendChild(headerBlock);
 
   it('Single task function should return a string', () => {
 

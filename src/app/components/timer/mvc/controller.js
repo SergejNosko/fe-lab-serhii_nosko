@@ -4,7 +4,7 @@ import {Model} from "./model";
  * @module TimerComponentController
  */
 export class Controller{
-  /**
+    /**
    * Initialize model field
    */
     constructor(data){
@@ -19,7 +19,7 @@ export class Controller{
         return this.model.addPomodoro();
     }
 
-  /**
+    /**
    * Calls the model fillRemainedPomodoros method
    */
     fillRemained(){

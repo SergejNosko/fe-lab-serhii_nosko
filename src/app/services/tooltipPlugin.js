@@ -1,5 +1,8 @@
 import jQuery from "jquery";
 
+/**
+ * @namespace TooltipPlugin
+ * */
 (($) => {
     $.fn.tooltip = function(options) {
 
@@ -11,6 +14,11 @@ import jQuery from "jquery";
             "class": "tooltip",
         });
 
+        /**
+         * Event handler that fires when user move the cursor over a certain element and shows the tooltip
+         * @param {string} title - title that will be shown
+         * @memberOf TooltipPlugin
+         * */
         function showTooltip(title, e) {
             body.append(block);
 
@@ -37,6 +45,10 @@ import jQuery from "jquery";
 
         }
 
+        /**
+         * Event handler that fires when the cursor leaves a certain element and hides the tooltip
+         * @memberOf TooltipPlugin
+         * */
         function hideTooltip() {
             block.removeClass("tooltip_big");
             block.css("display", "none");

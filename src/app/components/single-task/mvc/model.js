@@ -4,7 +4,7 @@ import {EventBus} from "../../../services/eventBus";
  * @module SingleTaskModel
  */
 export class Model{
-  /**
+    /**
    * Initialize data property
    * @param {object} data - object with task data
    */
@@ -12,7 +12,7 @@ export class Model{
         this.data = data;
     }
 
-  /**
+    /**
    * Change the data property to the passed data parameter
    * @param {object} data - object with task data
    */
