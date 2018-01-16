@@ -4,6 +4,7 @@ import {Controller} from "./controller";
 import uuid from "uuid/v1";
 import {EventBus} from "../../../services/eventBus";
 import MainHeader from "../../../components/header/index";
+import Notification from "../../notifications/index";
 
 /**
  *@module SingleTaskView
@@ -36,8 +37,10 @@ export class View {
             estimationTotal: document.querySelectorAll(".radio-block__radio_filled").length - 3
         };
         if(newTask.description === "" || newTask.title === "" || newTask.deadline === ""){
-            if(document.querySelector("#edit-modal [name=category]:checked") === null || document.querySelector("#edit-modal [name=priority]:checked") === null)
+            if(document.querySelector("#edit-modal [name=category]:checked") === null || document.querySelector("#edit-modal [name=priority]:checked") === null) {
+                Notification().showMessage("error", "All fields must be filled in!");
                 return;
+            }
         }
         newTask.categoryId = document.querySelector("#edit-modal [name=category]:checked").value;
         newTask.priority = document.querySelector("#edit-modal [name=priority]:checked").value;
@@ -68,6 +71,7 @@ export class View {
 
         if(parentId == data.id && target.dataset.query === "edit"){
             modalsArticle.style.display = "flex";
+            currentModal.style.display = "flex";
             currentModal.classList.add("modal-window__active");
 
             document.querySelector("[data-query=edit]").addEventListener("click", this.handleSubmit.bind(this));
@@ -77,6 +81,7 @@ export class View {
         if(target.dataset.query === "close"){
             e.preventDefault();
             document.querySelector(".modals-article").removeEventListener("click", this.handleSubmit);
+            currentModal.classList.remove("modal-window__active");
             currentModal.style.display = "none";
             modalsArticle.style.display = "none";
         }

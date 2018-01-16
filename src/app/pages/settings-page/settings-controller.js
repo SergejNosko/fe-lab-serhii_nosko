@@ -1,6 +1,7 @@
 import Firebase from "../../services/firebase";
 import Categories from "./template/categories.hbs";
 import Template from "./template/template.hbs";
+//import Notification from "../../components/notifications/index";
 import $ from "jquery";
 
 /**
@@ -226,9 +227,12 @@ export default function Controller(voters) {
 
                 settings.push(0); //current iteration
 
-                Firebase.setValue(settings, "settings");
+                Firebase.setValue(settings, "settings").then(() => {
+                    sessionStorage.setItem("isNewUser", false);
+                    //Notification().showMessage("success", "Successfully saved!");
+                    window.location.hash = "#task-list";
+                });
 
-                sessionStorage.setItem("isNewUser", false);
                 break;
             }
             }

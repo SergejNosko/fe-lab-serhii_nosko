@@ -90,7 +90,7 @@ export class View {
     drawWeeklyChart(data) {
         const chart = this.chart;
 
-        chart.chart.width = 570;
+        chart.chart.width = 670;
 
         chart.series = [
             {

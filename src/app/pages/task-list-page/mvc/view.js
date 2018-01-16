@@ -9,6 +9,7 @@ import "../../../services/tabPlugin";
 import "../../../services/tooltipPlugin";
 import SingleTask from "../../../components/single-task/index";
 import {EventBus} from "../../../services/eventBus";
+import Notification from "../../../components/notifications/index";
 import uuid from "uuid/v1";
 import $ from "jquery";
 
@@ -34,20 +35,31 @@ export class View {
     handleSubmit(e) {
         let target = e.target;
 
-        if (target.dataset.query == "addTask") {
+        if (target.dataset.query === "addTask") {
+            let title = document.querySelector("#add-modal [data-name=title]");
+            let description = document.querySelector("#add-modal [data-name=description]");
+            let deadline = document.querySelector("#add-modal [data-name=deadline]");
+            let categoryId = document.querySelector("#add-modal [name=category]:checked");
+            let priority = document.querySelector("#add-modal [name=priority]:checked");
+
+            if(!title.value || !description.value || !deadline.value || !categoryId.value || !priority.value){
+                Notification().showMessage("error", "All fields must be filled in!");
+                return;
+            }
+
 
             let newTask = {
                 id: uuid(),
-                title: document.querySelector("#add-modal [data-name=title]").value,
-                description: document.querySelector("#add-modal [data-name=description]").value,
+                title: title.value,
+                description: description.value,
                 createdDate: Date.now(),
                 startDate: null,
-                deadline: Date.parse(document.querySelector("#add-modal [data-name=deadline]").value),
+                deadline: Date.parse(deadline.value),
                 isActive: null,
-                categoryId: document.querySelector("#add-modal [name=category]:checked").value,
+                categoryId: categoryId.value,
                 estimationTotal: document.querySelectorAll(".radio-block__radio_filled").length - 3,
                 estimationUsed: 0,
-                priority: document.querySelector("#add-modal [name=priority]:checked").value
+                priority: priority.value
             };
             this.controller.sendData(newTask);
             this.render(this.controller.receiveData());
@@ -60,11 +72,12 @@ export class View {
      * */
     showModal(query) {
         const modalsArticle = document.getElementById("modals-article");
+        const currentModal = document.getElementById("add-modal");
+
         switch (query) {
         case "add": {
-            const currentModal = document.getElementById("add-modal");
-
             modalsArticle.style.display = "flex";
+            currentModal.style.display = "flex";
             currentModal.classList.add("modal-window__active");
 
             document.querySelector(".modals-article").addEventListener("click", this.handleSubmit.bind(this));
@@ -72,7 +85,8 @@ export class View {
         }
         case "close": {
             document.querySelector(".modals-article").removeEventListener("click", this.handleSubmit);
-            arguments[1].style.display = "none";
+            currentModal.classList.remove("modal-window__active");
+            currentModal.style.display = "none";
             modalsArticle.style.display = "none";
             break;
         }
