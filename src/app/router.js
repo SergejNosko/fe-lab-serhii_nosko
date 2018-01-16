@@ -74,7 +74,7 @@ export class Router {
     }
 
     /**
-     * Adds routes to the EventBus and show the defauld page
+     * Adds routes to the EventBus and show the default page
      * */
     init() {
         for (let key in this.routes) {

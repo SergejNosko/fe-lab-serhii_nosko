@@ -130,6 +130,8 @@ export class View {
     showRemove() {
         let tasks = document.querySelectorAll(".single-task");
 
+        if(tasks.length === 0) return;
+
         if (tasks[0].classList.contains("single-task_removed")) {
             if(this.controller.getRemovedTasksLength() !== 0) {
                 const currentModal = document.getElementById("remove-modal");
@@ -152,6 +154,7 @@ export class View {
 
             newTabs = `<nav class="task-article__navigation tabs tabs_extended"> ${newTabs} </nav>`;
             filters.insertAdjacentHTML("afterEnd", newTabs);
+
 
             for (let i = 0; i < tasks.length; i++) {
                 tasks[i].classList.add("single-task_removed");
