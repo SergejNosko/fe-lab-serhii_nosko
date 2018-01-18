@@ -100,6 +100,13 @@ export class View {
         }
 
         if(target.parentElement.dataset.id == data.id && target.dataset.query === "timer"){
+            e.preventDefault();
+            let data = this.controller.receiveData();
+
+            if(!data.startDate){
+                Notification().showMessage("warning", "Task has to be in the daily list!");
+                return;
+            }
 
             MainHeader({hash: "#timer"});
             EventBus.dispatch("#timer", data);

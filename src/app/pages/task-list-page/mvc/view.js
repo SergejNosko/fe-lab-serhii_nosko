@@ -43,7 +43,7 @@ export class View {
             let priority = document.querySelector("#add-modal [name=priority]:checked");
 
             if(!title.value || !description.value || !deadline.value || !categoryId.value || !priority.value){
-                Notification().showMessage("error", "All fields must be filled in!");
+                Notification().showMessage("warning", "All fields must be filled in!");
                 return;
             }
 
@@ -167,7 +167,9 @@ export class View {
             tabs.insertAdjacentHTML("afterBegin", newTabs);
 
             newTabs = `<nav class="task-article__navigation tabs tabs_extended"> ${newTabs} </nav>`;
-            filters.insertAdjacentHTML("afterEnd", newTabs);
+            if(filters) {
+                filters.insertAdjacentHTML("afterEnd", newTabs);
+            }
 
 
             for (let i = 0; i < tasks.length; i++) {
@@ -333,8 +335,7 @@ export class View {
 
         /*---------------Get tasks for today-------------------------------*/
 
-        let todaysData = this.controller.receiveData({isActive: activePage, startDate: true});
-
+        let todaysData = this.controller.receiveData({startDate: true, isActive: activePage});
 
         if(todaysData.length === 0) todayTasksList.innerHTML = PushFirstTask();
         else{
@@ -344,6 +345,8 @@ export class View {
         }
 
         /*-------------------Get other tasks--------------------------------------*/
+
+        if(activePage === false) return; //it's needed to not draw global list for the done tasks tab
 
         let globalDataObj = {
             startDate: null,

@@ -50,6 +50,8 @@ import jQuery from "jquery";
          * @memberOf TooltipPlugin
          * */
         function hideTooltip() {
+            let block = $(".tooltip");
+
             block.removeClass("tooltip_big");
             block.css("display", "none");
         }

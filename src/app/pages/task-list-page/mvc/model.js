@@ -110,9 +110,22 @@ export class Model{
         if(filter){
             for(let key in filter){
                 requiredData = requiredData.filter((task) => {
+
+                    if(key === "startDate"){
+                        let date = new Date();
+
+                        if(task.startDate){
+
+                            let taskDate = new Date(task.startDate);
+
+                            return filter[key] === true ? date.getDate() === taskDate.getDate() : date.getDate() !== taskDate.getDate();
+                        }
+                    }
+
                     if(key === "isActive" || typeof task[key] === "string" && typeof filter[key] === "string"){
                         return filter[key] == task[key];
                     }
+
                     return !!filter[key] == !!task[key];
                 });
             }
