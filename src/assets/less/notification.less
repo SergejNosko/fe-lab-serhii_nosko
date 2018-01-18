@@ -4,7 +4,6 @@
   position: fixed;
   bottom: 20px;
   right: calc(~"(100% - 1185px) / 2");
-  z-index: 100;
 
   @media all and @laptop{
     margin: 0 auto;
@@ -85,6 +84,7 @@
 @keyframes showMessage {
   0%{
     opacity: 0;
+    z-index: 100;
   }
   25%{
     opacity: 1;
@@ -103,5 +103,6 @@
   }
   100%{
     opacity: 0;
+    z-index: 1;
   }
 }
