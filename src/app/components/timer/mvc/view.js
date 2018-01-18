@@ -132,7 +132,7 @@ export class View {
             time =  this.settings[2];
         }
 
-        return time * 2;
+        return time * 60;
     }
 
     /**

@@ -15,9 +15,11 @@
     "firebase-tools": "^3.15.4",
     "highcharts": "^6.0.4",
     "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
     "jsdoc": "^3.5.5",
     "jsdocs": "^1.0.0",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "webpack-jquery-ui": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
