@@ -168,7 +168,7 @@ export class View {
         const timerButtons = document.getElementById("timer-buttons");
 
         if (overflow === "visible") {
-            timerButtons.innerHTML += "<a href=\"#report\" class=\"main-content__back-button icon-arrow-right\" data-title=\"Go to Global List\"></a>";
+            timerButtons.innerHTML = "<a href=\"#task-list\" class=\"main-content__back-button icon-arrow-left\" data-title=\"Go to Global List\"></a><a href=\"#report\" class=\"main-content__back-button icon-arrow-right\" data-title=\"Go to Global List\"></a>";
         }
 
         header.style.visibility = overflow;
