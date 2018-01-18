@@ -1,14 +1,16 @@
 import Handlebars from "handlebars/runtime";
 
 Handlebars.registerHelper("$headerTitle", (hash) => {
+    let title = hash.substring(1);
+
     if(hash === "#" || hash === "#task-list" || hash.id === "root"){
-        return `Daily Task List 
+        title = `Daily Task List 
                     <a href="#" data-query="add" 
                         class="main-header__link main-header__add-button" 
                         data-title="Add task">+</a>`;
     }
 
-    return hash.substring(1);
+    return title;
 });
 
 Handlebars.registerHelper("$menuItems", (hash) => {

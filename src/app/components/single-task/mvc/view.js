@@ -101,7 +101,7 @@ export class View {
 
         if(target.parentElement.dataset.id == data.id && target.dataset.query === "timer"){
 
-            MainHeader({hash: "timer"});
+            MainHeader({hash: "#timer"});
             EventBus.dispatch("#timer", data);
         }
     }

@@ -76,7 +76,7 @@ export class View {
         if (isFinished) {
             timer.innerHTML = TimerCompleted(data);
             this.viewController("visible");
-            this.controller.fillRemained();
+            this.controller.fillRemained();/*???????*/
         }
         else {
             this.currentState = "break";
@@ -121,15 +121,18 @@ export class View {
      * @return {number} iteration time
      */
     setIterationTime() {
+        let time;
         if (this.currentState === "process") {
-            return this.settings[0];
+            time =  this.settings[0];
         }
         else {
             if (this.settings[4] === this.settings[1]) {
-                return this.settings[3];
+                time = this.settings[3];
             }
-            return this.settings[2];
+            time =  this.settings[2];
         }
+
+        return time * 2;
     }
 
     /**
