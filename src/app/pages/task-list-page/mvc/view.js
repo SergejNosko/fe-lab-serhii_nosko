@@ -208,7 +208,6 @@ export class View {
                 break;
             }
             case "closeNote": {
-                target.parentElement.offsetHeight;
                 target.parentElement.style.animation = "hide .1s ease";
                 break;
             }
@@ -335,7 +334,14 @@ export class View {
 
         /*---------------Get tasks for today-------------------------------*/
 
-        let todaysData = this.controller.receiveData({startDate: true, isActive: activePage});
+        let todaysData;
+
+        if(activePage === false){
+            todaysData = this.controller.receiveData({isActive: activePage});
+        }
+        else{
+            todaysData = this.controller.receiveData({startDate: true, isActive: activePage});
+        }
 
         if(todaysData.length === 0) todayTasksList.innerHTML = PushFirstTask();
         else{
@@ -346,7 +352,7 @@ export class View {
 
         /*-------------------Get other tasks--------------------------------------*/
 
-        if(activePage === false) return; //it's needed to not draw global list for the done tasks tab
+        if(activePage === false) return; //it's needed not to draw global list for the done tasks tab
 
         let globalDataObj = {
             startDate: null,
