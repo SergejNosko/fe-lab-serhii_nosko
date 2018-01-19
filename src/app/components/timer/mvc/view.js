@@ -22,8 +22,8 @@ export class View {
     }
 
     /**
-     * Calculate how much time is left to finish the stage
-     */
+   * Calculate how much time is left to finish the stage
+   */
     timeLeft(title) {
         const minutes = Math.floor((this.totalTime) / 60),
             seconds = this.totalTime % 60;
@@ -39,17 +39,21 @@ export class View {
     }
 
     /**
-     * Starts the timer animation and change the timer state
-     */
+   * Starts the timer animation and change the timer state
+   */
     animationStart() {
         this.totalTime = this.setIterationTime();
+
+        let pomodoroLength = this.controller.getPomodorosLength();
 
         const timerTitle = document.querySelector("[data-title=timer]");
         const timerPomodoros = document.getElementById("timer-pomodoros");
 
-        timerPomodoros.innerHTML += `<li class="timer__pomodoros-item">
+        if(pomodoroLength !== 5) {
+            timerPomodoros.innerHTML += `<li class="timer__pomodoros-item">
         <div class="timer__pomodoros-button timer__pomodoros-button_process icon-add" data-query="addPomodoro"></div>
       </li>`;
+        }
 
         this.timeLeft(timerTitle);
         this.totalTime--;
@@ -61,8 +65,8 @@ export class View {
     }
 
     /**
-     * Ends the timer animation and change the timer state
-     */
+   * Ends the timer animation and change the timer state
+   */
     animationEnd(status) {
         clearInterval(this.timer);
 
@@ -76,7 +80,14 @@ export class View {
         if (isFinished) {
             timer.innerHTML = TimerCompleted(data);
             this.viewController("visible");
-            this.controller.fillRemained();/*???????*/
+            this.controller.fillRemained();
+
+            let isSuccess = this.controller.isTaskSuccess();
+
+            if(!isSuccess){
+                this.controller.setData({priority: "5"});
+            }
+
         }
         else {
             this.currentState = "break";
@@ -88,8 +99,8 @@ export class View {
     }
 
     /**
-     * Fires when timer animation ends and currentState is break
-     */
+   * Fires when timer animation ends and currentState is break
+   */
     animationBreakEnd() {
         clearInterval(this.timer);
 
@@ -103,8 +114,8 @@ export class View {
     }
 
     /**
-     * Check the current timer iteration, set it to 1 if iteration is equal to settings work iteration property  or increase it by 1 if not
-     */
+   * Check the current timer iteration, set it to 1 if iteration is equal to settings work iteration property  or increase it by 1 if not
+   */
     setCurrentIteration() {
         if (this.settings[4] === this.settings[1]) {
             this.settings[4] = 1;
@@ -117,27 +128,27 @@ export class View {
     }
 
     /**
-     * Returns an iteration time according to currentState and currentIteration
-     * @return {number} iteration time
-     */
+   * Returns an iteration time according to currentState and currentIteration
+   * @return {number} iteration time
+   */
     setIterationTime() {
         let time;
         if (this.currentState === "process") {
-            time =  this.settings[0];
+            time = this.settings[0];
         }
         else {
             if (this.settings[4] === this.settings[1]) {
                 time = this.settings[3];
             }
-            time =  this.settings[2];
+            time = this.settings[2];
         }
 
         return time * 60;
     }
 
     /**
-     * Sets animation duration property to the timer and define animationstart and animationend events
-     */
+   * Sets animation duration property to the timer and define animationstart and animationend events
+   */
     setAnimationProperties() {
         const progress = document.querySelector("[data-anim~=\"left\"]"),
             progressHalf = document.querySelector("[data-anim~=\"right\"]"),
@@ -160,9 +171,9 @@ export class View {
     }
 
     /**
-     * Show or hide some elements on the page according to the parameter
-     * @param {string} overflow - option that tells the function to hide or show some elements on the page
-     */
+   * Show or hide some elements on the page according to the parameter
+   * @param {string} overflow - option that tells the function to hide or show some elements on the page
+   */
     viewController(overflow) {
         const header = document.getElementById("main-header");
         const timerButtons = document.getElementById("timer-buttons");
@@ -176,8 +187,8 @@ export class View {
     }
 
     /**
-     * Event handler that fires when user clicks on some elements on the page and reacts properly on these actions
-     */
+   * Event handler that fires when user clicks on some elements on the page and reacts properly on these actions
+   */
     handleStartTimer(e) {
         const target = e.target;
 
@@ -218,6 +229,16 @@ export class View {
             const isAdded = this.controller.addPomodoro();
 
             if (isAdded) {
+                e.preventDefault();
+
+                let pomodoroLength = this.controller.getPomodorosLength();
+
+                if(pomodoroLength === 5){
+                    let addButton = document.querySelector("[data-query=\"addPomodoro\"]");
+
+                    addButton.style.display = "none";
+                }
+
                 const timerPomodoros = document.getElementById("timer-pomodoros");
                 const li = document.createElement("li");
 
@@ -233,15 +254,11 @@ export class View {
     }
 
     /**
-     * Render the timer template
-     */
+   * Render the timer template
+   */
     render() {
         const timer = document.getElementById("timer");
         const data = this.controller.getData();
-
-        /*if(!data.startDate){
-            this.controller.setData({startDate: Date.now()});
-        }*/
 
         Firebase.getData("settings").then((settings) => {
             if (data.estimationTotal === data.estimationUsed) {

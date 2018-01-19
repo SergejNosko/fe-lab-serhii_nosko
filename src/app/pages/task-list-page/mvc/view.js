@@ -243,9 +243,13 @@ export class View {
             case "select": {
                 e.preventDefault();
                 let lists = this.findList(target);
+
                 for (let i = 0; i < lists.length; i++) {
                     let children = lists[i].children;
+
                     for (let j = 0; j < children.length; j++) {
+                        if(children[j].tagName !== "LI") return;
+
                         if (target.dataset.select === "select") {
                             if (children[j].classList.contains("single-task__remove-button_active") === false) {
                                 children[j].children[0].classList.add("single-task__remove-button_active");

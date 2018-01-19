@@ -1,4 +1,3 @@
-import {EventBus} from "../../../services/eventBus";
 import Firebase from "../../../services/firebase";
 import Notification from "../../../components/notifications/index";
 
@@ -21,6 +20,18 @@ export class Model{
                     status: "none"
                 };
         }
+    }
+
+    getPomodorosLength(){
+        return this.data.pomodoros.length;
+    }
+
+    isTaskSuccess(){
+        let successData = this.data.pomodoros.reduce((prev, cur) => {
+            return cur.status !== "done" ? prev++ : prev;
+        }, 0);
+
+        return successData >= Math.round(this.data.pomodoros.length);
     }
 
     /**
@@ -107,6 +118,6 @@ export class Model{
      */
     setData(data){
         this.data = {...this.data, ...data};
-        EventBus.dispatch("setData", this.data);
+        //EventBus.dispatch("setData", this.data);
     }
 }

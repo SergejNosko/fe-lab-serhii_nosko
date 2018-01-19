@@ -19,6 +19,14 @@ export class Controller{
         return this.model.addPomodoro();
     }
 
+    isTaskSuccess(){
+        return this.model.isTaskSuccess();
+    }
+
+    getPomodorosLength(){
+        return this.model.getPomodorosLength();
+    }
+
     /**
    * Calls the model fillRemainedPomodoros method
    */

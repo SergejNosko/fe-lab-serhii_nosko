@@ -19,7 +19,7 @@ import jQuery from "jquery";
             for(let key in data){
                 let value = data[key];
 
-                if(typeof value === "number") value += ""; /* Converting to string */
+                if(typeof value === "number") value += ""; /* Converting to a string */
 
                 dataArr.push(value);
             }
