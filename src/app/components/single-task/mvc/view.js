@@ -106,7 +106,7 @@ export class View {
 
             if(!data.startDate || todaysDate.getDate() !== new Date(data.startDate).getDate()){
                 e.preventDefault();
-                //Notification().showMessage("warning", "Task has to be in the daily list!");
+                Notification().showMessage("warning", "Task has to be in the daily list!");
                 return;
             }
 

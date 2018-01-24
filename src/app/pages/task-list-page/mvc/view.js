@@ -67,21 +67,23 @@ export class View {
             };
             this.controller.sendData(newTask);
             this.render(this.controller.receiveData());
+
         }
     }
 
     hangTabs(){
-        $("a").tooltip();
-
-        $("[data-priority]").customTab({self: this, params: [null], callback: this.render});
-        $("[data-is-active]").customTab({self: this, params: [null, 0], callback: this.render});
-
         $( function() {
             $("[data-name=deadline]").datepicker({
                 dateFormat: "MM d, yy",
                 minDate: new Date()
             });
         });
+
+        $("a").tooltip();
+
+        $("[data-priority]").customTab({self: this, params: [null], callback: this.render});
+        $("[data-is-active]").customTab({self: this, params: [null, 0], callback: this.render});
+
     }
 
     /**

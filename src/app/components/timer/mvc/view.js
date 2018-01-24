@@ -102,6 +102,7 @@ export class View {
    * Fires when timer animation ends and currentState is break
    */
     animationBreakEnd() {
+
         clearInterval(this.timer);
 
         const buttonsContainer = document.querySelector("[data-buttons=\"timer-break\"]");
@@ -192,7 +193,9 @@ export class View {
     handleStartTimer(e) {
         const target = e.target;
 
-        if (!target.dataset.query) return;
+        const data = this.controller.getData();
+
+        if (!target.dataset.query || target.dataset.unique !== data.unique) return;
 
         const timerData = this.controller.getData();
         const timer = document.getElementById("timer");
