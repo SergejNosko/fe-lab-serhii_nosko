@@ -27,7 +27,7 @@ import jQuery from "jquery";
             settings.params.push(dataArr[0]);
 
             settings.callback.apply(settings.self, settings.params);
-
+            //e.target.classList.add("tabs__tab-link_active");
         });
 
         return this;

@@ -12,6 +12,9 @@ import {EventBus} from "../../../services/eventBus";
 import Notification from "../../../components/notifications/index";
 import uuid from "uuid/v1";
 import $ from "jquery";
+import "jquery-ui/ui/widgets/datepicker";
+import "webpack-jquery-ui/css";
+import "jquery-ui/themes/base/base.css";
 
 /**
  * @module TaskListView
@@ -26,6 +29,7 @@ export class View {
 
         document.body.addEventListener("click", this.clickHandler.bind(this));
         EventBus.add("stateChange", this.render, this);
+        EventBus.add("HangTabs", this.hangTabs, this);
     }
 
     /**
@@ -64,6 +68,20 @@ export class View {
             this.controller.sendData(newTask);
             this.render(this.controller.receiveData());
         }
+    }
+
+    hangTabs(){
+        $("a").tooltip();
+
+        $("[data-priority]").customTab({self: this, params: [null], callback: this.render});
+        $("[data-is-active]").customTab({self: this, params: [null, 0], callback: this.render});
+
+        $( function() {
+            $("[data-name=deadline]").datepicker({
+                dateFormat: "MM d, yy",
+                minDate: new Date()
+            });
+        });
     }
 
     /**
@@ -391,8 +409,6 @@ export class View {
             this.renderTaskList(root, data, isFilter, page);
         }
 
-        $("a").tooltip();
-        $("[data-priority]").customTab({self: this, params: [null], callback: this.render});
-        $("[data-is-active]").customTab({self: this, params: [null, 0], callback: this.render});
+        this.hangTabs();
     }
 }

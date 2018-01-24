@@ -1,4 +1,5 @@
 import Template from "./template/template.hbs";
+import {EventBus} from "../../services/eventBus";
 
 /**
  * @module Notification
@@ -17,6 +18,8 @@ export default function () {
             if(notification) notification.remove();
 
             root.innerHTML += Template({type: type, message: message});
+
+            EventBus.dispatch("HangTabs");
         }
     };
 }
