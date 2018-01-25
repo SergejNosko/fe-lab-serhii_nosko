@@ -28,7 +28,21 @@
 
   }
 
-
+  &__trash-number{
+    top: 7px;
+    left: 7px;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: @tomato;
+    .font(700, 14px, Helvetica);
+    color: #ffffff;
+    border-radius: 50%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__navigation{
     margin-bottom: 21px;
@@ -58,6 +72,10 @@
 
     @media all and @laptop{
       font-size: 35px;
+    }
+
+    &_trash{
+      position: relative;
     }
 
     &:hover{

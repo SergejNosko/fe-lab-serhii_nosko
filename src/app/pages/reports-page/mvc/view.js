@@ -266,7 +266,7 @@ export class View {
 
             chart.tooltip.formatter = function () {
                 return `<span class="report__tooltip-title">${this.series.name}</span><br>
-                  <span class="report__tooltip-span">${tooltip === "pomodoro" ? "Pomodoros" : "Tasks"}</span>: ${this.series.data[0].y}<br/>`;
+                  <span class="report__tooltip-span">${tooltip === "pomodoro" ? "Pomodoros" : "Tasks"}</span>: ${this.y}<br/>`;
             };
 
             return this.drawWeeklyChart(data);
