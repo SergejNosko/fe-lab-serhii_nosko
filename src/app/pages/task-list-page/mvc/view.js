@@ -30,6 +30,7 @@ export class View {
         document.body.addEventListener("click", this.clickHandler.bind(this));
         EventBus.add("stateChange", this.render, this);
         EventBus.add("HangTabs", this.hangTabs, this);
+        EventBus.add("setRemovedTasksNumber", this.setRemovedTasksNumber, this);
     }
 
     /**
@@ -84,6 +85,21 @@ export class View {
         $("[data-priority]").customTab({self: this, params: [null], callback: this.render});
         $("[data-is-active]").customTab({self: this, params: [null, 0], callback: this.render});
 
+    }
+
+    setRemovedTasksNumber(){
+        let number = this.controller.getRemovedTasksLength();
+
+        const requiredElement = document.getElementById("trash-number");
+
+        if(number){
+            requiredElement.style.display = "flex";
+        }
+        else {
+            requiredElement.style.display = "none";
+        }
+
+        requiredElement.innerText = number;
     }
 
     /**
@@ -271,19 +287,20 @@ export class View {
                         if(children[j].tagName !== "LI") return;
 
                         if (target.dataset.select === "select") {
-                            if (children[j].classList.contains("single-task__remove-button_active") === false) {
+                            if (children[j].children[0].classList.contains("single-task__remove-button_active") === false) {
                                 children[j].children[0].classList.add("single-task__remove-button_active");
-                                this.controller.setRemovedTask(+children[j].dataset.id, "select");
+                                this.controller.setRemovedTask(children[j].dataset.id, "select");
                             }
                         }
                         else {
-                            if (children[j].classList.contains("single-task__remove-button_active") === false) {
+                            if (children[j].children[0].classList.contains("single-task__remove-button_active") === true) {
                                 children[j].children[0].classList.remove("single-task__remove-button_active");
-                                this.controller.setRemovedTask(+children[j].dataset.id, "deselect");
+                                this.controller.setRemovedTask(children[j].dataset.id, "deselect");
                             }
                         }
                     }
                 }
+                this.setRemovedTasksNumber();
                 break;
             }
             default: {

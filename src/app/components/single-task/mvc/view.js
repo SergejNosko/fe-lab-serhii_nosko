@@ -97,6 +97,7 @@ export class View {
         if(target.parentElement.dataset.id == data.id && target.parentElement.dataset.unique == this.uuid && target.dataset.query === "addRemove"){
             this.controller.setTaskToRemove();
             target.classList.toggle("single-task__remove-button_active");
+            EventBus.dispatch("setRemovedTasksNumber");
         }
 
         if(target.parentElement.dataset.id == data.id && target.dataset.query === "timer"){
