@@ -44,6 +44,15 @@
     .radio:focus + .radio__label .radio__inner-round:before{
       background: extract(@color-schema, @i);
     }
+
+    .radio:checked + .radio__label:before {
+      background: extract(@color-schema, @i);
+      border-color: extract(@color-schema, @i);
+    }
+
+    .radio:checked + .radio__label .radio__inner-round:before{
+      background: extract(@color-schema, @i);
+    }
   }
 
   .@{parent-selector} .@{main-selector}:nth-of-type(@{i}):hover .@{alt-selector} when (@hover = true){
