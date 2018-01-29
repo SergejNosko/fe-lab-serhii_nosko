@@ -1,7 +1,10 @@
 import Handlebars from "handlebars/runtime";
 
-Handlebars.registerHelper("$classHelper", (priority, category, type, isActive) => {
+Handlebars.registerHelper("$classHelper", (priority, category, type, isActive, deadline) => {
     let classString = "single-task ";
+
+    let currentDate = new Date();
+    let taskDate = new Date(deadline);
 
     switch (type){
     case "global": classString += "tasks-section__list-item "; break;
@@ -16,6 +19,8 @@ Handlebars.registerHelper("$classHelper", (priority, category, type, isActive) =
     }
 
     classString += "single-task_" + category;
+
+    if(currentDate > taskDate || currentDate.getDate() > taskDate.getDate()) classString += " single-task_overdue";
 
     if(isActive === false) classString += " single-task_done";
 

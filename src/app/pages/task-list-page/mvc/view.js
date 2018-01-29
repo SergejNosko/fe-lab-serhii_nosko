@@ -253,6 +253,7 @@ export class View {
             }
             case "close": {
                 let parentModal = target.closest(".modal-window");
+                parentModal.classList.remove("modal-window__active");
                 this.showModal(query, parentModal);
                 break;
             }
@@ -393,7 +394,7 @@ export class View {
 
         /*-------------------Get other tasks--------------------------------------*/
 
-        if(activePage === false) return; //it's needed not to draw global list for the done tasks tab
+        if(activePage === false) return; //it's needed not to draw the global list for the done tasks tab
 
         let globalDataObj = {
             startDate: null,

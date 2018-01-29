@@ -13,6 +13,24 @@ export function MainHeader(data) {
     const mainHeader = document.getElementById("main-header");
 
     mainHeader.innerHTML = Template(data);
+
+    let hash = window.location.hash;
+
+    if(hash === "") {
+        const tabs = document.querySelector("[data-query='select']");
+
+        if(tabs){
+            let removeButton = document.querySelector("[data-hash='#remove']");
+
+            removeButton.classList.add("main-header__link_active");
+        }
+        else {
+            hash = "#task-list";
+        }
+    }
+    const targetItem = document.querySelector(`[data-hash='${hash}']`);
+
+    if(targetItem) targetItem.classList.add("main-header__link_active");
 }
 
 /**
