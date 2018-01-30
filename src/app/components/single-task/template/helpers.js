@@ -20,7 +20,7 @@ Handlebars.registerHelper("$classHelper", (priority, category, type, isActive, d
 
     classString += "single-task_" + category;
 
-    if(currentDate > taskDate || currentDate.getDate() > taskDate.getDate()) classString += " single-task_overdue";
+    if(currentDate.getDate() > taskDate.getDate() && currentDate > taskDate) classString += " single-task_overdue";
 
     if(isActive === false) classString += " single-task_done";
 

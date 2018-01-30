@@ -249,6 +249,7 @@ export class View {
      * */
     renderRequiredChart(type, tooltip){
         const data = this.controller.receiveData(type, tooltip);
+        console.log(type, tooltip);
         let chart;
         switch (type){
         case "day": {
@@ -284,6 +285,14 @@ export class View {
         }
     }
 
+    setActiveLink(type, tooltip){
+        const typeLink = document.querySelector(`[data-type=${type}]`);
+        const tooltipLink = document.querySelector(`[data-tooltip=${tooltip}]`);
+
+        typeLink.classList.add("report__link_active");
+        tooltipLink.classList.add("report__link_active");
+    }
+
     /**
      * Renders the report template
      * @param {string} type - type of the chart
@@ -298,6 +307,8 @@ export class View {
         if(tooltip) this.tooltipType = tooltip;
 
         root.innerHTML = Template();
+
+        this.setActiveLink(chartType, tooltipType);
 
         const chart = this.renderRequiredChart(chartType, tooltipType);
 

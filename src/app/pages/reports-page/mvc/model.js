@@ -42,7 +42,7 @@ export class Model{
                 const taskDate = new Date(item.startDate);
                 const currentDate = taskDate.getDate();
 
-                return currentDate >= currentWeekStart.getDate() && currentDate <= currentWeekEnd.getDate();
+                return currentDate >= currentWeekStart.getDate();
             })
             .reduce((prev, item) => {
                 const taskDay = new Date(item.startDate).getDay();
