@@ -149,7 +149,7 @@ export class View {
         }
 
         chart.xAxis.labels.style.fontSize = 11;
-        chart.chart.width = 700;
+        chart.chart.width = 640;
         chart.plotOptions.series.groupPadding = 0;
         chart.plotOptions.column = {
             stacking: "normal"
@@ -249,7 +249,6 @@ export class View {
      * */
     renderRequiredChart(type, tooltip){
         const data = this.controller.receiveData(type, tooltip);
-        console.log(type, tooltip);
         let chart;
         switch (type){
         case "day": {
