@@ -1,0 +1,14 @@
+<article class="main-content__article timer">
+    <h2 class="timer__title">{{title}}</h2>
+  <h3 class="timer__sub-title">{{description}}</h3>
+
+  {{{$estimations estimationTotal pomodoros}}}
+
+    <section class="timer__buttons timer__body timer__body_{{categoryId}}">
+        <h3 class="timer__body-title">Let's do it!</h3>
+    </section>
+
+    <div class="timer__buttons button-container button-container_timer">
+        <button class="button-container__item button-container__item_green timer__buttons_start" data-unique={{unique}} data-query="timerStart">Start</button>
+    </div>
+</article>

@@ -1,0 +1,64 @@
+.opacity (@opacity: 0.5) {
+  -webkit-opacity: @opacity;
+  -moz-opacity: @opacity;
+  opacity: @opacity;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.font(@weight, @size, @font-name) {
+  font: @weight @size @font-name, sans-serif;
+}
+
+
+.generate-color(@i: 1, @parent-selector: categories, @main-selector: categories__list-item, @alt-selector: categories__item-point, @color-schema: @categories-colors, @hover: false) when (@i =< 5) {
+  .@{parent-selector} .@{main-selector}:nth-of-type(@{i}) .@{alt-selector} when(@hover = false) {
+    background: extract(@color-schema, @i);
+  }
+
+  .@{parent-selector} .@{main-selector}:nth-of-type(@{i}):before when(@alt-selector = '') {
+    background: extract(@color-schema, @i);
+  }
+
+  .@{parent-selector} .@{main-selector}:nth-of-type(@{i}) when(@alt-selector = 'radio') {
+    .radio:focus + .radio__label:before {
+      background: extract(@color-schema, @i);
+      border-color: extract(@color-schema, @i);
+    }
+
+    .radio + .radio__label:hover:before {
+      background: extract(@color-schema, @i);
+      border-color: extract(@color-schema, @i);
+    }
+
+    .radio:focus + .radio__label .radio__inner-round:before{
+      background: extract(@color-schema, @i);
+    }
+
+    .radio:checked + .radio__label:before {
+      background: extract(@color-schema, @i);
+      border-color: extract(@color-schema, @i);
+    }
+
+    .radio:checked + .radio__label .radio__inner-round:before{
+      background: extract(@color-schema, @i);
+    }
+  }
+
+  .@{parent-selector} .@{main-selector}:nth-of-type(@{i}):hover .@{alt-selector} when (@hover = true){
+    background: extract(@color-schema, @i);
+  }
+
+
+  .generate-color(@i + 1, @parent-selector, @main-selector, @alt-selector, @color-schema, @hover);
+}

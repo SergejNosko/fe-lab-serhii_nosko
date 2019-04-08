@@ -1,0 +1,64 @@
+.radio {
+  vertical-align: top;
+  width: 17px;
+  height: 17px;
+  margin: 0 3px 0 0;
+}
+.radio + .radio__label {
+  cursor: pointer;
+}
+.radio:not(checked) {
+  position: absolute;
+  opacity: 0;
+}
+.radio:not(checked) + .radio__label {
+  position: relative;
+  padding: 0 0 0 27px;
+}
+.radio:not(checked) + .radio__label:before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  border: 1px solid @nepal;
+  border-radius: 50%;
+  background: @nepal;
+  z-index: 2;
+}
+.radio:not(checked) + .radio__label .radio__inner-round {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all .2s;
+  z-index: 5;
+}
+
+.radio:not(checked) + .radio__label .radio__inner-round:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  transition: all .2s;
+  z-index: 10;
+}
+
+.radio:focus + .radio__label .radio__inner-round{
+  background: @background-color;
+  opacity: 1;
+}
+
+.radio:checked + .radio__label .radio__inner-round{
+  background: @background-color;
+  opacity: 1;
+}
+
+

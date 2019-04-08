@@ -1,0 +1,69 @@
+.button-container{
+  display: flex;
+  justify-content: center;
+
+  &_timer{
+    .button-container__item{
+      padding: 15px 40px;
+
+      @media all and @laptop{
+        padding: 30px 125px;
+      }
+    }
+  }
+
+  &__item{
+    .font(700, 18px, PTSans);
+    color: @white;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all ease .3s;
+
+    @media all and @laptop{
+      padding: 30px 75px;
+      font-size: 23px;
+    }
+
+    a{
+      color: #fff;
+    }
+
+    &_green{
+      background: @meadow;
+
+      &:hover{
+        background: @meadow-dark;
+      }
+
+      &:active{
+        background: @deep-sea;
+      }
+    }
+
+    &_blue{
+      background: @malibu;
+
+      &:hover{
+        background: @curious-blue;
+      }
+
+      &:active{
+        background: @pelorous;
+      }
+    }
+
+    &_red{
+      background: @tomato;
+
+      &:hover{
+        background: @dark-coral;
+      }
+
+      &:active{
+        background: @mahogany;
+      }
+    }
+  }
+}

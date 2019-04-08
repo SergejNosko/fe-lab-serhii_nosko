@@ -1,0 +1,13 @@
+<li class="{{$classHelper priority categoryId type isActive deadline}}" data-id={{id}} data-unique={{unique}}>
+    <button class="single-task__remove-button" data-query="addRemove"></button>
+    <div class="single-task__time">{{{$dateHelper deadline type}}}</div>
+    <div class="single-task__description">
+        <h3 class="single-task__title">{{title}}</h3>
+        <p class="single-task__text">{{description}}</p>
+    </div>
+    <div class="single-task__link-container">
+        {{{$buttonsHelper type}}}
+        <a href="#" data-query="edit" class="single-task__edit-link icon-edit" data-title="Edit task"></a>
+    </div>
+    {{{$estimationHelper estimationTotal estimationUsed type}}}
+</li>

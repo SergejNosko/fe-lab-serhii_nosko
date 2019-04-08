@@ -1,0 +1,143 @@
+.main-header{
+  margin: auto;
+  padding: 56px 0 25px 0;
+  max-width: 1185px;
+  .flex-column;
+
+  @media all and @laptop{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 30px 25px;
+  }
+
+  &__title{
+    .font(500, 28px, Roboto);
+    color: @white;
+    text-align: center;
+    order: 1;
+
+    @media all and @laptop{
+      font-size: 32px;
+      order: 0;
+    }
+
+    &::first-letter{
+      text-transform: uppercase;
+    }
+
+  }
+
+  &__trash-number{
+    top: 7px;
+    left: 7px;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: @tomato;
+    .font(700, 14px, Helvetica);
+    color: #ffffff;
+    border-radius: 50%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__navigation{
+    margin-bottom: 21px;
+
+    @media all and @laptop{
+      margin-bottom: 0;
+    }
+  }
+
+  &__list{
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__list-item{
+    margin-left: 35px;
+
+    &_add{
+      display: none;
+    }
+  }
+
+  &__link{
+    color: @nepal;
+    transition: all ease .3s;
+
+    @media all and @laptop{
+      font-size: 35px;
+    }
+
+    &_trash{
+      position: relative;
+    }
+
+    &:hover{
+      color: @spray;
+    }
+
+    &_active{
+      color: @white;
+
+      &:hover{
+        color: @white;
+      }
+    }
+  }
+
+  &__add-button{
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  &__logo{
+    display: none;
+    width: 250px;
+    height: 80px;
+  }
+
+  &_fixed{
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px calc(~"(100% - 1185px) / 2 + 5");
+    background: @background-color;
+    width: 100%;
+    max-width: 100%;
+    z-index: 10;
+    box-shadow: 0 1px 20px 1px rgba(0, 0, 0, 0.4);
+
+    .main-header__logo{
+      display: block;
+    }
+
+    .main-header__title{
+      display: none;
+    }
+
+    .main-header__navigation{
+      margin-bottom: 0;
+    }
+
+    .main-header__list-item_add{
+      display: block;
+    }
+
+    & + #root{
+
+      margin-top: 150px;
+    }
+  }
+
+
+}

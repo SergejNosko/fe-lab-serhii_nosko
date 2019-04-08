@@ -1,0 +1,237 @@
+.main-content{
+  position: relative;
+
+
+  &__container{
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    .flex-between;
+    padding: 0 35px;
+  }
+
+  &__back-button{
+    color: @nepal;
+    font-size: 42px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all ease .3s;
+
+    @media all and @laptop{
+      width: 35px;
+      height: 65px;
+    }
+
+    &:hover{
+      color: @spray;
+    }
+
+    &_right{
+      right: 0;
+    }
+  }
+}
+
+[data-anim~=base] {
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function:linear;
+}
+
+.timer{
+  .flex-column;
+  align-items: center;
+
+  &__title{
+    .font(400, 30px, Roboto);
+    color: @white;
+    margin-bottom: 35px;
+  }
+
+  &__sub-title{
+    .font(400, 17px, Roboto);
+    color: @white;
+    margin-bottom: 35px;
+  }
+
+  &__pomodoros{
+    list-style-type: none;
+    display: flex;
+    margin-bottom: 60px;
+
+    &-item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 25px;
+      width: 25px;
+      height: 23px;
+      margin: 0 5px;
+      border: none;
+      cursor: pointer;
+      color: #ffffff;
+
+      &_button{
+        width: 25px;
+        height: 23px;
+      }
+
+      &_none{
+        background: url("/empty-tomato.svg") no-repeat 50% 50%;
+      }
+
+      &_finished{
+        background: url("/fill-tomato.svg") no-repeat 50% 50%;
+      }
+
+      &_failed{
+        background: url("/tomato-failed.svg") no-repeat 50% 50%;
+      }
+
+      &_process{
+        background: none;
+        color: @nepal;
+        transition: all ease .3s;
+
+        &:hover{
+          color: @spray;
+        }
+
+        &:active{
+          color: @spray;
+        }
+      }
+    }
+  }
+
+  &__body{
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid;
+    border-radius: 50%;
+    margin-bottom: 70px;
+    background: @background-color;
+    overflow: hidden;
+    box-shadow: 0 5px 40px 2px rgba(0, 0, 0, 0.4);
+    position: relative;
+
+    &_work{
+       border-color: @work;
+    }
+
+    &_education{
+      border-color: @education;
+    }
+
+    &_hobby{
+      border-color: @hobby;
+    }
+
+    &_sport{
+      border-color:  @sport;
+    }
+
+    &_other{
+      border-color: @other;
+    }
+
+    &-wrapper{
+      width: 240px;
+      height: 240px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid @background-color;
+      clip: rect(0px, 250px, 250px, 125px);
+      z-index: 5;
+
+      &[data-anim~=wrapper]{
+        animation-duration: 0.01s;
+        animation-delay: 0.01s;
+        animation-name: close-wrapper;
+      }
+    }
+
+    &-progress{
+      width: 150px;
+      height: 150px;
+      background: @background-color;
+      border: 40px solid @nepal;
+      position: absolute;
+      border-radius: 50%;
+      clip: rect(0px, 115px, 240px, 0px);
+
+      &[data-anim~=left] {
+        animation-duration: 0.01s;
+        animation-name: left-spin;
+      }
+
+      &[data-anim~=right] {
+        animation-duration: 0.01s;
+        animation-name: right-spin;
+      }
+    }
+
+    &-title{
+      width: 150px;
+      height: 150px;
+      box-sizing: border-box;
+      .flex-column;
+      justify-content: center;
+      .font(400, 26px, PTSans);
+      color: @white;
+      background: @background-color;
+      z-index: 10;
+      text-align: center;
+      border-radius: 50%;
+      position: absolute;
+
+      &-number{
+        font-size: 100px;
+        line-height: 80px;
+      }
+    }
+
+    &-title-start{
+      width: 150px;
+      height: 150px;
+      box-sizing: border-box;
+      .font(400, 26px, PTSans);
+      color: @white;
+      z-index: 10;
+      position: absolute;
+    }
+  }
+}
+
+@keyframes right-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes left-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes close-wrapper {
+  to {
+    clip: rect(auto, auto, auto, auto);
+  }
+}

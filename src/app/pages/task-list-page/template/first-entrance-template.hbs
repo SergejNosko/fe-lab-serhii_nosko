@@ -1,0 +1,203 @@
+<article class="modals-article" id="modals-article">
+    <section class="modals-article__item modal-window modal-window_remove" id="remove-modal">
+        <div class="modal-window__top-buttons">
+            <button class="modal-window__button icon-close" data-query="close"></button>
+
+        </div>
+
+        <h2 class="modal-window__title">Remove Task</h2>
+
+        <p class="modal-window__description">
+            Are you sure you want <br> to remove selected <br> task(s)?
+        </p>
+
+        <div class="button-container">
+            <button class="button-container__item button-container__item_blue" data-query="close">Cancel</button>
+            <button class="button-container__item button-container__item_red" data-query="submitRemove">Remove</button>
+        </div>
+    </section>
+
+    <section class="modals-article__item modal-window" id="add-modal">
+        <form action="#" class="modals-article__form">
+            <div class="modal-window__top-buttons">
+                <button class="modal-window__button icon-check" type="button" data-query="addTask"></button>
+                <button class="modal-window__button icon-close" type="button" data-query="close"></button>
+            </div>
+
+            <h2 class="modal-window__title">Add Task</h2>
+
+            <label class="modal-window__label">
+                Title
+                <input type="text" class="modal-window__text" placeholder="Add title here" data-name="title">
+            </label>
+
+            <label class="modal-window__label">
+                Description
+                <input type="text" class="modal-window__text" placeholder="Add description here" data-name="description">
+            </label>
+
+            <div class="modal-window__label radio-block radio-block_categories">
+                Category
+                <ul class="radio-block__list">
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-5" name="category" value="work">
+                        <label for="radio-5" class="radio__label"><span class="radio__inner-round"></span>Work</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-6" name="category" value="education">
+                        <label for="radio-6" class="radio__label"><span class="radio__inner-round"></span>Education</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-7" name="category" value="hobby">
+                        <label for="radio-7" class="radio__label"><span class="radio__inner-round"></span>Hobby</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-8" name="category" value="sport">
+                        <label for="radio-8" class="radio__label"><span class="radio__inner-round"></span>Sport</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-9" name="category" value="other">
+                        <label for="radio-9" class="radio__label"><span class="radio__inner-round"></span>Other</label>
+                    </li>
+                </ul>
+            </div>
+
+            <label class="modal-window__label">
+                Deadline
+                <input type="text" class="modal-window__text" placeholder="May 23, 2017" data-name="deadline">
+            </label>
+
+            <div class="modal-window__label radio-block radio-block_estimation">
+                Estimation
+                <ul class="radio-block__list">
+                    <li class="radio-block__radio radio-block__radio_filled" data-query="estimation"></li>
+                    <li class="radio-block__radio radio-block__radio_filled" data-query="estimation"></li>
+                    <li class="radio-block__radio radio-block__radio_filled" data-query="estimation"></li>
+                    <li class="radio-block__radio" data-query="estimation"></li>
+                    <li class="radio-block__radio" data-query="estimation"></li>
+                </ul>
+            </div>
+
+            <div class="modal-window__label radio-block radio-block_priority">
+                Priority
+                <ul class="radio-block__list">
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-5" name="priority" value="1">
+                        <label for="priority-5" class="radio__label"><span class="radio__inner-round"></span>Urgent</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-6" name="priority" value="2">
+                        <label for="priority-6" class="radio__label"><span class="radio__inner-round"></span>High</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-7" name="priority" value="3">
+                        <label for="priority-7" class="radio__label"><span class="radio__inner-round"></span>Middle</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-8" name="priority" value="4">
+                        <label for="priority-8" class="radio__label"><span class="radio__inner-round"></span>Low</label>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </section>
+
+
+    <section class="modals-article__item modal-window modal-window_edit" id="edit-modal">
+        <form action="#" class="modals-article__form">
+            <div class="modal-window__top-buttons">
+                <button class="modal-window__button icon-trash"></button>
+                <div class="modal-window__container">
+                    <button class="modal-window__button icon-check" data-query="edit"></button>
+                    <button class="modal-window__button icon-close" data-query="close"></button>
+                </div>
+            </div>
+
+            <h2 class="modal-window__title">Edit Task</h2>
+
+            <label class="modal-window__label">
+                Title
+                <input type="text" class="modal-window__text" placeholder="Add title here" data-name="title">
+            </label>
+
+            <label class="modal-window__label">
+                Description
+                <input type="text" class="modal-window__text" placeholder="Add description here" data-name="description">
+            </label>
+
+            <div class="modal-window__label radio-block radio-block_categories">
+                Category
+                <ul class="radio-block__list">
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio" name="category" value="work">
+                        <label for="radio" class="radio__label"><span class="radio__inner-round"></span>Work</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-1" name="category" value="education">
+                        <label for="radio-1" class="radio__label"><span class="radio__inner-round"></span>Education</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-2" name="category" value="hobby">
+                        <label for="radio-2" class="radio__label"><span class="radio__inner-round"></span>Hobby</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-3" name="category" value="sport">
+                        <label for="radio-3" class="radio__label"><span class="radio__inner-round"></span>Sport</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="radio-4" name="category" value="other">
+                        <label for="radio-4" class="radio__label"><span class="radio__inner-round"></span>Other</label>
+                    </li>
+                </ul>
+            </div>
+
+            <label class="modal-window__label">
+                Deadline
+                <input type="text" class="modal-window__text" placeholder="May 23, 2017" data-name="deadline">
+            </label>
+
+            <div class="modal-window__label radio-block radio-block_estimation">
+                Estimation
+                <ul class="radio-block__list">
+                    <li class="radio-block__radio radio-block__radio_filled" data-query="estimation"></li>
+                    <li class="radio-block__radio radio-block__radio_filled" data-query="estimation"></li>
+                    <li class="radio-block__radio radio-block__radio_filled" data-query="estimation"></li>
+                    <li class="radio-block__radio" data-query="estimation"></li>
+                    <li class="radio-block__radio" data-query="estimation"></li>
+                </ul>
+            </div>
+
+            <div class="modal-window__label radio-block radio-block_priority">
+                Priority
+                <ul class="radio-block__list">
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-1" name="priority" value="1">
+                        <label for="priority-1" class="radio__label"><span class="radio__inner-round"></span>Urgent</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-2" name="priority" value="2">
+                        <label for="priority-2" class="radio__label"><span class="radio__inner-round"></span>High</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-3" name="priority" value="3">
+                        <label for="priority-3" class="radio__label"><span class="radio__inner-round"></span>Middle</label>
+                    </li>
+                    <li class="radio-block__radio">
+                        <input type="radio" class="radio" id="priority-4" name="priority" value="4">
+                        <label for="priority-4" class="radio__label"><span class="radio__inner-round"></span>Low</label>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </section>
+</article>
+
+<article class="main-content__article zero-tasks zero-tasks_first-entrance">
+    <img src="/tomato_settings.svg" alt="Add task" class="zero-tasks__image">
+<h2 class="zero-tasks__title">As you visited our site for a first time you can check<br> and customize your default
+    application settings</h2>
+<div class="zero-tasks__buttons button-container">
+    <button class="button-container__item button-container__item_blue timer__buttons_start" data-query="skip">Skip</button>
+    <button class="button-container__item button-container__item_green timer__buttons_start"><a href="#settings">Go to Settings</a></button>
+</div>
+</article>
